@@ -1,7 +1,8 @@
 source :rubygems
 
+gem 'formtastic'
 gem 'jquery-rails'
-gem 'rack', '1.3.3'
+gem 'rack',                     '1.3.3'
 gem 'rails'
 gem 'russian',                                                                :git => 'git://github.com/tacid/russian'
 
@@ -23,15 +24,13 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  #gem 'coffee-rails', "~> 3.1.0"
-  gem 'sass-rails', "  ~> 3.1.0"
-  #gem 'uglifier'
+  gem 'sass-rails',             "~> 3.1.0"
 end
 
 group :test do
-  gem 'sqlite3',                                  :require => false
   gem 'fabrication',                              :require => false
   gem 'rspec-rails',                              :require => false
   gem 'shoulda-matchers',                         :require => false
-  gem 'turn', :require => false
+  gem 'sqlite3',                                  :require => false
+  gem 'turn',                                     :require => false
 end
