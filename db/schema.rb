@@ -11,12 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111005092515) do
+ActiveRecord::Schema.define(:version => 20111006053923) do
 
   create_table "appeals", :force => true do |t|
     t.string   "surname"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "sections", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "topics", :force => true do |t|
+    t.text     "title"
+    t.integer  "section_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topics", ["section_id"], :name => "index_topics_on_section_id"
 
 end
