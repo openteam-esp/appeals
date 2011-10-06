@@ -44,10 +44,10 @@ class AppealsController < ApplicationController
 
     respond_to do |format|
       if @appeal.save
-        format.html { redirect_to @appeal, notice: 'Appeal was successfully created.' }
+        format.xml { render xml: @appeal, status: :created, location: @appeal }
         format.json { render json: @appeal, status: :created, location: @appeal }
       else
-        format.html { render action: "new" }
+        format.xml { render xml: @appeal.errors, status: :unprocessable_entity }
         format.json { render json: @appeal.errors, status: :unprocessable_entity }
       end
     end
