@@ -2,6 +2,7 @@ source :rubygems
 
 gem 'jquery-rails'
 gem 'pg'
+gem 'rack', '1.3.3'
 gem 'rails'
 gem 'sqlite3'
 
@@ -26,13 +27,9 @@ end
 
 group :test do
   # Pretty printed test output
-  gem 'turn', :require => false
-end
-
-group :test do
   gem 'activerecord-nulldb-adapter',              :require => false
   gem 'fabrication',                              :require => false
   gem 'rspec-rails',                              :require => false
   gem 'shoulda-matchers',                         :require => false
+  gem 'turn', :require => false
 end
-
