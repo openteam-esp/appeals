@@ -1,10 +1,13 @@
 source :rubygems
 
 gem 'jquery-rails'
-gem 'pg'
 gem 'rack', '1.3.3'
 gem 'rails'
-gem 'sqlite3'
+gem 'russian',                                                                :git => 'git://github.com/tacid/russian'
+
+group :production do
+  gem 'pg'
+end
 
 group :development do
   gem 'guard-rspec',                              :require => false
@@ -26,8 +29,7 @@ group :assets do
 end
 
 group :test do
-  # Pretty printed test output
-  gem 'activerecord-nulldb-adapter',              :require => false
+  gem 'sqlite3',                                  :require => false
   gem 'fabrication',                              :require => false
   gem 'rspec-rails',                              :require => false
   gem 'shoulda-matchers',                         :require => false

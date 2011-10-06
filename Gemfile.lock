@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/tacid/russian
+  revision: 544a5e931a9044d941ff6f6746b10722f2fdb326
+  specs:
+    russian (0.2.8.pre)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -25,8 +31,6 @@ GEM
       activesupport (= 3.1.0)
       arel (~> 2.2.1)
       tzinfo (~> 0.3.29)
-    activerecord-nulldb-adapter (0.2.0)
-      activerecord (>= 2.0.0)
     activeresource (3.1.0)
       activemodel (= 3.1.0)
       activesupport (= 3.1.0)
@@ -137,7 +141,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-nulldb-adapter
   fabrication
   guard-rspec
   guard-spork
@@ -150,6 +153,7 @@ DEPENDENCIES
   rb-inotify
   rspec-rails
   ruby-graphviz
+  russian!
   sass-rails (~> 3.1.0)
   shoulda-matchers
   spork (>= 0.9.0.rc9)
