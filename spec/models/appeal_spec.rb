@@ -3,6 +3,7 @@
 require 'spec_helper'
 
 describe Appeal do
+  it { should have_one(:address) }
   it { should validate_presence_of(:surname) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:text) }

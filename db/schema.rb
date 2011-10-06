@@ -14,10 +14,12 @@
 ActiveRecord::Schema.define(:version => 20111006090056) do
 
   create_table "addresses", :force => true do |t|
+    t.integer  "appeal_id"
     t.integer  "postcode"
     t.string   "region"
     t.string   "district"
     t.string   "street"
+    t.string   "township"
     t.string   "house"
     t.string   "building"
     t.string   "flat"
@@ -27,17 +29,16 @@ ActiveRecord::Schema.define(:version => 20111006090056) do
 
   create_table "appeals", :force => true do |t|
     t.string   "surname"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "name"
     t.string   "patronymic"
     t.integer  "topic_id"
     t.string   "email"
-    t.integer  "address_id"
     t.string   "phone"
     t.text     "text"
     t.boolean  "public"
     t.string   "answer_kind"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sections", :force => true do |t|
