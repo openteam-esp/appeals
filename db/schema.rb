@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006093054) do
+ActiveRecord::Schema.define(:version => 20111006090056) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "appeal_id"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20111006093054) do
     t.string   "flat"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "appeal_id"
   end
 
   create_table "appeals", :force => true do |t|

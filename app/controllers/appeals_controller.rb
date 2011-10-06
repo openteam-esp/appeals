@@ -25,6 +25,7 @@ class AppealsController < ApplicationController
   # GET /appeals/new.json
   def new
     @appeal = Appeal.new
+    @appeal.build_address
 
     respond_to do |format|
       format.html # new.html.erb
