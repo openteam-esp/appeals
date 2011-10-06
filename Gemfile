@@ -1,10 +1,13 @@
 source :rubygems
 
 gem 'formtastic'
+gem 'forgery',                                   :require => false
+gem 'has_enum',                                                               :git => 'git://github.com/openteam/has_enum.git'
 gem 'jquery-rails'
 gem 'rack',                     '1.3.3'
 gem 'rails'
 gem 'russian',                                                                :git => 'git://github.com/tacid/russian'
+gem 'ryba',                                       :require => false
 
 group :production do
   gem 'pg'

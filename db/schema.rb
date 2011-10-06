@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20111006093054) do
     t.string   "phone"
     t.text     "text"
     t.boolean  "public"
+    t.string   "answer_kind"
   end
 
   create_table "sections", :force => true do |t|
