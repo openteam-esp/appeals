@@ -2,6 +2,7 @@ source :rubygems
 
 gem 'jquery-rails'
 gem 'pg'
+gem 'rack', '1.3.3'
 gem 'rails'
 gem 'sqlite3'
 
@@ -17,3 +18,4 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
+
