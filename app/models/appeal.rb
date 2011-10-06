@@ -3,6 +3,8 @@ class Appeal < ActiveRecord::Base
 
   has_one :address
 
+  accepts_nested_attributes_for :address
+
   has_enum :answer_kind, %w[email post]
 
   state_machine :state, :initial => :draft do
