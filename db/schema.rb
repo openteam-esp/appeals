@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006090056) do
+ActiveRecord::Schema.define(:version => 20111006093054) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "postcode"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20111006090056) do
     t.string   "flat"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "appeal_id"
   end
 
   create_table "appeals", :force => true do |t|
@@ -33,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20111006090056) do
     t.string   "patronymic"
     t.integer  "topic_id"
     t.string   "email"
-    t.integer  "address_id"
     t.string   "phone"
     t.text     "text"
     t.boolean  "public"
