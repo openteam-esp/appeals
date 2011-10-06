@@ -7,6 +7,7 @@ gem 'rack', '1.3.3'
 gem 'rails'
 gem 'russian',                                                                :git => 'git://github.com/tacid/russian'
 gem 'ryba',                                       :require => false
+gem 'state_machine'
 
 group :production do
   gem 'pg'
