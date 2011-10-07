@@ -14,7 +14,8 @@ class Appeal < ActiveRecord::Base
 
   state_machine :state, :initial => :draft do
     state :fresh do
-      validates_presence_of :surname, :name, :answer_kind, :topic, :text, :topic_id
+      validates_presence_of :surname, :name, :answer_kind, :topic, :text, :topic_id, :code
+      validates_uniqueness_of :code
       validates_presence_of :email,   :if => Proc.new { |appeal| appeal.answer_kind == 'email' }
       validates_presence_of :address, :if => Proc.new { |appeal| appeal.answer_kind == 'post' }
     end
@@ -24,6 +25,8 @@ class Appeal < ActiveRecord::Base
     after_transition :registred => :fresh do | appeal, transition |
       appeal.registration.destroy
     end
+
+    before_transition :draft => :fresh, :do => :set_code
 
     event :dispatch do
       transition :draft => :fresh
@@ -41,4 +44,13 @@ class Appeal < ActiveRecord::Base
       transition :replied => :registred, :registred => :fresh
     end
   end
+
+  private
+    def set_code
+      while !Appeal.find_by_code(self.code = generate_code).nil?; end
+    end
+
+    def generate_code(total_size=12, chunk_size=3, delimiter='-')
+      (sprintf "%0#{total_size}d", SecureRandom.random_number(10**total_size)).scan(/\d{#{chunk_size}}/).join(delimiter)
+    end
 end
