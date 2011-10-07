@@ -36,5 +36,12 @@ describe Appeal do
       appeal.errors.keys.should == [:address]
     end
   end
+
+  describe "папки обращений" do
+     it "новые" do
+       Appeal.folder(:fresh).where_values_hash.symbolize_keys.should == {:state => :fresh}
+       Appeal.folder(:fresh).to_sql.should =~ /ORDER BY created_at/
+     end
+  end
 end
 

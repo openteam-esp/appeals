@@ -4,6 +4,9 @@ class Appeal < ActiveRecord::Base
   has_one :address
 
   accepts_nested_attributes_for :address
+  default_scope order('created_at')
+
+  scope :folder, ->(state) { where(:state => state) }
 
   has_enum :answer_kind, %w[email post]
 

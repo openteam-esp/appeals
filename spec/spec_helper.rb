@@ -10,12 +10,15 @@ Spork.prefork do
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+  Dir[Rails.root.join("spec/support/helpers/*.rb")].each {|f| require f}
 
   require "#{Rails.root}/spec/support/deferred_garbage_collection"
 
   RSpec.configure do |config|
     RSpec.configure do |config|
+      config.include Devise::TestHelpers, :type => :controller
+      config.include AppealsSpecHelper
+
       config.mock_with :rspec
 
       config.before do
