@@ -8,7 +8,6 @@ class Public::AppealsController < ApplicationController
   private
     def audit
       Appeal.audit(request)
-      p Appeal
     end
 end
 
