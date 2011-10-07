@@ -1,5 +1,5 @@
 Fabricator(:registration) do
-  registred_on "2011-10-07"
-  number "MyString"
-  directed_to "MyString"
+  registred_on { Date.today }
+  number '13'
+  directed_to 'Ivanov'
 end

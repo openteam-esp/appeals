@@ -6,34 +6,30 @@ class Appeal < ActiveRecord::Base
   has_one :address, :dependent => :destroy
   has_one :registration, :dependent => :destroy
 
+  validates_presence_of :surname, :name, :answer_kind, :topic, :text
+
+  validates_presence_of :email,   :if => :answer_kind_email?
+  validates_presence_of :address, :if => :answer_kind_post?
+
+  validates_uniqueness_of :code
+
   accepts_nested_attributes_for :address
 
   default_scope order('created_at')
 
   scope :folder, ->(state) { where(:state => state) }
 
+  before_create :set_code
   before_create :set_audit_info
 
   has_enum :answer_kind, %w[email post]
 
-  state_machine :state, :initial => :draft do
-    state :fresh do
-      validates_presence_of :surname, :name, :answer_kind, :topic, :text, :topic_id, :code
-      validates_uniqueness_of :code
-      validates_presence_of :email,   :if => Proc.new { |appeal| appeal.answer_kind == 'email' }
-      validates_presence_of :address, :if => Proc.new { |appeal| appeal.answer_kind == 'post' }
-    end
+  state_machine :state, :initial => :fresh do
     state :registred
     state :replied
 
-    after_transition :registred => :fresh do | appeal, transition |
+    after_transition :registred => :fresh do |appeal, transition|
       appeal.registration.destroy
-    end
-
-    before_transition :draft => :fresh, :do => :set_code
-
-    event :dispatch do
-      transition :draft => :fresh
     end
 
     event :register do
