@@ -7,6 +7,10 @@ AppealBackend::Application.routes.draw do
     post :revert, :on => :member
   end
 
+  namespace :public do
+    resources :appeals, :only => [:create, :new, :show]
+  end
+
   get '/:folder/appeals' => 'appeals#index',
       :as => :scoped_appeals,
       :constraints => { :folder => /(fresh|registred|replied)/ }

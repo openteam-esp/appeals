@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111007070529) do
+ActiveRecord::Schema.define(:version => 20111007082701) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "postcode"
@@ -39,6 +39,10 @@ ActiveRecord::Schema.define(:version => 20111007070529) do
     t.boolean  "public"
     t.string   "state"
     t.string   "code"
+    t.string   "user_ip"
+    t.string   "proxy_ip"
+    t.string   "user_agent"
+    t.string   "referrer"
   end
 
   create_table "registrations", :force => true do |t|
