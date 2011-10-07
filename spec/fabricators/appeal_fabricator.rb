@@ -8,5 +8,5 @@ Fabricator(:appeal) do
   email       { Forgery(:internet).email_address }
   text        { Forgery(:lorem_ipsum).words(10) }
   answer_kind 'email'
-  topic
+  topic!
 end

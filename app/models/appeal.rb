@@ -13,7 +13,7 @@ class Appeal < ActiveRecord::Base
 
   state_machine :state, :initial => :draft do
     state :fresh do
-      validates_presence_of :surname, :name, :answer_kind, :topic, :text
+      validates_presence_of :surname, :name, :answer_kind, :topic, :text, :topic_id
       validates_presence_of :email,   :if => Proc.new { |appeal| appeal.answer_kind == 'email' }
       validates_presence_of :address, :if => Proc.new { |appeal| appeal.answer_kind == 'post' }
     end

@@ -21,5 +21,15 @@ module AppealsSpecHelper
   def create_user(options={})
     Fabricate(:user, options)
   end
+
+  def fresh_appeal(options={})
+    @fresh_appeal ||= create_fresh_appeal(options)
+  end
+
+  def create_fresh_appeal(options={})
+    Fabricate(:appeal).tap do |appeal|
+      appeal.dispatch!
+    end
+  end
 end
 

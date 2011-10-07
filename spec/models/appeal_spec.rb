@@ -28,12 +28,20 @@ describe Appeal do
       appeal = Fabricate(:appeal, :answer_kind => 'email', :email => '')
       appeal.dispatch
       appeal.errors.keys.should == [:email]
+      appeal.update_attribute(:email, "demo@demo.de")
+      appeal.dispatch
+      appeal.errors.should be_empty
+      appeal.should be_fresh
     end
 
     it "должен требовать адрес если выбран ответ по почте" do
       appeal = Fabricate(:appeal, :answer_kind => 'post')
       appeal.dispatch
       appeal.errors.keys.should == [:address]
+      appeal.create_address(Fabricate.attributes_for(:address))
+      appeal.dispatch
+      appeal.errors.should be_empty
+      appeal.should be_fresh
     end
   end
 
