@@ -38,7 +38,7 @@ module AppealsSpecHelper
 
   def create_registred_appeal(options={})
     create_fresh_appeal.tap do | appeal |
-      Registration.create! :number => "123", :registred_on => Date.today, :appeal => appeal
+      Fabricate(:registration, :appeal => appeal)
       appeal.reload
     end
   end

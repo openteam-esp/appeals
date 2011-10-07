@@ -1,19 +1,5 @@
-<h1>Listing appeals</h1>
-
-<table>
-  <tr>
-    <th>Surname</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @appeals.each do |appeal| %>
-  <tr>
-    <td><%= appeal.surname %></td>
-    <td><%= link_to 'Show', appeal %></td>
-    <td><%= link_to 'Destroy', appeal, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<ul>
+  <% collection.each do |appeal| %>
+    <li><%= link_to appeal.surname, new_appeal_registration_path(appeal) %></li>
+  <% end %>
+</ul>

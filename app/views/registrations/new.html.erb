@@ -1,0 +1,5 @@
+<%= @appeal.surname %>
+<%= semantic_form_for @registration, :url => appeal_registration_path(@appeal) do |form| %>
+  <%= form.inputs :registred_on, :number, :directed_to %>
+  <%= form.commit_button %>
+<% end %>
