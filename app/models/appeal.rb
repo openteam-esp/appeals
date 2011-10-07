@@ -1,9 +1,10 @@
 class Appeal < ActiveRecord::Base
   belongs_to :topic
 
-  has_one :address
+  has_one :address, :dependent => :destroy
 
   accepts_nested_attributes_for :address
+
   default_scope order('created_at')
 
   scope :folder, ->(state) { where(:state => state) }
