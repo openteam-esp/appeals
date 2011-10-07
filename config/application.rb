@@ -50,9 +50,15 @@ module AppealBackend
     config.generators do | generators |
       generators.test_framework       :rspec, :fixture => true
       generators.fixture_replacement  :fabrication
+      generators.stylesheet_engine    :sass
     end
 
     config.middleware.insert_after 'Warden::Manager', 'SetCurrentUserMiddleware'
+
+    stylesheets_directory = "#{Rails.root}/app/assets/stylesheets"
+
+    config.sass.preferred_syntax = :sass
+
   end
 end
 
