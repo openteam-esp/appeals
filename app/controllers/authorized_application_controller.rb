@@ -20,6 +20,6 @@ class AuthorizedApplicationController < ApplicationController
       end
 
       resource ||= self.resource
-      Ability.new(current_user).authorize! action, resource
+      #Ability.new(current_user).authorize! action, resource
     end
 end

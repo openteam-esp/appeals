@@ -1,5 +1,4 @@
 <ul>
-  <% collection.each do |appeal| %>
-    <li><%= link_to appeal.surname, new_appeal_registration_path(appeal) %></li>
-  <% end %>
+  <%= render @appeals %>
 </ul>
+

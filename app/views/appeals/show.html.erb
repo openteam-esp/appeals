@@ -5,6 +5,12 @@
   <%= @appeal.surname %>
 </p>
 
+<p>
+  <%= render @appeal.registration %>
+</p>
 
-<%= link_to 'Edit', edit_appeal_path(@appeal) %> |
-<%= link_to 'Back', appeals_path %>
+<%= semantic_form_for @appeal, :url => revert_appeal_path(@appeal), :html => {:method => :post} do |form| %>
+  <%= form.commit_button 'вернуть' %>
+<% end %>
+
+<%= link_to 'Back', scoped_appeals_path(:folder => @appeal.state) %>

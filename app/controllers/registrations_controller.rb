@@ -1,14 +1,5 @@
 class RegistrationsController < AuthorizedApplicationController
-  actions :create, :new
+  actions :create, :edit, :new, :update
 
-  belongs_to :appeal
-
-  def create
-    create! { scoped_appeals_path(:folder => :fresh) }
-  end
-
-  protected
-    def build_resource
-      @registration = parent.build_registration(params[:registration])
-    end
+  belongs_to :appeal, :singleton => true
 end

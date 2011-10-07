@@ -8,10 +8,18 @@ describe AppealsController do
     sign_in user
   end
 
-  it "GET index folder fresh" do
-    Appeal.should_receive(:folder).with('fresh').and_return(Appeal)
-    get :index, :folder => :fresh
+  describe "GET index" do
+    it "folder fresh" do
+      Appeal.should_receive(:folder).with('fresh').and_return(Appeal)
+      get :index, :folder => :fresh
+    end
   end
 
-
+  describe "POST revert" do
+    it "should revert registred appeal" do
+      post :revert, :id => registred_appeal.id
+      registred_appeal.reload.should be_fresh
+      response.should redirect_to(scoped_appeals_path(:folder => :fresh))
+    end
+  end
 end

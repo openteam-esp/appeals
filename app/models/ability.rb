@@ -6,6 +6,8 @@ class Ability
 
     unless user.new_record?
       can :manage, Registration
+
+      can :read, Appeal
     end
   end
 end
