@@ -31,5 +31,16 @@ module AppealsSpecHelper
       appeal.dispatch!
     end
   end
+
+  def registred_appeal(options={})
+    @registred_appeal ||= create_registred_appeal(options)
+  end
+
+  def create_registred_appeal(options={})
+    create_fresh_appeal.tap do | appeal |
+      Registration.create! :number => "123", :registred_on => Date.today, :appeal => appeal
+      appeal.reload
+    end
+  end
 end
 

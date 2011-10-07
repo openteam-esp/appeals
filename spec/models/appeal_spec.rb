@@ -11,6 +11,7 @@ describe Appeal do
   it { Appeal.new(:state => 'replied').state_events.should == [:revert] }
 
   it { should have_one(:address) }
+  it { should have_one(:registration) }
 
   describe "должен валидировать обращение в момент подачи" do
     before {
@@ -50,6 +51,17 @@ describe Appeal do
       Appeal.folder(:fresh).where_values_hash.symbolize_keys.should == {:state => :fresh}
       Appeal.folder(:fresh).to_sql.should =~ /ORDER BY created_at/
     end
+  end
+
+  require File.expand_path('spec/spec_helper')
+
+  describe "переход в предыдущее состояние" do
+    it "registred -> fresh" do
+      registred_appeal.revert
+      registred_appeal.should be_fresh
+      registred_appeal.reload.registration.should be_nil
+    end
+
   end
 end
 

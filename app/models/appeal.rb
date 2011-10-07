@@ -2,6 +2,7 @@ class Appeal < ActiveRecord::Base
   belongs_to :topic
 
   has_one :address, :dependent => :destroy
+  has_one :registration, :dependent => :destroy
 
   accepts_nested_attributes_for :address
 
@@ -19,6 +20,10 @@ class Appeal < ActiveRecord::Base
     end
     state :registred
     state :replied
+
+    after_transition :registred => :fresh do | appeal, transition |
+      appeal.registration.destroy
+    end
 
     event :dispatch do
       transition :draft => :fresh
