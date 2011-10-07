@@ -1,8 +1,11 @@
 source :rubygems
 
-gem 'formtastic'
+gem 'cancan'
+gem 'devise'
 gem 'forgery',                                   :require => false
+gem 'formtastic'
 gem 'has_enum',                                                               :git => 'git://github.com/openteam/has_enum.git'
+gem 'inherited_resources'
 gem 'jquery-rails'
 gem 'rack',                     '1.3.3'
 gem 'rails'
