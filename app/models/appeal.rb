@@ -34,6 +34,10 @@ class Appeal < ActiveRecord::Base
            :to => :registration,
            :prefix => true, :allow_nil => true
 
+  delegate :number, :replied_on, :replied_by,
+           :to => :reply,
+           :prefix => true, :allow_nil => true
+
   has_enum :answer_kind, %w[email post]
 
   paginates_per 15
@@ -65,11 +69,23 @@ class Appeal < ActiveRecord::Base
 
   searchable do
     string :state
-
     text :full_name
+
     text :registration_number
     text :registration_registred_on do
       I18n.l self.registration_registred_on if self.registration
+    end
+
+    text :reply_number do
+      self.reply_number if self.reply
+    end
+
+    text :reply_replied_on do
+      I18n.l self.reply_replied_on if self.reply
+    end
+
+    text :reply_replied_by do
+      self.reply_replied_by if self.reply
     end
   end
 
