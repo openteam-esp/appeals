@@ -42,6 +42,7 @@ ru:
       user: пользователь
 
   cancel: Отменить
+  clear: Очистить
 
   errors:
     format: "%{attribute} %{message}"
@@ -81,7 +82,8 @@ ru:
       reset_password: Сброс пароля
       sign_in: Вход
       sign_up: Регистрация
-      update: Сохранить"
+      update: Сохранить
+      search: Поиск
 
   logout: Выход
 

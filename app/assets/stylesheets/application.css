@@ -5,8 +5,10 @@
  *= require_self
  *= require reset
  *= require text
+ *= require buttons
  *= require devise
  *= require layout
- *= require pagination
  *= require appeal
+ *= require appeal_search
+ *= require pagination
  */

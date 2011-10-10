@@ -23,29 +23,30 @@
             margin: 0 5px 0 0
             width: auto
 
-        input, select, textarea
-          border: 1px solid #aaa
-          font-family: Verdana, sans-serif
-          font-size: 16px
-          padding: 4px 5px
+    &.inputs
+      input, select, textarea
+        border: 1px solid #aaa
+        font-family: Verdana, sans-serif
+        font-size: 16px
+        padding: 4px 5px
 
-        input
-          width: 340px
+      input
+        width: 340px
 
-        select
-          width: 703px
+      select
+        width: 703px
 
-        textarea
-          width: 690px
+      textarea
+        width: 690px
 
-        .choices-group
-          +clearfix
+      .choices-group
+        +clearfix
 
-        .inline-errors
-          background: image_url('inline_error_arrow.png') no-repeat left center
-          color: #B01C21
-          font-size: 10px
-          padding: 0 0 0 15px
+      .inline-errors
+        background: image_url('inline_error_arrow.png') no-repeat left center
+        color: #B01C21
+        font-size: 10px
+        padding: 0 0 0 15px
 
   .buttons
     +clearfix
@@ -57,26 +58,6 @@
       li
         +clearfix
         float: right
-
-        .button
-          border: 1px solid #aaa
-          color: #333
-          display: block
-          font-size: 14px
-          line-height: 16px
-          margin: 0 0 0 10px
-          padding: 4px 7px
-          text-decoration: none
-          width: auto
-
-        .create
-          background: #e7f7de
-
-          &:hover
-            background: #D3F0C1
-
-          &:active
-            background: #B6E698
 
         .cancel
           background: #fadcdd

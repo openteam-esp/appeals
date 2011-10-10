@@ -12,8 +12,16 @@
 
 <% content_for :content do %>
   <div class='section'>
-    <div class="search">
-      Search form
+    <div class="appeal_search_wrapper">
+      <%= semantic_search_form_for :appeal, :url => scoped_appeals_path(:folder => params[:folder]) do |form| %>
+        <%= form.inputs do %>
+          <%= form.input :keywords, :as => :string %>
+        <% end %>
+        <%= form.buttons do %>
+          <%= form.commit_button :search, :button_html => { :class => 'button' } %>
+          <%= content_tag :li, link_to(t('clear'), scoped_appeals_path(params[:forder]), :class => 'button') if params[:appeal_search] && !params[:appeal_search][:keywords].blank? %>
+        <% end %>
+      <% end %>
     </div>
     <div class='article'>
       <%= yield %>
