@@ -22,5 +22,4 @@ Appeal.destroy_all
   appeal = Fabricate.build(:appeal, options)
   appeal.address_attributes = Fabricate.attributes_for(:address) if appeal.answer_kind_post?
   appeal.save!
-  appeal.dispatch!
 end
