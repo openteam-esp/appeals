@@ -15,5 +15,7 @@ AppealBackend::Application.routes.draw do
       :as => :scoped_appeals,
       :constraints => { :folder => /(fresh|registred|replied)/ }
 
-  root :to => 'appeals#index'
+  scope :folder => 'fresh' do
+    root :to => 'appeals#index'
+  end
 end
