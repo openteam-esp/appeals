@@ -14,6 +14,7 @@ gem 'rack',                     '1.3.3'
 gem 'rails'
 gem 'russian',                                                                :git => 'git://github.com/tacid/russian'
 gem 'ryba',                                       :require => false
+gem 'simple-navigation'
 gem 'state_machine'
 gem 'sunspot_rails',            '~> 1.3.0.rc4'
 

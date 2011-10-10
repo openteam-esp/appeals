@@ -5,7 +5,7 @@
 <% content_for :sidebar do %>
   <div class="sidebar">
     <div class='nav'>
-      <h5>Тут будет навигация</h5>
+      <%= render_navigation :context => :appeal, :renderer => :list_with_counters %>
     </div>
   </div>
 <% end %>

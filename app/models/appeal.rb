@@ -96,7 +96,7 @@ class Appeal < ActiveRecord::Base
   end
 
   def full_name
-    "#{surname} #{name} #{patronymic}"
+    "#{surname} #{name} #{patronymic}".squish
   end
 
   def self.audit(request)
