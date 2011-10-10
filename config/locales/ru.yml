@@ -6,6 +6,12 @@ ru:
     actions:
       create: "Создать %{model}"
       update: "Сохранить"
+      sign_in: "Вход"
+      sign_up: "Регистрация"
+      reset_password: "Сброс пароля"
+      resend_confirmation: "Выслать заново"
+      resend_unlock: "Выслать заново"
+      change_password: "Изменить пароль"
 
   errors:
     format: "%{attribute} %{message}"
@@ -33,3 +39,12 @@ ru:
       less_than_or_equal_to: "Должно быть меньше или равно %{count}"
       odd: "Должно быть нечетным"
       even: "Должно быть еще"
+
+  activerecord:
+    attributes:
+      user:
+        name: "ФИО"
+        email: "Email"
+        password: "Пароль"
+        password_confirmation: "Подтвердите пароль"
+        remember_me: "Запомнить меня"

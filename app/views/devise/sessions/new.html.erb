@@ -1,4 +1,4 @@
-<h2>Sign in</h2>
+<h2>Вход</h2>
 
 <%= semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |form| %>
   <%= form.inputs do %>
@@ -6,6 +6,6 @@
     <%= form.input :password %>
     <%= form.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
   <% end %>
-  <%= render :partial => "devise/shared/submit", :locals => { :form => form } %>
+  <%= render :partial => "devise/shared/submit", :locals => { :form => form, :submit => :sign_in } %>
 <% end %>
 
