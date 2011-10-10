@@ -6,8 +6,9 @@ require 'ryba'
 
 section = Section.find_or_create_by_title('Section #1')
 
-topic1 = section.topics.find_or_create_by_title "Конституционный строй"
-topic2 = section.topics.find_or_create_by_title "Основы государственного управления"
+@topic1 = section.topics.find_or_create_by_title "Конституционный строй"
+@topic2 = section.topics.find_or_create_by_title "Основы государственного управления"
+
 section.topics.find_or_create_by_title "Гражданское право"
 section.topics.find_or_create_by_title "Семья"
 section.topics.find_or_create_by_title "Жилище"
@@ -36,10 +37,21 @@ User.find_or_initialize_by_email('demo@demo.de').tap do | user |
   end
 end
 
+def create_appeal
+  options = rand(4) > 1 ? {:answer_kind => 'email', :topic => @topic1} : {:topic => @topic2, :answer_kind => 'post', :email => rand(2) > 1 ? nil : Forgery(:internet).email_address }
+
+  Fabricate.build(:appeal, options).tap do |appeal|
+    appeal.address_attributes = Fabricate.attributes_for(:address) if appeal.answer_kind_post?
+    appeal.save!
+  end
+end
+
 Appeal.destroy_all
 10.times do
-  options = rand(4) > 1 ? {:answer_kind => 'email', :topic => topic1} : {:topic => topic2, :answer_kind => 'post', :email => rand(2) > 1 ? nil : Forgery(:internet).email_address }
-  appeal = Fabricate.build(:appeal, options)
-  appeal.address_attributes = Fabricate.attributes_for(:address) if appeal.answer_kind_post?
-  appeal.save!
+  create_appeal
+end
+
+20.times do
+ appeal = create_appeal
+ appeal.create_registration(:number => appeal.send(:generate_code, 4, 2, '/'), :registred_on => Date.today - rand(30).days, :directed_to => Ryba::Name.full_name)
 end
