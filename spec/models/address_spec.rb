@@ -10,3 +10,20 @@ describe Address do
   it { should validate_presence_of(:township) }
 end
 
+
+# == Schema Information
+#
+# Table name: addresses
+#
+#  id         :integer         not null, primary key
+#  postcode   :integer
+#  region     :string(255)
+#  district   :string(255)
+#  street     :string(255)
+#  house      :string(255)
+#  building   :string(255)
+#  flat       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

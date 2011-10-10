@@ -68,3 +68,27 @@ class Appeal < ActiveRecord::Base
       self.referrer = self.class.referrer
     end
 end
+
+# == Schema Information
+#
+# Table name: appeals
+#
+#  id         :integer         not null, primary key
+#  surname    :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#  name       :string(255)
+#  patronymic :string(255)
+#  topic_id   :integer
+#  email      :string(255)
+#  address_id :integer
+#  phone      :string(255)
+#  text       :text
+#  public     :boolean
+#  state      :string(255)
+#  code       :string(255)
+#  user_ip    :string(255)
+#  proxy_ip   :string(255)
+#  user_agent :string(255)
+#  referrer   :string(255)
+#

@@ -20,6 +20,7 @@ group :production do
 end
 
 group :development do
+  gem 'annotate',                                                             :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
   gem 'guard-rspec',                              :require => false
   gem 'guard-spork',                              :require => false
   gem 'hirb',                                     :require => false
