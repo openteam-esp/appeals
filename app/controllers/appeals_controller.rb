@@ -4,6 +4,7 @@ class AppealsController < AuthorizedApplicationController
   custom_actions :resource => :revert
 
   has_scope :folder
+  has_scope :page, :default => 1, :only => :index
 
   def revert
     revert! {
