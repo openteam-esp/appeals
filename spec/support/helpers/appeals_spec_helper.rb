@@ -32,5 +32,12 @@ module AppealsSpecHelper
       appeal.reload
     end
   end
+
+  def closed_appeal(options={})
+    @closed_appeal ||= registred_appeal.tap do |appeal|
+      Fabricate(:reply, :appeal => appeal)
+      appeal.close!
+    end
+  end
 end
 

@@ -93,6 +93,12 @@ describe Appeal do
       registred_appeal.reload.should be_fresh
       registred_appeal.registration.should be_nil
     end
+
+    it "closed -> registred" do
+      closed_appeal.revert
+      closed_appeal.reload.should be_registred
+      closed_appeal.reply.should be_nil
+    end
   end
 end
 

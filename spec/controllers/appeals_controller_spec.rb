@@ -44,6 +44,12 @@ describe AppealsController do
       registred_appeal.reload.should be_fresh
       response.should redirect_to(scoped_appeals_path(:folder => :fresh))
     end
+
+    it "should revert closed appeal" do
+      post :revert, :id => closed_appeal.id
+      closed_appeal.reload.should be_registred
+      response.should redirect_to(scoped_appeals_path(:folder => :registred))
+    end
   end
 
   describe 'POST close' do

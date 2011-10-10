@@ -39,6 +39,10 @@ class Appeal < ActiveRecord::Base
       appeal.registration.destroy
     end
 
+    after_transition :closed => :registred do |appeal, transition|
+      appeal.reply.destroy
+    end
+
     event :register do
       transition :fresh => :registred
     end
