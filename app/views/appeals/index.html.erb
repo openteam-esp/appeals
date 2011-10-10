@@ -1,6 +1,10 @@
 <%= semantic_search_form_for :appeal, :url => scoped_appeals_path(:folder => params[:folder]) do |form| %>
-  <%= form.input :keywords, :as => :string %>
-  <%= form.commit_button %>
+  <%= form.inputs do %>
+    <%= form.input :keywords, :as => :string %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button :button_html => {:class => 'button'} %>
+  <% end %>
 <% end %>
 
 <%= render @appeals %>
