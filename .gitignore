@@ -5,5 +5,8 @@ log/*.log
 tmp/
 .sass-cache/
 config/database.yml
+config/sunspot.yml
 *.swp
 .rake_tasks~
+solr/data
+solr/pids

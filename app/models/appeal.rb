@@ -22,7 +22,13 @@ class Appeal < ActiveRecord::Base
   before_create :set_code
   before_create :set_audit_info
 
+  delegate :number, :registred_on, :directed_to,
+           :to => :registration,
+           :prefix => true, :allow_nil => true
+
   has_enum :answer_kind, %w[email post]
+
+  paginates_per 15
 
   state_machine :state, :initial => :fresh do
     state :registred
@@ -43,6 +49,20 @@ class Appeal < ActiveRecord::Base
     event :revert do
       transition :replied => :registred, :registred => :fresh
     end
+  end
+
+  searchable do
+    string :state
+
+    text :full_name
+    text :registration_number
+    text :registration_registred_on do
+      I18n.l self.registration_registred_on if self.registration
+    end
+  end
+
+  def full_name
+    "#{surname} #{name} #{patronymic}"
   end
 
   def self.audit(request)

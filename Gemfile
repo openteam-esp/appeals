@@ -6,6 +6,7 @@ gem 'forgery',                                   :require => false
 gem 'formtastic'
 gem 'has_enum'
 gem 'has_scope'
+gem 'has_searcher'
 gem 'inherited_resources'
 gem 'jquery-rails'
 gem 'kaminari'
@@ -14,6 +15,7 @@ gem 'rails'
 gem 'russian',                                                                :git => 'git://github.com/tacid/russian'
 gem 'ryba',                                       :require => false
 gem 'state_machine'
+gem 'sunspot_rails',            '~> 1.3.0.rc4'
 
 group :production do
   gem 'pg'
@@ -29,6 +31,7 @@ group :development do
   gem 'rb-inotify',                               :require => false
   gem 'ruby-graphviz',                            :require => false
   gem 'spork',                  '>= 0.9.0.rc9',   :require => false
+  gem 'sunspot_solr',           '~> 1.3.0.rc4',   :require => false
   gem 'unicorn',                                  :require => false
 end
 
@@ -46,6 +49,7 @@ group :test do
   gem 'fabrication',                              :require => false
   gem 'rspec-rails',                              :require => false
   gem 'shoulda-matchers',                         :require => false
+  gem 'sunspot_matchers',                         :require => false
   gem 'sqlite3',                                  :require => false
   gem 'turn',                                     :require => false
 end

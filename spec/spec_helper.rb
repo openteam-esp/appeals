@@ -7,6 +7,7 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'shoulda-matchers'
+  require 'sunspot_matchers'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -16,8 +17,9 @@ Spork.prefork do
 
   RSpec.configure do |config|
     RSpec.configure do |config|
-      config.include Devise::TestHelpers, :type => :controller
       config.include AppealsSpecHelper
+      config.include Devise::TestHelpers, :type => :controller
+      config.include SunspotMatchers
 
       config.mock_with :rspec
 
@@ -30,8 +32,10 @@ Spork.prefork do
       end
 
       config.before(:all) do
-        Dir[Rails.root.join("spec/support/matchers/*.rb")].each {|f| require f}
         require 'fabrication'
+
+        Dir[Rails.root.join("spec/support/matchers/*.rb")].each {|f| require f}
+        Sunspot.session = SunspotMatchers::SunspotSessionSpy.new(Sunspot.session)
       end
     end
   end
