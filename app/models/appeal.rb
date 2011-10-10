@@ -30,7 +30,7 @@ class Appeal < ActiveRecord::Base
   before_create :set_code
   before_create :set_audit_info
 
-  delegate :number, :registred_on, :directed_to,
+  delegate :number, :registered_on, :directed_to,
            :to => :registration,
            :prefix => true, :allow_nil => true
 
@@ -43,27 +43,29 @@ class Appeal < ActiveRecord::Base
   paginates_per 15
 
   state_machine :state, :initial => :fresh do
-    state :registred
     state :closed
+    state :fresh
+    state :registered
+    state :replied
 
-    after_transition :registred => :fresh do |appeal, transition|
+    after_transition :registered => :fresh do |appeal, transition|
       appeal.registration.destroy
     end
 
-    after_transition :closed => :registred do |appeal, transition|
+    after_transition :closed => :registered do |appeal, transition|
       appeal.reply.destroy
     end
 
     event :register do
-      transition :fresh => :registred
+      transition :fresh => :registered
     end
 
     event :close do
-      transition :registred => :closed, :if => :reply_valid?
+      transition :registered => :closed, :if => :reply_valid?
     end
 
     event :revert do
-      transition :closed => :registred, :registred => :fresh
+      transition :closed => :registered, :registered => :fresh
     end
   end
 
@@ -72,8 +74,8 @@ class Appeal < ActiveRecord::Base
     text :full_name
 
     text :registration_number
-    text :registration_registred_on do
-      I18n.l self.registration_registred_on if self.registration
+    text :registration_registered_on do
+      I18n.l self.registration_registered_on if self.registration
     end
 
     text :reply_number do

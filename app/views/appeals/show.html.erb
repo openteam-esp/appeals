@@ -1,23 +1,18 @@
-<p id="notice"><%= notice %></p>
+<%= @appeal.surname %>
 
-<p>
-  <b>Surname:</b>
-  <%= @appeal.surname %>
-</p>
+<%= render @appeal.registration unless @appeal.fresh? %>
+<%= render :partial => 'registrations/form' if @appeal.fresh? %>
 
-<p>
-  <%= render @appeal.registration unless @appeal.fresh? %>
-  <%= render :partial => 'registrations/form' if @appeal.fresh? %>
-</p>
-
-<%= render :partial => 'replies/form' if @appeal.registred? %>
+<%= render :partial => 'replies/form' if @appeal.registered? %>
 
 <%= semantic_form_for @appeal, :url => revert_appeal_path(@appeal), :html => {:method => :post} do |form| %>
-  <%= form.commit_button 'вернуть' %>
+  <%= form.buttons do %>
+    <%= form.commit_button 'вернуть', :button_html => {:class => 'button revert'} %>
+  <% end %>
 <% end %>
 
 <%= semantic_form_for @appeal, :url => close_appeal_path(@appeal), :html => {:method => :post} do |form| %>
   <%= form.commit_button 'закрыть' %>
 <% end %>
 
-<%= link_to 'Back', scoped_appeals_path(:folder => @appeal.state) %>
+<%= link_to t('back'), scoped_appeals_path(:folder => @appeal.state) %>

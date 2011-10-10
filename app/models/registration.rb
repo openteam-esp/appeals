@@ -1,7 +1,7 @@
 class Registration < ActiveRecord::Base
   belongs_to :appeal
 
-  validates_presence_of :number, :registred_on
+  validates_presence_of :number, :registered_on
 
   after_create :register_appeal
 
@@ -16,7 +16,7 @@ end
 # Table name: registrations
 #
 #  id           :integer         not null, primary key
-#  registred_on :date
+#  registered_on :date
 #  number       :string(255)
 #  directed_to  :string(255)
 #  appeal_id    :integer

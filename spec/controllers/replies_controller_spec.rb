@@ -7,13 +7,13 @@ describe RepliesController do
   end
 
   it "POST create" do
-    post :create, :appeal_id => registred_appeal.id, :reply => Fabricate.attributes_for(:reply)
+    post :create, :appeal_id => registered_appeal.id, :reply => Fabricate.attributes_for(:reply)
     response.should redirect_to(assigns(:appeal))
   end
 
   it "PUT update" do
-    reply = Fabricate(:reply, :appeal => registred_appeal)
-    put :update, :appeal_id => registred_appeal.id, :reply => Fabricate.attributes_for(:reply)
+    reply = Fabricate(:reply, :appeal => registered_appeal)
+    put :update, :appeal_id => registered_appeal.id, :reply => Fabricate.attributes_for(:reply)
     response.should redirect_to(assigns(:appeal))
   end
 end

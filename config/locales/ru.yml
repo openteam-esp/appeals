@@ -1,5 +1,5 @@
 ru:
-  "Appeal system": Система обработки обращений граждан
+  appeal_system: Система обработки обращений граждан
 
   activerecord:
     attributes:
@@ -41,6 +41,7 @@ ru:
       topic: тематика обращения
       user: пользователь
 
+  back: Назад
   cancel: Отменить
   clear: Очистить
 
@@ -89,14 +90,12 @@ ru:
 
   new_appeal: Новое обращение
 
-  activerecord:
-    attributes:
-      user:
-        name: "ФИО"
-        email: "Email"
-        password: "Пароль"
-        password_confirmation: "Подтвердите пароль"
-        remember_me: "Запомнить меня"
+  state_machine:
+    appeal:
+      state:
+        fresh: Новое обращение
+        registered: Зарегистрировано
+        replied: Отвечено
 
   sidebar:
     appeal:
@@ -113,3 +112,5 @@ ru:
   time:
     formats:
       default: "%d.%m.%Y, %H:%M:%S"
+
+  to_appeal_list: К списку обращений

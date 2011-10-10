@@ -22,26 +22,26 @@ describe AppealsController do
       get :index, :folder => :fresh, :page => 2
     end
 
-    it 'folder registred' do
-      Appeal.should_receive(:folder).with('registred').and_return(Appeal)
+    it 'folder registered' do
+      Appeal.should_receive(:folder).with('registered').and_return(Appeal)
       Appeal.should_receive(:page).with(1).and_return(Appeal)
 
-      get :index, :folder => :registred
+      get :index, :folder => :registered
     end
 
-    it "folder registred with search" do
-      get :index, :folder => :registred, :utf8 => true, :keywords => '10.10.2010', :page => 2
+    it "folder registered with search" do
+      get :index, :folder => :registered, :utf8 => true, :keywords => '10.10.2010', :page => 2
 
       Sunspot.session.should have_search_params(:keywords, '10.10.2010')
-      Sunspot.session.should have_search_params(:with, :state, 'registred')
+      Sunspot.session.should have_search_params(:with, :state, 'registered')
       Sunspot.session.should have_search_params(:paginate, :page => 2, :per_page => 15)
     end
   end
 
   describe 'POST revert' do
-    it 'should revert registred appeal' do
-      post :revert, :id => registred_appeal.id
-      registred_appeal.reload.should be_fresh
+    it 'should revert registered appeal' do
+      post :revert, :id => registered_appeal.id
+      registered_appeal.reload.should be_fresh
       response.should redirect_to(scoped_appeals_path(:folder => :fresh))
     end
 

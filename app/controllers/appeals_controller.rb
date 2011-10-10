@@ -48,6 +48,7 @@ class AppealsController < AuthorizedApplicationController
     end
 
     def resolve_layout
+      return 'system/appeal' if action_name == 'show'
       'system/list'
     end
 

@@ -12,10 +12,9 @@ describe Appeal do
   it { should validate_presence_of(:topic) }
   it { should validate_presence_of(:answer_kind) }
 
-  it { Appeal.state_machines[:state].states.map(&:name).should == [:fresh, :registred, :closed] }
-
+  it { Appeal.state_machines[:state].states.map(&:name).should == [:fresh, :registered, :closed] }
   it { Appeal.new(:state => 'fresh').state_events.should == [:register] }
-  it { Fabricate(:reply, :appeal => registred_appeal); registred_appeal.state_events.should == [:close, :revert] }
+  it { Fabricate(:reply, :appeal => registered_appeal); registered_appeal.state_events.should == [:close, :revert] }
   it { Appeal.new(:state => 'closed').state_events.should == [:revert] }
 
   describe 'при создании обращения' do
@@ -93,11 +92,11 @@ describe Appeal do
   end
 
   describe 'переход в предыдущее состояние' do
-    it 'registred -> fresh' do
-      registred_appeal.revert
+    it 'registered -> fresh' do
+      registered_appeal.revert
 
-      registred_appeal.reload.should be_fresh
-      registred_appeal.registration.should be_nil
+      registered_appeal.reload.should be_fresh
+      registered_appeal.registration.should be_nil
     end
 
     it "closed -> registred" do
