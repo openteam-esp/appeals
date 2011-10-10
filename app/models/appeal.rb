@@ -33,7 +33,7 @@ class Appeal < ActiveRecord::Base
 
   state_machine :state, :initial => :fresh do
     state :registred
-    state :replied
+    state :closed
 
     after_transition :registred => :fresh do |appeal, transition|
       appeal.registration.destroy
@@ -43,12 +43,12 @@ class Appeal < ActiveRecord::Base
       transition :fresh => :registred
     end
 
-    event :reply do
-      transition :registred => :replied
+    event :close do
+      transition :registred => :closed
     end
 
     event :revert do
-      transition :replied => :registred, :registred => :fresh
+      transition :closed => :registred, :registred => :fresh
     end
   end
 

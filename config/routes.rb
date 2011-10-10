@@ -5,7 +5,10 @@ AppealBackend::Application.routes.draw do
     resource :registration, :only => [:create, :new]
     resource :reply, :only => [:create, :edit, :new, :update]
 
-    post :revert, :on => :member
+    member do
+      post :revert
+      post :close
+    end
   end
 
   namespace :public do
@@ -14,7 +17,7 @@ AppealBackend::Application.routes.draw do
 
   get '/:folder/appeals' => 'appeals#index',
       :as => :scoped_appeals,
-      :constraints => { :folder => /(fresh|registred|replied)/ }
+      :constraints => { :folder => /(fresh|registred|closed)/ }
 
   scope :folder => 'fresh' do
     root :to => 'appeals#index'

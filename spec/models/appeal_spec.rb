@@ -12,11 +12,11 @@ describe Appeal do
   it { should validate_presence_of(:topic) }
   it { should validate_presence_of(:answer_kind) }
 
-  it { Appeal.state_machines[:state].states.map(&:name).should == [:fresh, :registred, :replied] }
+  it { Appeal.state_machines[:state].states.map(&:name).should == [:fresh, :registred, :closed] }
 
   it { Appeal.new(:state => 'fresh').state_events.should == [:register] }
-  it { Appeal.new(:state => 'registred').state_events.should == [:reply, :revert] }
-  it { Appeal.new(:state => 'replied').state_events.should == [:revert] }
+  it { Appeal.new(:state => 'registred').state_events.should == [:close, :revert] }
+  it { Appeal.new(:state => 'closed').state_events.should == [:revert] }
 
   describe 'при создании обращения' do
     it { Fabricate(:appeal).should be_fresh }
@@ -57,6 +57,10 @@ describe Appeal do
     it 'новые' do
       Appeal.folder(:fresh).where_values_hash.symbolize_keys.should == {:state => :fresh}
       Appeal.folder(:fresh).to_sql.should =~ /ORDER BY created_at/
+    end
+    it 'на рассмотрении' do
+      Appeal.folder(:registred).where_values_hash.symbolize_keys.should == {:state => :registred}
+      Appeal.folder(:registred).to_sql.should =~ /ORDER BY created_at/
     end
   end
 

@@ -3,7 +3,7 @@ class AppealsController < AuthorizedApplicationController
 
   layout :resolve_layout
 
-  custom_actions :resource => :revert
+  custom_actions :resource => [:revert, :close]
 
   has_scope :folder
   has_scope :page, :default => 1, :only => :index
@@ -13,6 +13,13 @@ class AppealsController < AuthorizedApplicationController
   def revert
     revert! {
       @appeal.revert!
+      redirect_to scoped_appeals_path(:folder => @appeal.state) and return
+    }
+  end
+
+  def close
+    close! {
+      @appeal.close!
       redirect_to scoped_appeals_path(:folder => @appeal.state) and return
     }
   end

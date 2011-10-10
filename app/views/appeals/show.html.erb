@@ -16,4 +16,8 @@
   <%= form.commit_button 'вернуть' %>
 <% end %>
 
+<%= semantic_form_for @appeal, :url => close_appeal_path(@appeal), :html => {:method => :post} do |form| %>
+  <%= form.commit_button 'закрыть' %>
+<% end %>
+
 <%= link_to 'Back', scoped_appeals_path(:folder => @appeal.state) %>
