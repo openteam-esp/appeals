@@ -16,9 +16,16 @@ class Appeal < ActiveRecord::Base
 
   accepts_nested_attributes_for :address
 
-  default_scope order('created_at')
-
-  scope :folder, ->(state) { where(:state => state) }
+  scope :folder, ->(state) {
+    case state.to_sym
+      when :fresh
+        where(:state => state).order('created_at')
+      when :registred
+        where(:state => state).joins(:registration).order('registrations.registred_on')
+      when :closed
+        where(:state => state).joins(:reply).order('replies.replied_on desc')
+    end
+  }
 
   before_create :set_code
   before_create :set_audit_info

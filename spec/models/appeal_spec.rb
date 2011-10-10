@@ -80,9 +80,15 @@ describe Appeal do
       Appeal.folder(:fresh).where_values_hash.symbolize_keys.should == {:state => :fresh}
       Appeal.folder(:fresh).to_sql.should =~ /ORDER BY created_at/
     end
+
     it 'на рассмотрении' do
       Appeal.folder(:registred).where_values_hash.symbolize_keys.should == {:state => :registred}
-      Appeal.folder(:registred).to_sql.should =~ /ORDER BY created_at/
+      Appeal.folder(:registred).to_sql.should =~ /ORDER BY registrations.registred_on/
+    end
+
+    it "закрытые" do
+      Appeal.folder(:closed).where_values_hash.symbolize_keys.should == {:state => :closed}
+      Appeal.folder(:closed).to_sql.should =~ /ORDER BY replies.replied_on desc/
     end
   end
 
