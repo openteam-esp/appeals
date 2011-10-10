@@ -7,6 +7,7 @@ ru:
         building: Корпус
         district: Район
         flat: Квартира
+        full_address: Почтовый адрес
         house: Дом
         postcode: Индекс
         region: Область
@@ -23,10 +24,14 @@ ru:
         name: Имя
         patronymic: Отчество
         phone: Телефон
+        proxy_ip: IP прокси-сервера
         public: Я разрешаю размещение обращения в открытом доступе
+        referrer: Точка входа
         surname: Фамилия
         text: Текст обращения
         topic: Тематика обращения
+        user_agent: Браузер пользователя
+        user_ip: IP пользователя
 
       user:
         email: Email
@@ -87,8 +92,8 @@ ru:
       search: Поиск
 
   logout: Выход
-
   new_appeal: Новое обращение
+  not_specified: Не указано
 
   state_machine:
     appeal:

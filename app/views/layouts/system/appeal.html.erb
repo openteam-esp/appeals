@@ -1,5 +1,5 @@
 <%= content_for :header do %>
-  <%= link_to t(:to_appeal_list), appeal_path(:fresh), :class => 'back_to_list' %>
+  <%= link_to t(:to_appeal_list), scoped_appeals_path(:folder => @appeal.state), :class => 'back_to_list' %>
 
   <div class='state <%= @appeal.state %>'>
     <%= I18n.t "state_machine.appeal.state.#{@appeal.state}" %>

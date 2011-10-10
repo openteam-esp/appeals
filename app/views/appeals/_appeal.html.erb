@@ -6,6 +6,9 @@
     <%= link_to "#{appeal.full_name}, #{appeal.topic.title}", appeal %>
   </div>
   <div class="participants">
-    <%= appeal.text  %>
+    <%= appeal.text %>
+  </div>
+  <div class="state <%= appeal.state %>">
+    <%= I18n.t("state_machine.appeal.state.#{appeal.state}") %>
   </div>
 </li>

@@ -2,6 +2,10 @@ class Topic < ActiveRecord::Base
   belongs_to :section
 
   validates_presence_of :title
+
+  def to_s
+    title
+  end
 end
 
 # == Schema Information

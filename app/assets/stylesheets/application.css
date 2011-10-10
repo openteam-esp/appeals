@@ -8,9 +8,11 @@
  *= require buttons
  *= require devise
  *= require layout
- *= require sidebar
+ *= require pagination
+ *= require header
+ *= require list
  *= require appeal
  *= require appeal_search
- *= require list
- *= require pagination
+ *= require show
+ *= require sidebar
  */

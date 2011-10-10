@@ -1,18 +1,50 @@
-<%= @appeal.surname %>
+<div class="content_wrapper with_sidebar">
+  <div class="article">
+    <div class="top_stuff">
+      <%= show_attribute(@appeal, :user_ip) %>
+      <%= show_attribute(@appeal, :proxy_ip) %>
+      <%= show_attribute(@appeal, :user_agent) %>
+      <%= show_attribute(@appeal, :referrer) %>
+    </div>
 
-<%= render @appeal.registration unless @appeal.fresh? %>
-<%= render :partial => 'registrations/form' if @appeal.fresh? %>
+    <div class="appeal_info">
+      <%= show_attribute(@appeal, :surname) %>
+      <%= show_attribute(@appeal, :name) %>
+      <%= show_attribute(@appeal, :patronymic) %>
+    </div>
+    <div class="appeal_info">
+      <%= show_attribute(@appeal, :answer_kind) %>
+      <%= show_attribute(@appeal, :email) %>
+      <%= show_attribute(@appeal.address, :full_address) %>
+      <%= show_attribute(@appeal, :phone) %>
+      <%= show_attribute(@appeal, :topic) %>
+      <%= show_attribute(@appeal, :public) %>
+    </div>
+    <div class="appeal_info">
+      <%= show_attribute(@appeal, :text) %>
+    </div>
 
-<%= render :partial => 'replies/form' if @appeal.registered? %>
+    <%= render :partial => 'replies/form' if @appeal.registered? %>
+  </div>
+</div>
 
-<%= semantic_form_for @appeal, :url => revert_appeal_path(@appeal), :html => {:method => :post} do |form| %>
-  <%= form.buttons do %>
-    <%= form.commit_button 'вернуть', :button_html => {:class => 'button revert'} %>
+<% content_for :right_sidebar do %>
+<div class="side_stuff">
+  <div class="top_border"></div>
+
+  <%= render @appeal.registration unless @appeal.fresh? %>
+  <%= render :partial => 'registrations/form' if @appeal.fresh? %>
+
+  <%= semantic_form_for @appeal, :url => revert_appeal_path(@appeal), :html => {:method => :post} do |form| %>
+    <%= form.buttons do %>
+      <%= form.commit_button 'вернуть', :button_html => { :class => 'button revert' } %>
+    <% end %>
   <% end %>
+</div>
 <% end %>
 
 <%= semantic_form_for @appeal, :url => close_appeal_path(@appeal), :html => {:method => :post} do |form| %>
-  <%= form.commit_button 'закрыть' %>
+  <%= form.buttons do %>
+    <%= form.commit_button 'закрыть', :buttons_html => { :class => 'button close' } %>
+  <% end %>
 <% end %>
-
-<%= link_to t('back'), scoped_appeals_path(:folder => @appeal.state) %>

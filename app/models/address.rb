@@ -2,6 +2,19 @@ class Address < ActiveRecord::Base
   belongs_to :appeal
 
   validates_presence_of :region, :township, :district, :postcode
+
+  def full_address
+    result = []
+    result << postcode if postcode.present?
+    result << region if region.present?
+    result << district if district.present?
+    result << township if township.present?
+    result << street if street.present?
+    result << house if house.present?
+    result << building if building.present?
+    result << flat if flat.present?
+    return result.join(', ')
+  end
 end
 
 # == Schema Information
