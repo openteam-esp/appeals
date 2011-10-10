@@ -44,7 +44,7 @@ class Appeal < ActiveRecord::Base
     end
 
     event :close do
-      transition :registred => :closed
+      transition :registred => :closed, :if => :reply_valid?
     end
 
     event :revert do
@@ -60,6 +60,12 @@ class Appeal < ActiveRecord::Base
     text :registration_registred_on do
       I18n.l self.registration_registred_on if self.registration
     end
+  end
+
+  def reply_valid?
+    self.reply ||= self.build_reply
+    self.reply.use_validation = true
+    self.reply.valid?
   end
 
   def full_name

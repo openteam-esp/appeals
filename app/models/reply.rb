@@ -1,5 +1,9 @@
 class Reply < ActiveRecord::Base
+  attr_accessor :use_validation
+
   belongs_to :appeal
+
+  validates_presence_of :number, :replied_on, :replied_by, :text, :if => Proc.new { | reply | reply.use_validation}
 end
 
 # == Schema Information

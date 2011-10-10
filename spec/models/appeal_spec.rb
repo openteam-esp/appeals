@@ -15,7 +15,7 @@ describe Appeal do
   it { Appeal.state_machines[:state].states.map(&:name).should == [:fresh, :registred, :closed] }
 
   it { Appeal.new(:state => 'fresh').state_events.should == [:register] }
-  it { Appeal.new(:state => 'registred').state_events.should == [:close, :revert] }
+  it { Fabricate(:reply, :appeal => registred_appeal); registred_appeal.state_events.should == [:close, :revert] }
   it { Appeal.new(:state => 'closed').state_events.should == [:revert] }
 
   describe 'при создании обращения' do
@@ -51,6 +51,28 @@ describe Appeal do
 
     appeal.errors.should be_empty
     appeal.should be_fresh
+  end
+
+  describe "закрытие обращения" do
+    it "без ответа" do
+      registred_appeal.close
+      registred_appeal.should be_registred
+    end
+
+    it "c незаполенным ответом" do
+      registred_appeal.create_reply!
+      registred_appeal.reply.should be_persisted
+      registred_appeal.close
+      registred_appeal.reply.errors.keys.should == [:number, :replied_on, :replied_by, :text]
+      registred_appeal.should be_registred
+    end
+
+    it "с заполненным ответом" do
+      registred_appeal.create_reply Fabricate.attributes_for(:reply)
+      registred_appeal.close
+      registred_appeal.reply.errors.keys.should be_empty
+      registred_appeal.should be_closed
+    end
   end
 
   describe 'папки обращений' do

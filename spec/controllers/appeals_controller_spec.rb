@@ -46,8 +46,9 @@ describe AppealsController do
     end
   end
 
-  describe 'POST reply' do
-    it 'should reply registred appeal' do
+  describe 'POST close' do
+    it 'should close registred appeal' do
+      Fabricate(:reply, :appeal => registred_appeal)
       post :close, :id => registred_appeal.id
       registred_appeal.reload.should be_closed
       response.should redirect_to(scoped_appeals_path(:folder => :closed))
