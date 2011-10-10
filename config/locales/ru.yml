@@ -98,6 +98,12 @@ ru:
         password_confirmation: "Подтвердите пароль"
         remember_me: "Запомнить меня"
 
+  appeal:
+    state:
+      fresh: Создано
+      registred: Зарегистрировано
+      closed: Отвечено
+
   time:
     formats:
       default: "%d.%m.%Y, %H:%M:%S"

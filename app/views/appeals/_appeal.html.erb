@@ -1,11 +1,15 @@
-<div class='appeal'>
+<li>
   <div class="time_ago">
     <%= time_ago_in_words(appeal.created_at) %> назад
   </div>
   <div class="title">
-    <%= link_to appeal_author(appeal), appeal %>
+    <%= appeal.topic.title %>
+    <%= link_to appeal.text, appeal  %>
   </div>
   <div class="state <%= appeal.state %>">
     <%= I18n.t("appeal.state.#{appeal.state}") %>
   </div>
-</div>
+  <div class="participants">
+    <%= appeal_author(appeal) %>
+  </div>
+</li>

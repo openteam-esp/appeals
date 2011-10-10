@@ -10,5 +10,6 @@
  *= require layout
  *= require appeal
  *= require appeal_search
+ *= require list
  *= require pagination
  */
