@@ -1,0 +1,24 @@
+<% content_for :header do %>
+  <h1><%= link_to t("Appeal system"), root_path %></h1>
+<% end %>
+
+<% content_for :sidebar do %>
+  <div class="sidebar">
+    <div class='nav'>
+      <h5>Тут будет навигация</h5>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :content do %>
+  <div class='section'>
+    <div class="search">
+      Search form
+    </div>
+    <div class='article'>
+      <%= yield %>
+    </div>
+  </div>
+<% end %>
+
+<%= render :template => 'layouts/layer' %>

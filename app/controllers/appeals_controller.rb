@@ -1,6 +1,8 @@
 class AppealsController < AuthorizedApplicationController
   actions :index, :show
 
+  layout :resolve_layout
+
   custom_actions :resource => :revert
 
   has_scope :folder
@@ -16,6 +18,7 @@ class AppealsController < AuthorizedApplicationController
   end
 
   protected
+
     def collection
       get_collection_ivar || set_collection_ivar(search_and_paginate_collection)
     end
@@ -36,4 +39,9 @@ class AppealsController < AuthorizedApplicationController
         :per_page   => Appeal.default_per_page
       }.merge(options)
     end
+
+    def resolve_layout
+      'system/list'
+    end
+
 end

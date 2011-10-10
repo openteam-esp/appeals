@@ -87,3 +87,15 @@ ru:
 
   new_appeal: Новое обращение
 
+  activerecord:
+    attributes:
+      user:
+        name: "ФИО"
+        email: "Email"
+        password: "Пароль"
+        password_confirmation: "Подтвердите пароль"
+        remember_me: "Запомнить меня"
+
+  time:
+    formats:
+      default: "%d.%m.%Y, %H:%M:%S"

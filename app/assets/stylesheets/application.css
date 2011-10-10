@@ -7,4 +7,5 @@
  *= require text
  *= require devise
  *= require layout
+ *= require pagination
  */
