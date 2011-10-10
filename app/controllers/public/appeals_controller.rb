@@ -5,6 +5,12 @@ class Public::AppealsController < ApplicationController
 
   before_filter :audit, :except => :show
 
+  def new
+    new! {
+      @appeal.build_address
+    }
+  end
+
   private
     def audit
       Appeal.audit(request)
