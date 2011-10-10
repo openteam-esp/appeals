@@ -4,7 +4,7 @@
   <%= form.inputs do %>
     <%= form.input :email %>
     <%= form.input :password %>
-    <%= form.input :remember_me if devise_mapping.rememberable? %>
+    <%= form.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
   <% end %>
   <%= render :partial => "devise/shared/submit", :locals => { :form => form } %>
 <% end %>

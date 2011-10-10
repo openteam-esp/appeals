@@ -1,0 +1,35 @@
+ru:
+  "Appeal system": "Система обработки обращений граждан"
+
+  formtastic:
+    required: "обязательное поле"
+    actions:
+      create: "Создать %{model}"
+      update: "Сохранить"
+
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      inclusion: "Не включено"
+      exclusion: "Зарезервировано"
+      invalid: "Недопустимо"
+      confirmation: "Подтверждение не соответствует"
+      accepted: "Должно быть одобренно"
+      empty: "Поле не может быть пустым"
+      blank: "Поле не может быть пустым"
+      too_long: "Слишком длинный (максимум %{count} символов)"
+      too_short: "Слишком короткий (минимум %{count} символов)"
+      wrong_length: "Имеет неправильную длину (должен быть %{count} символов)"
+      not_a_number: "Не является числом"
+      not_an_integer: "Должно быть целое число"
+      not_saved: "Ошибка"
+      already_confirmed: "Уже подтверждено"
+      not_found: "Не найдено"
+      not_locked: "Не заблокирована"
+      greater_than: "Должно быть больше, чем %{count}"
+      greater_than_or_equal_to: "Должно быть больше или равно %{count}"
+      equal_to: "Должен быть равен %{число}"
+      less_than: "Должно быть меньше, чем %{число}"
+      less_than_or_equal_to: "Должно быть меньше или равно %{count}"
+      odd: "Должно быть нечетным"
+      even: "Должно быть еще"
