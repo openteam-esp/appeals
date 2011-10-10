@@ -1,5 +1,6 @@
 ru:
   "Appeal system": "Система обработки обращений граждан"
+  logout: "Выход"
 
   formtastic:
     required: "обязательное поле"
