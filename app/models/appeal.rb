@@ -5,6 +5,7 @@ class Appeal < ActiveRecord::Base
 
   has_one :address, :dependent => :destroy
   has_one :registration, :dependent => :destroy
+  has_one :reply, :dependent => :destroy
 
   validates_presence_of :surname, :name, :answer_kind, :topic, :text
 

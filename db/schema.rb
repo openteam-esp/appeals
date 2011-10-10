@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111010032616) do
+ActiveRecord::Schema.define(:version => 20111010054415) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "appeal_id"
@@ -57,6 +57,17 @@ ActiveRecord::Schema.define(:version => 20111010032616) do
   end
 
   add_index "registrations", ["appeal_id"], :name => "index_registrations_on_appeal_id"
+
+  create_table "replies", :force => true do |t|
+    t.string   "number"
+    t.date     "replied_on"
+    t.text     "text"
+    t.boolean  "public"
+    t.string   "replied_by"
+    t.integer  "appeal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sections", :force => true do |t|
     t.string   "title"
