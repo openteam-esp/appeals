@@ -2,7 +2,8 @@ AppealBackend::Application.routes.draw do
   devise_for :users, :skip => [:registrations]
 
   resources :appeals, :only => :show do
-    resource :registration, :only => [:create, :edit, :new, :update]
+    resource :registration, :only => [:create, :new]
+    resource :reply, :only => [:create, :edit, :new, :update]
 
     post :revert, :on => :member
   end

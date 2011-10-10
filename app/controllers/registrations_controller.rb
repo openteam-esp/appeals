@@ -1,5 +1,5 @@
 class RegistrationsController < AuthorizedApplicationController
-  actions :create, :edit, :new, :update
+  actions :create, :new
 
   belongs_to :appeal, :singleton => true
 end
