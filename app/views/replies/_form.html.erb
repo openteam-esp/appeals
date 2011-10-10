@@ -1,4 +1,4 @@
-<%= semantic_form_for @reply do |form| %>
-  <%= form.inputs %>
-  <%= form.commit_buttons %>
+<%= semantic_form_for @appeal.reply || @appeal.build_reply, :url => appeal_reply_path(@appeal)  do |form| %>
+  <%= form.inputs :number, :replied_on, :replied_by, :text, :public %>
+  <%= form.commit_button %>
 <% end %>

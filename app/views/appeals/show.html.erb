@@ -6,8 +6,11 @@
 </p>
 
 <p>
-  <%= render @appeal.registration %>
+  <%= render @appeal.registration unless @appeal.fresh? %>
+  <%= render :partial => 'registrations/form' if @appeal.fresh? %>
 </p>
+
+<%= render :partial => 'replies/form' if @appeal.registred? %>
 
 <%= semantic_form_for @appeal, :url => revert_appeal_path(@appeal), :html => {:method => :post} do |form| %>
   <%= form.commit_button 'вернуть' %>
