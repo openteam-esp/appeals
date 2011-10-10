@@ -1,3 +1,29 @@
-<h1>New appeal</h1>
+<h1><%= t 'new_appeal' %></h1>
 
-<%= render 'form' %>
+<%= semantic_form_for [:public, @appeal] do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :surname %>
+    <%= form.input :name %>
+    <%= form.input :patronymic %>
+    <%= form.input :answer_kind, :as => :radio, :collection => @appeal.class.values_for_select_tag(:answer_kind) %>
+    <%= form.input :email %>
+  <% end %>
+
+  <%= form.semantic_fields_for :address do |address| %>
+    <%= address.inputs :postcode, :region, :district, :township, :street, :house, :building, :flat %>
+  <% end %>
+
+  <%= form.inputs do %>
+    <%= form.input :phone %>
+    <%= form.input :topic, :prompt => '- не выбрано -' %>
+    <%= form.input :text %>
+    <%= form.input :public %>
+  <% end %>
+
+  <%= form.buttons do %>
+    <li>
+      <%= link_to t('cancel'), :back, :class => 'button cancel' %>
+    </li>
+    <%= form.commit_button :button_html => {:class => 'button'} %>
+  <% end %>
+<% end %>

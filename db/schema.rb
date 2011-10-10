@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111007082701) do
+ActiveRecord::Schema.define(:version => 20111010032616) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "appeal_id"
-    t.integer  "postcode"
+    t.string   "postcode"
     t.string   "region"
     t.string   "district"
     t.string   "street"
