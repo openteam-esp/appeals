@@ -10,9 +10,23 @@ describe Public::AppealsController do
       appeal_attributes.delete(:topic)
       post :create, :appeal => appeal_attributes
       appeal = assigns(:appeal)
-      response.should redirect_to(public_appeal_path(appeal))
+      response.should redirect_to(public_appeal_path(appeal.code))
       appeal.user_ip.should_not be_nil
       appeal.user_agent.should_not be_nil
+    end
+  end
+
+  describe "GET show" do
+    it "если обращение найдено" do
+      get :show, :id => registred_appeal.code
+      assigns(:appeal).should == registred_appeal
+      response.should render_template("show")
+    end
+
+    it "если обращение не найдено" do
+      get :show, :id => "1234454"
+      assigns(:appeal).should be_nil
+      response.should render_template("show")
     end
   end
 end
