@@ -5,6 +5,7 @@
  *= require_self
  *= require reset
  *= require text
+ *= require jquery_ui
  *= require buttons
  *= require devise
  *= require layout

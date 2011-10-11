@@ -5,12 +5,15 @@
  * the compiled file.
  *
  *= require jquery
+ *= require jquery-ui
+ *= require jquery.ui.datepicker-ru
  *= require jquery_ujs
- *= require_tree .
  */
 
 $(function(){
+
   $(".focus_first:first").focus();
+
   $('.disable').click(function(){
     return false;
   });
@@ -28,4 +31,16 @@ $(function(){
         $('.close').addClass('disable');
       };
     });
+
+  if ($.fn.datepicker) {
+    $("input.datepicker").datepicker({
+      changeMonth: true,
+      changeYear: true,
+      showOn: "button",
+      buttonText: '',
+      buttonImage: "<%= image_path("ui/calendar.png") %>",
+      buttonImageOnly: true
+    });
+  };
+
 });

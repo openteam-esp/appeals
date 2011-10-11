@@ -3,7 +3,7 @@
                       :html => { :class => 'big_margin_top'} do |form| %>
 
   <%= form.inputs do %>
-    <%= form.input :registered_on, :as => :string %>
+    <%= form.input :registered_on, :as => :string, :input_html => { :class => "datepicker" } %>
     <%= form.input :number %>
     <%= form.input :directed_to %>
   <% end %>
