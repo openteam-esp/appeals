@@ -23,12 +23,21 @@ module AppealsSpecHelper
   end
 
   def fresh_appeal(options={})
-    @fresh_appeal ||= Fabricate(:appeal)
+    @fresh_appeal ||= create_fresh_appeal(options)
+  end
+
+  def create_fresh_appeal(options={})
+    Fabricate(:appeal, options)
   end
 
   def registered_appeal(options={})
-    @registered_appeal ||= fresh_appeal.tap do |appeal|
-      appeal.create_registration Fabricate.attributes_for(:registration)
+    @registered_appeal ||= create_registered_appeal(options)
+  end
+
+  def create_registered_appeal(options={})
+    registration_options = options.delete(:registration) || {}
+    create_fresh_appeal(options).tap do |appeal|
+      appeal.create_registration Fabricate.attributes_for(:registration, registration_options)
       appeal.reload
     end
   end

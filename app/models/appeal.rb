@@ -103,6 +103,12 @@ class Appeal < ActiveRecord::Base
     self.referrer = request.env['HTTP_REFERER']
   end
 
+  def attention_level
+    return "blank" if closed?
+    return "#{state}_#{((Time.now - created_at)/60/60/24).ceil}_days" if fresh?
+    return "#{state}_#{(Date.today - registration_registered_on).to_i+1}_days" if registered?
+  end
+
   private
     def set_code
       while !Appeal.find_by_code(self.code = generate_code).nil?; end

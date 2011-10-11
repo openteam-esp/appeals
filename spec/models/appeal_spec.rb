@@ -105,6 +105,22 @@ describe Appeal do
       closed_appeal.reply.should be_persisted
     end
   end
+
+  describe "должно знать уровень важности для подсветки в виде" do
+    it "для нового" do
+      fresh_appeal.attention_level.should == "fresh_1_days"
+    end
+
+    it "для зарегистрированного" do
+      create_registered_appeal(:registration => {:registered_on => 20.days.ago}).attention_level.should == "registered_21_days"
+      registered_appeal.attention_level.should == "registered_1_days"
+    end
+
+    it "для закрытого" do
+      closed_appeal.attention_level.should == "blank"
+    end
+
+  end
 end
 
 
