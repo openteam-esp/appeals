@@ -106,9 +106,9 @@ ru:
 
   appeal:
     state:
-      fresh: Создано
-      registred: Зарегистрировано
-      closed: Отвечено
+      fresh: Новое
+      registred: На рассмотрении
+      closed: Рассмотрено
 
   time:
     formats:
