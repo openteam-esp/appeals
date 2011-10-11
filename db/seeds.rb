@@ -52,7 +52,7 @@ end
 
 def create_registred_appeal
   appeal = create_appeal
-  appeal.create_registration(:number => appeal.send(:generate_code, 4, 2, '/'), :registred_on => rand_days_ago(30), :directed_to => Ryba::Name.full_name)
+  appeal.create_registration(:number => appeal.send(:generate_code, 4, 2, '/'), :registered_on => rand_days_ago(30), :directed_to => Ryba::Name.full_name)
   appeal
 end
 
