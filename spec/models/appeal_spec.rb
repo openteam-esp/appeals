@@ -102,7 +102,7 @@ describe Appeal do
     it "closed -> registered" do
       closed_appeal.revert
       closed_appeal.reload.should be_registered
-      closed_appeal.reply.should be_nil
+      closed_appeal.reply.should be_persisted
     end
   end
 end
