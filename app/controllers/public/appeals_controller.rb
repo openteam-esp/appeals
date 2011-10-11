@@ -10,7 +10,9 @@ class Public::AppealsController < ApplicationController
   end
 
   def create
-    create! { public_appeal_path(@appeal.code) }
+    create! { |success, failure|
+      success.html { redirect_to public_appeal_path(@appeal.code) }
+    }
   end
 
   def show

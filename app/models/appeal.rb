@@ -2,6 +2,7 @@ class Appeal < ActiveRecord::Base
   cattr_accessor :user_ip, :proxy_ip, :user_agent, :referrer
 
   belongs_to :deleted_by, :class_name => 'User'
+  belongs_to :destroy_appeal_job, :class_name => 'Delayed::Backend::ActiveRecord::Job'
   belongs_to :topic
 
   has_one :address, :dependent => :destroy
@@ -16,6 +17,7 @@ class Appeal < ActiveRecord::Base
   validates_uniqueness_of :code
 
   accepts_nested_attributes_for :address
+  before_validation :set_address_validation, :if => :answer_kind_post?
 
   scope :folder, ->(state) {
     case state.to_sym
@@ -92,7 +94,8 @@ class Appeal < ActiveRecord::Base
   def destroy
     self.tap do |appeal|
       appeal.update_attributes :deleted_by => User.current,
-                               :deleted_at => Time.now
+                               :deleted_at => Time.now,
+                               :destroy_appeal_job => Delayed::Job.enqueue(:run_at => 30.days.since, :payload_object => DestroyAppealJob.new(self.id))
     end
   end
 
@@ -104,6 +107,7 @@ class Appeal < ActiveRecord::Base
     self.tap do |appeal|
       appeal.update_attributes :deleted_by => nil,
                                :deleted_at => nil
+      appeal.destroy_appeal_job.destroy
     end
   end
 
@@ -144,6 +148,11 @@ class Appeal < ActiveRecord::Base
       self.user_ip = self.class.user_ip
       self.user_agent = self.class.user_agent
       self.referrer = self.class.referrer
+    end
+
+    def set_address_validation
+      self.address ||= build_address
+      self.address.use_validation = true
     end
 end
 

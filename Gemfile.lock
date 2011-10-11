@@ -59,6 +59,10 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
+    daemons (1.1.4)
+    delayed_job (2.1.4)
+      activesupport (~> 3.0)
+      daemons
     devise (1.4.7)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -214,6 +218,7 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 3.1.0)
   compass (~> 0.12.alpha)
+  delayed_job
   devise
   fabrication
   forgery
