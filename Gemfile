@@ -1,6 +1,7 @@
 source :rubygems
 
 gem 'cancan'
+gem 'delayed_job'
 gem 'devise'
 gem 'forgery',                                   :require => false
 gem 'formtastic'

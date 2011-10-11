@@ -3,6 +3,6 @@
 </p>
 
 <p>
-  По этому адресу <%= public_appeal_path(@appeal.code) %> Вы сможете отслеживать процесс рассмотрения обращения.
+  По этому адресу <%= link_to public_appeal_url(@appeal.code), public_appeal_url(@appeal.code) %> Вы сможете отслеживать процесс рассмотрения обращения.
   Код обращения <%= @appeal.code %>
 </p>

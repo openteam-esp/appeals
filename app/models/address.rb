@@ -1,7 +1,9 @@
 class Address < ActiveRecord::Base
   belongs_to :appeal
 
-  validates_presence_of :region, :township, :district, :postcode
+  attr_accessor :use_validation
+
+  validates_presence_of :region, :township, :district, :postcode, :if => :use_validation
 
   def full_address
     result = []

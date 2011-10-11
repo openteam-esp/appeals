@@ -3,6 +3,7 @@
 require 'spec_helper'
 
 describe Appeal do
+  it { should belong_to(:destroy_appeal_job) }
   it { should have_one(:address) }
   it { should have_one(:registration) }
 
@@ -42,14 +43,24 @@ describe Appeal do
   it 'должен требовать адрес если выбран ответ по почте' do
     appeal = Fabricate.build(:appeal, :answer_kind => 'post')
     appeal.save
+    appeal.errors.keys.should == [:"address.region", :"address.township", :"address.district", :"address.postcode"]
 
-    appeal.errors.keys.should == [:address]
+    appeal.address_attributes = Fabricate.attributes_for(:address, :postcode => "")
+    appeal.save
+    appeal.errors.keys.should == [:"address.postcode"]
+    appeal.should_not be_persisted
 
     appeal.address_attributes = Fabricate.attributes_for(:address)
     appeal.save
-
     appeal.errors.should be_empty
     appeal.should be_fresh
+  end
+
+  it "не должен валидировать адрес, если выбран ответ по email" do
+    appeal = Appeal.new(Fabricate.attributes_for(:appeal, :answer_kind => 'email').merge(:address_attributes => {:region => "Томск"}))
+    appeal.save
+    appeal.errors.should be_empty
+    appeal.should be_persisted
   end
 
   describe "закрытие обращения" do
@@ -131,12 +142,14 @@ describe Appeal do
       it { deleted_appeal.should be_deleted }
       it { deleted_appeal.registration.should be_persisted }
       it { deleted_appeal.reply.should be_persisted }
+      it { deleted_appeal.destroy_appeal_job.should be_persisted }
 
       it { deleted_appeal.destroy_without_trash.should_not be_persisted }
     end
 
     describe "восстановление" do
       it { recycled_appeal.should be_persisted }
+      it { recycled_appeal.destroy_appeal_job.should_not be_persisted }
     end
   end
 
