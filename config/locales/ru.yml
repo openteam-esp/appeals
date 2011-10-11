@@ -98,6 +98,12 @@ ru:
         password_confirmation: "Подтвердите пароль"
         remember_me: "Запомнить меня"
 
+  sidebar:
+    appeal:
+      fresh: Новые
+      registred: На рассмотрении
+      closed: Рассмотренные
+
   appeal:
     state:
       fresh: Создано
