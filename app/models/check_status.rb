@@ -14,4 +14,7 @@ class CheckStatus
   def code
     "#{@part1}-#{@part2}-#{@part3}-#{@part4}"
   end
+
+  def to_key
+  end
 end

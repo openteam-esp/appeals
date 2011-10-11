@@ -17,8 +17,14 @@ describe Public::CheckStatusesController do
     it "если обращение не найдено" do
       post :create, :check_status => {:part1 => "123", :part2 => "123", :part3 => "123", :part4 => "123"}
       response.should render_template(:new)
+      assigns(:check_status).errors.keys.should == [:base]
+    end
+
+    it "должны быть ошибки если не все поля заполнены" do
+      post :create, :check_status => {:part1 => "123", :part2 => "123", :part3 => "", :part4 => ""}
+      assigns(:check_status).errors.should_not be_empty
+      assigns(:check_status).errors.keys.should == [:part3, :part4]
     end
   end
-
 end
 

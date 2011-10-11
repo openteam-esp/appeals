@@ -1,0 +1,6 @@
+<p>
+  Обращение от <%= l @appeal.created_at %> зарегистрировано <%= l @appeal.registration_registered_on %> с номером <%= @appeal.registration_number %>.
+  <% unless @appeal.registration_directed_to.blank? %>
+    Ответственный за рассмотрение <%= @appeal.registration_directed_to %>
+  <% end %>
+</p>
