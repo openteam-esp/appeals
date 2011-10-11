@@ -9,6 +9,23 @@
  *= require_tree .
  */
 
-$(function() {
+$(function(){
   $(".focus_first:first").focus();
+  $('.disable').click(function(){
+    return false;
+  });
+
+  $('.reply_wrapper')
+    .bind('ajax:success', function(evt, data, status, xhr){
+      $('.reply_wrapper').html(xhr.responseText);
+      $('.close').addClass('disable');
+    })
+    .bind('ajax:complete', function(evt, xhr, status){
+      $('.reply_wrapper').html(xhr.responseText);
+      if ($('.reply_wrapper .reply_info:first').attr('can_close') == 'true') {
+        $('.close').removeClass('disable') ;
+      } else {
+        $('.close').addClass('disable');
+      };
+    });
 });

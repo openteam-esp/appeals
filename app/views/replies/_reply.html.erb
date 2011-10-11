@@ -1,0 +1,18 @@
+<h3 class='big_margin_top'>Ответ на обращение</h3>
+
+<div class="reply_info" can_close=<%= @appeal.state_events.include?(:close) %>>
+  <%= show_attribute(@appeal.reply, :number) %>
+  <%= show_attribute(@appeal.reply, :replied_on) %>
+  <%= show_attribute(@appeal.reply, :replied_by) %>
+  <%= show_attribute(@appeal.reply, :public) %>
+</div>
+
+<div class="reply_info">
+  <%= show_attribute(@appeal.reply, :text) %>
+</div>
+
+<%= link_to t("edit_reply"),
+            edit_appeal_reply_path(@appeal),
+            :remote => true,
+            :class => 'button icon edit reply_link' if @appeal.registered? %>
+

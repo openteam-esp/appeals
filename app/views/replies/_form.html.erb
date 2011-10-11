@@ -1,6 +1,16 @@
-<%= semantic_form_for @appeal.reply || @appeal.build_reply, :url => appeal_reply_path(@appeal)  do |form| %>
-  <%= form.inputs :number, :replied_on, :replied_by, :text, :public %>
+<h3 class='big_margin_top'>Ответ на обращение</h3>
+
+<%= semantic_form_for @appeal.reply || @appeal.build_reply,
+                      :url => appeal_reply_path(@appeal),
+                      :html => { :remote => true } do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :number %>
+    <%= form.input :replied_on, :as => :string %>
+    <%= form.input :replied_by %>
+    <%= form.input :text %>
+    <%= form.input :public %>
+  <% end %>
   <%= form.buttons do %>
-    <%= form.commit_button %>
+    <%= form.commit_button t('reply'), :button_html => { :class => 'button reply' } %>
   <% end %>
 <% end %>

@@ -24,7 +24,14 @@
       <%= show_attribute(@appeal, :text) %>
     </div>
 
-    <%= render :partial => 'replies/form' if @appeal.registered? %>
+
+    <div class="reply_wrapper">
+      <% if @appeal.reply %>
+        <%= render @appeal.reply %>
+      <% else %>
+        <%= link_to t('add_reply'), new_appeal_reply_path(@appeal), :remote => true, :class => 'button icon add reply_link' if @appeal.registered? %>
+      <% end %>
+    </div>
   </div>
 </div>
 
@@ -33,19 +40,7 @@
   <div class="top_border"></div>
 
   <%= render @appeal.registration unless @appeal.fresh? %>
-
   <%= render :partial => 'registrations/form' if @appeal.fresh? %>
-
-  <%= semantic_form_for @appeal, :url => revert_appeal_path(@appeal), :html => {:method => :post} do |form| %>
-    <%= form.buttons do %>
-      <%= form.commit_button 'вернуть', :button_html => { :class => 'button revert' } %>
-    <% end %>
-  <% end %>
+  <%= render :partial => 'actions' %>
 </div>
-<% end %>
-
-<%= semantic_form_for @appeal, :url => close_appeal_path(@appeal), :html => {:method => :post} do |form| %>
-  <%= form.buttons do %>
-    <%= form.commit_button 'закрыть', :buttons_html => { :class => 'button close' } %>
-  <% end %>
 <% end %>

@@ -1,4 +1,3 @@
-<p>
-  <%= registration.number %> от <%= l registration.registered_on %>
-  ответственный <%= registration.directed_to %>
-</p>
+<div class='big_margin_top'>
+  <%= "Регистрационный номер #{registration.number} от #{l(registration.registered_on)}, ответственный #{registration.directed_to}" %>
+</div>

@@ -36,7 +36,14 @@ ru:
       registration:
         directed_to: Назначено
         number: Номер
-        registered_on: Зарегистрировано
+        registered_on: Когда зарегистрировано
+
+      reply:
+        number: Номер ответа
+        public: Разрешить опубликовать
+        replied_by: Кем отвечено
+        replied_on: Когда отвечено
+        text: Текст ответа
 
       user:
         email: Email
@@ -49,12 +56,16 @@ ru:
       address: адрес
       appeal: обращение
       registration: регистрация
+      reply: ответ
       topic: тематика обращения
       user: пользователь
 
   back: Назад
   cancel: Отменить
   clear: Очистить
+  close: Закрыть
+  edit_reply: Редактировать ответ
+  add_reply: Написать ответ
 
   errors:
     format: "%{attribute} %{message}"
@@ -101,6 +112,17 @@ ru:
   logout: Выход
   new_appeal: Новое обращение
   not_specified: Не указано
+  register: Зарегистрировать
+  reply: Сохранить ответ
+  revert: Вернуть
+  revert_from_registered: Вернуть на регистрацию
+  revert_from_closed: Вернуть на ответ
+
+  sidebar:
+    appeal:
+      fresh: Новые
+      registered: На рассмотрении
+      closed: Закрытые
 
   state_machine:
     appeal:
@@ -108,12 +130,6 @@ ru:
         fresh: Новое обращение
         registered: Зарегистрировано
         replied: Отвечено
-
-  sidebar:
-    appeal:
-      fresh: Новые
-      registered: На рассмотрении
-      closed: Закрытые
 
   time:
     formats:

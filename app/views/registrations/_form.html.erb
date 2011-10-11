@@ -1,6 +1,6 @@
-<%= semantic_form_for @appeal.build_registration,
+<%= semantic_form_for @appeal.registration || @appeal.build_registration,
                       :url => appeal_registration_path(@appeal),
-                      :html => { :class => 'big_margin_top' } do |form| %>
+                      :html => { :class => 'big_margin_top'} do |form| %>
 
   <%= form.inputs do %>
     <%= form.input :registered_on, :as => :string %>
@@ -8,7 +8,7 @@
     <%= form.input :directed_to %>
   <% end %>
   <%= form.buttons do %>
-    <%= form.commit_button %>
+    <%= form.commit_button t('register'), :button_html => { :class => 'button register' } %>
   <% end %>
 <% end %>
 
