@@ -3,6 +3,8 @@ class Public::AppealsController < ApplicationController
 
   actions :create, :new, :show
 
+  layout 'public/appeal'
+
   before_filter :audit, :except => :show
 
   def new

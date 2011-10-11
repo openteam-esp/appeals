@@ -29,8 +29,9 @@
         font-size: 16px
         padding: 4px 5px
 
-        .choices-group
-          +clearfix
+      .choices-group
+        +clearfix
+        margin: 10px 0 0 0
 
       .inline-errors
         background: image_url('inline_error_arrow.png') no-repeat left center
@@ -47,8 +48,12 @@
       li
         +clearfix
 
+        input
+          width: auto !important
+
         .cancel
           background: #fadcdd
+          margin: 0 0 0 10px
 
           &:hover
             background: #F5BCBE
