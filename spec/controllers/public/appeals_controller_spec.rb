@@ -18,8 +18,8 @@ describe Public::AppealsController do
 
   describe "GET show" do
     it "если обращение найдено" do
-      get :show, :id => registred_appeal.code
-      assigns(:appeal).should == registred_appeal
+      get :show, :id => registered_appeal.code
+      assigns(:appeal).should == registered_appeal
       response.should render_template("show")
     end
 
