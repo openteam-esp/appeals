@@ -48,5 +48,17 @@ module AppealsSpecHelper
       appeal.close!
     end
   end
+
+  def deleted_appeal(options={})
+    @deleted_appeal ||= closed_appeal.tap do |appeal|
+      appeal.destroy
+    end
+  end
+
+  def recycled_appeal(options={})
+    @recycled_appeal ||= deleted_appeal.tap do |appeal|
+      appeal.recycle
+    end
+  end
 end
 

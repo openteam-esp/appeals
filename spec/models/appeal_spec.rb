@@ -119,7 +119,29 @@ describe Appeal do
     it "для закрытого" do
       closed_appeal.attention_level.should == "blank"
     end
+  end
 
+  describe 'корзина' do
+    describe "удаление" do
+      before do
+        set_current_user
+      end
+
+      it { deleted_appeal.should be_persisted }
+      it { deleted_appeal.should be_deleted }
+      it { deleted_appeal.registration.should be_persisted }
+      it { deleted_appeal.reply.should be_persisted }
+
+      it { deleted_appeal.destroy_without_trash.should_not be_persisted }
+    end
+
+    describe "восстановление" do
+      it { recycled_appeal.should be_persisted }
+    end
+  end
+
+  describe "удаление минуя корзину" do
+    let(:destroyed_appeal) { closed_appeal.destroy_without_trash }
   end
 end
 

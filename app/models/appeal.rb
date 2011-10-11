@@ -87,6 +87,26 @@ class Appeal < ActiveRecord::Base
     end
   end
 
+  alias :destroy_without_trash :destroy
+
+  def destroy
+    self.tap do |appeal|
+      appeal.update_attributes :deleted_by => User.current,
+                               :deleted_at => Time.now
+    end
+  end
+
+  def deleted?
+    deleted_by_id
+  end
+
+  def recycle
+    self.tap do |appeal|
+      appeal.update_attributes :deleted_by => nil,
+                               :deleted_at => nil
+    end
+  end
+
   def reply_valid?
     self.reply ||= self.build_reply
     self.reply.use_validation = true
