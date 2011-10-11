@@ -4,7 +4,6 @@
   +clearfix
   font-family: Verdana, sans-serif
   padding: 10px 15px
-  width: 700px
 
   fieldset
     ol
@@ -30,17 +29,8 @@
         font-size: 16px
         padding: 4px 5px
 
-      input
-        width: 340px
-
-      select
-        width: 703px
-
-      textarea
-        width: 690px
-
-      .choices-group
-        +clearfix
+        .choices-group
+          +clearfix
 
       .inline-errors
         background: image_url('inline_error_arrow.png') no-repeat left center
@@ -50,14 +40,12 @@
 
   .buttons
     +clearfix
-    width: 700px
 
     ol
       +clearfix
 
       li
         +clearfix
-        float: right
 
         .cancel
           background: #fadcdd
@@ -68,7 +56,24 @@
           &:active
             background: #EE9093
 
-  &.appeal
+  &.appeal#new_appeal
+    width: 700px
+
+    .buttons
+      width: 700px
+
+    fieldset
+      ol
+        li
+          input
+            width: 340px
+
+          select
+            width: 703px
+
+          textarea
+            width: 690px
+
     #appeal_address_attributes_postcode
       width: 65px
 
@@ -86,3 +91,7 @@
     #appeal_address_attributes_flat
       width: 45px
 
+    .buttons
+      ol
+        li
+          float: right

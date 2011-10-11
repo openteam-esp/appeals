@@ -33,6 +33,7 @@
   <div class="top_border"></div>
 
   <%= render @appeal.registration unless @appeal.fresh? %>
+
   <%= render :partial => 'registrations/form' if @appeal.fresh? %>
 
   <%= semantic_form_for @appeal, :url => revert_appeal_path(@appeal), :html => {:method => :post} do |form| %>

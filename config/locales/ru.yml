@@ -33,6 +33,11 @@ ru:
         user_agent: Браузер пользователя
         user_ip: IP пользователя
 
+      registration:
+        directed_to: Назначено
+        number: Номер
+        registered_on: Зарегистрировано
+
       user:
         email: Email
         name: ФИО
@@ -43,6 +48,7 @@ ru:
     models:
       address: адрес
       appeal: обращение
+      registration: регистрация
       topic: тематика обращения
       user: пользователь
 

@@ -1,5 +1,14 @@
-<%= semantic_form_for @appeal.build_registration, :url => appeal_registration_path(@appeal) do |form| %>
-  <%= form.inputs :registered_on, :number, :directed_to %>
-  <%= form.commit_button %>
+<%= semantic_form_for @appeal.build_registration,
+                      :url => appeal_registration_path(@appeal),
+                      :html => { :class => 'big_margin_top' } do |form| %>
+
+  <%= form.inputs do %>
+    <%= form.input :registered_on, :as => :string %>
+    <%= form.input :number %>
+    <%= form.input :directed_to %>
+  <% end %>
+  <%= form.buttons do %>
+    <%= form.commit_button %>
+  <% end %>
 <% end %>
 
