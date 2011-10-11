@@ -37,6 +37,9 @@
   &.rejected, &.refuse, &.canceled
     background: #eab8ae
 
+.article
+  margin-top: 47px
+
 .item_list
   li.followed
     background-image: url('/images/followed.png')
@@ -75,6 +78,7 @@
       font-size: 11px
       float: right
       text-align: right
+      margin: 0 0 10px 10px
 
     .participants
       +clearfix
@@ -85,6 +89,13 @@
       .candidates
         +single-text-shadow(none)
         color: #aaa
+
+    .answer
+      color: #666
+      font-size: 14px
+      padding-left: 10px
+      margin-top: 10px
+      border-left: 2px solid #ddd
 
     .entry_title
       +clearfix

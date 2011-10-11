@@ -1,11 +1,14 @@
 <div class="time_ago">
-  <p>№<%= appeal.reply.number %> от <%= l appeal.reply.replied_on %></p>
-  <p><%= appeal.reply.replied_by %></p>
+  <p>№<%= appeal.registration.number %> от <%= l appeal.registration.registered_on %></p>
+  <p><%= appeal.registration.directed_to %></p>
 </div>
 <div class="title">
   <%= link_to "#{appeal.author}, #{appeal.topic.title}", appeal %>
 </div>
 <div class="participants">
   <p><%= truncate(appeal.text, :length => 200) %></p>
-  <p><strong>Ответ:</strong> <%= appeal.reply.text %>/p>
+</div>
+<div class="answer">
+  <p>№<%= appeal.reply.number %> от <%= l appeal.reply.replied_on %></p>
+  <p><%= appeal.reply.replied_by %></p>
 </div>

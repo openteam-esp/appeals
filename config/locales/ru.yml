@@ -113,16 +113,18 @@ ru:
     appeal:
       fresh: Новые
       registered: На рассмотрении
-      closed: Рассмотренные
-
-  appeal:
-    state:
-      fresh: Новое
-      registered: На рассмотрении
-      closed: Рассмотрено
+      closed: Закрытые
 
   time:
     formats:
       default: "%d.%m.%Y, %H:%M:%S"
 
   to_appeal_list: К списку обращений
+
+  views:
+    pagination:
+      first: "&laquo; First"
+      previous: "&larr;"
+      next: "&rarr;"
+      last: "Last &raquo;"
+      truncate: "&hellip;"
