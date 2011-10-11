@@ -8,3 +8,7 @@
  *= require jquery_ujs
  *= require_tree .
  */
+
+$(function() {
+  $(".focus_first:first").focus();
+});

@@ -3,7 +3,7 @@
 <%= semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |form| %>
   <%= devise_error_messages! %>
   <%= form.inputs do %>
-    <%= form.input :email %>
+    <%= form.input :email, :input_html => { :class => "focus_first" } %>
   <% end %>
   <%= render :partial => "devise/shared/submit", :locals => { :form => form, :submit => :reset_password } %>
 <% end %>
