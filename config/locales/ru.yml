@@ -111,13 +111,13 @@ ru:
   sidebar:
     appeal:
       fresh: Новые
-      registred: На рассмотрении
+      registered: На рассмотрении
       closed: Рассмотренные
 
   appeal:
     state:
       fresh: Новое
-      registred: На рассмотрении
+      registered: На рассмотрении
       closed: Рассмотрено
 
   time:

@@ -3,7 +3,7 @@
 SimpleNavigation::Configuration.run do |navigation|
 
   navigation.items do |primary|
-    %w[fresh registred].each do | folder |
+    %w[fresh registered].each do | folder |
       primary.item "sidebar_appeal_#{folder}", t("sidebar.appeal.#{folder}"), scoped_appeals_path(folder), :counter => Appeal.folder(folder).count,
                    :highlights_on => lambda { params[:folder] == folder && params[:controller] == 'appeals' }
     end

@@ -12,7 +12,7 @@ describe Appeal do
   it { should validate_presence_of(:topic) }
   it { should validate_presence_of(:answer_kind) }
 
-  it { Appeal.state_machines[:state].states.map(&:name).should == [:fresh, :registered, :closed] }
+  it { Appeal.state_machines[:state].states.map(&:name).should == [:fresh, :closed, :registered] }
   it { Appeal.new(:state => 'fresh').state_events.should == [:register] }
   it { Fabricate(:reply, :appeal => registered_appeal); registered_appeal.state_events.should == [:close, :revert] }
   it { Appeal.new(:state => 'closed').state_events.should == [:revert] }
@@ -54,23 +54,23 @@ describe Appeal do
 
   describe "закрытие обращения" do
     it "без ответа" do
-      registred_appeal.close
-      registred_appeal.should be_registred
+      registered_appeal.close
+      registered_appeal.should be_registered
     end
 
     it "c незаполенным ответом" do
-      registred_appeal.create_reply!
-      registred_appeal.reply.should be_persisted
-      registred_appeal.close
-      registred_appeal.reply.errors.keys.should == [:number, :replied_on, :replied_by, :text]
-      registred_appeal.should be_registred
+      registered_appeal.create_reply!
+      registered_appeal.reply.should be_persisted
+      registered_appeal.close
+      registered_appeal.reply.errors.keys.should == [:number, :replied_on, :replied_by, :text]
+      registered_appeal.should be_registered
     end
 
     it "с заполненным ответом" do
-      registred_appeal.create_reply Fabricate.attributes_for(:reply)
-      registred_appeal.close
-      registred_appeal.reply.errors.keys.should be_empty
-      registred_appeal.should be_closed
+      registered_appeal.create_reply Fabricate.attributes_for(:reply)
+      registered_appeal.close
+      registered_appeal.reply.errors.keys.should be_empty
+      registered_appeal.should be_closed
     end
   end
 
@@ -81,8 +81,8 @@ describe Appeal do
     end
 
     it 'на рассмотрении' do
-      Appeal.folder(:registred).where_values_hash.symbolize_keys.should == {:state => :registred}
-      Appeal.folder(:registred).to_sql.should =~ /ORDER BY registrations.registred_on/
+      Appeal.folder(:registered).where_values_hash.symbolize_keys.should == {:state => :registered}
+      Appeal.folder(:registered).to_sql.should =~ /ORDER BY registrations.registered_on/
     end
 
     it "закрытые" do
@@ -99,9 +99,9 @@ describe Appeal do
       registered_appeal.registration.should be_nil
     end
 
-    it "closed -> registred" do
+    it "closed -> registered" do
       closed_appeal.revert
-      closed_appeal.reload.should be_registred
+      closed_appeal.reload.should be_registered
       closed_appeal.reply.should be_nil
     end
   end

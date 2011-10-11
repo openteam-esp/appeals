@@ -20,8 +20,8 @@ class Appeal < ActiveRecord::Base
     case state.to_sym
       when :fresh
         where(:state => state).order('created_at')
-      when :registred
-        where(:state => state).joins(:registration).order('registrations.registred_on')
+      when :registered
+        where(:state => state).joins(:registration).order('registrations.registered_on')
       when :closed
         where(:state => state).joins(:reply).order('replies.replied_on desc')
     end
@@ -46,7 +46,6 @@ class Appeal < ActiveRecord::Base
     state :closed
     state :fresh
     state :registered
-    state :replied
 
     after_transition :registered => :fresh do |appeal, transition|
       appeal.registration.destroy

@@ -34,7 +34,7 @@ module AppealsSpecHelper
   end
 
   def closed_appeal(options={})
-    @closed_appeal ||= registred_appeal.tap do |appeal|
+    @closed_appeal ||= registered_appeal.tap do |appeal|
       Fabricate(:reply, :appeal => appeal)
       appeal.close!
     end
