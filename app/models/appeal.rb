@@ -70,7 +70,7 @@ class Appeal < ActiveRecord::Base
 
   searchable do
     string :state
-    text :full_name
+    text :author
 
     text :registration_number
     text :registration_registered_on do
@@ -96,8 +96,8 @@ class Appeal < ActiveRecord::Base
     self.reply.valid?
   end
 
-  def full_name
-    "#{surname} #{name} #{patronymic}".squish
+  def author
+    "#{self.surname} #{self.name} #{self.patronymic}".squish
   end
 
   def self.audit(request)

@@ -6,7 +6,7 @@ Fabricator(:appeal) do
   name        { Ryba::Name.first_name }
   phone       { Ryba::PhoneNumber.phone_number }
   email       { Forgery(:internet).email_address }
-  text        { Forgery(:lorem_ipsum).words(50) }
+  text        { Forgery(:lorem_ipsum).words(5) }
   answer_kind 'email'
   topic!
 end

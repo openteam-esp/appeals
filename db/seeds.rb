@@ -38,6 +38,7 @@ end
 
 def create_appeal
   options = rand(4) > 1 ? {:answer_kind => 'email', :topic => @topic1} : {:topic => @topic2, :answer_kind => 'post', :email => rand(2) > 1 ? nil : Forgery(:internet).email_address }
+  options.merge!(:text => Forgery(:lorem_ipsum).words(rand(100)))
 
   Fabricate.build(:appeal, options).tap do |appeal|
     appeal.address_attributes = Fabricate.attributes_for(:address) if appeal.answer_kind_post?
