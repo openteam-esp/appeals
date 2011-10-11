@@ -1,6 +1,7 @@
 class Appeal < ActiveRecord::Base
   cattr_accessor :user_ip, :proxy_ip, :user_agent, :referrer
 
+  belongs_to :deleted_by, :class_name => 'User'
   belongs_to :topic
 
   has_one :address, :dependent => :destroy

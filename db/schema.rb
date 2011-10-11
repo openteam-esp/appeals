@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111010080747) do
+ActiveRecord::Schema.define(:version => 20111011054359) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "appeal_id"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(:version => 20111010080747) do
     t.string   "proxy_ip"
     t.string   "user_agent"
     t.string   "referrer"
+    t.datetime "deleted_at"
+    t.integer  "deleted_by_id"
   end
 
   create_table "registrations", :force => true do |t|
