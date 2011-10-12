@@ -3,7 +3,8 @@ source :rubygems
 gem 'cancan'
 gem 'delayed_job'
 gem 'devise'
-gem 'forgery',                                   :require => false
+gem 'fabrication',                                :require => false
+gem 'forgery',                                    :require => false
 gem 'formtastic'
 gem 'has_enum'
 gem 'has_scope'
@@ -11,8 +12,8 @@ gem 'has_searcher'
 gem 'inherited_resources'
 gem 'jquery-rails'
 gem 'kaminari'
-gem 'rack',                     '1.3.3'
-gem 'rails'
+gem 'rack'
+gem 'rails',                                      :require => false
 gem 'russian',                                                                :git => 'git://github.com/tacid/russian'
 gem 'ryba',                                       :require => false
 gem 'simple-navigation'
@@ -20,7 +21,7 @@ gem 'state_machine'
 gem 'sunspot_rails',            '~> 1.3.0.rc4'
 
 group :production do
-  gem 'pg'
+  gem 'pg',                                       :require => false
 end
 
 group :development do
@@ -49,7 +50,6 @@ group :assets do
 end
 
 group :test do
-  gem 'fabrication',                              :require => false
   gem 'rspec-rails',                              :require => false
   gem 'shoulda-matchers',                         :require => false
   gem 'sunspot_matchers',                         :require => false

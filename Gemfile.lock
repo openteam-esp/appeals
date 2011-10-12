@@ -235,7 +235,7 @@ DEPENDENCIES
   kaminari
   libnotify
   pg
-  rack (= 1.3.3)
+  rack
   rails
   rb-inotify
   rspec-rails
