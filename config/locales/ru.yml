@@ -132,6 +132,10 @@ ru:
       registered: На рассмотрении
       trash: Корзина
 
+  show_attribute:
+    "no": Нет
+    "yes": Да
+
   state_machine:
     appeal:
       state:
