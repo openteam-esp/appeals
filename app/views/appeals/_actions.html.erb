@@ -1,5 +1,5 @@
-<div class="actions button-group">
-<%= semantic_form_for @appeal, :url => close_appeal_path(@appeal), :html => {:method => :post} do |form| %>
+<div class="actions button-group<%= margin_top ? ' big_margin_top' : '' %>">
+  <%= semantic_form_for @appeal, :url => close_appeal_path(@appeal), :html => {:method => :post} do |form| %>
     <%= form.buttons do %>
       <%= form.commit_button t('close'), :button_html => { :class => "button primary close #{'disable' unless @appeal.state_events.include?(:close)}" } %>
     <% end %>
@@ -13,11 +13,9 @@
 
   <%= link_to t('to_trash'), @appeal, :method => :delete, :class => 'button danger trash icon' unless @appeal.deleted? || @appeal.closed? %>
 
-  <% if @appeal.deleted? %>
-    <%= semantic_form_for @appeal, :url => restore_appeal_path(@appeal), :html => { :method => :post } do |form| %>
-      <%= form.buttons do %>
-        <%= form.commit_button t("restore"), :button_html => { :class => 'button restore' } %>
-      <% end %>
+  <%= semantic_form_for @appeal, :url => restore_appeal_path(@appeal), :html => { :method => :post } do |form| %>
+    <%= form.buttons do %>
+      <%= form.commit_button t("restore"), :button_html => { :class => 'button restore' } %>
     <% end %>
-  <% end %>
+  <% end if @appeal.deleted? %>
 </div>

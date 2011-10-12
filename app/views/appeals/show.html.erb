@@ -41,7 +41,7 @@
   <div class="top_border"></div>
 
   <%= render @appeal.registration unless @appeal.fresh? %>
-  <%= render :partial => 'registrations/form' if @appeal.fresh? %>
-  <%= render :partial => 'actions' %>
+  <%= render :partial => 'registrations/form' if @appeal.fresh? && !@appeal.deleted? %>
+  <%= render :partial => 'actions', :locals => { :margin_top => @appeal.deleted? } %>
 </div>
 <% end %>
