@@ -43,7 +43,7 @@ describe Appeal do
   it 'должен требовать адрес если выбран ответ по почте' do
     appeal = Fabricate.build(:appeal, :answer_kind => 'post')
     appeal.save
-    appeal.errors.keys.should == [:"address.region", :"address.township", :"address.district", :"address.postcode"]
+    appeal.errors.keys.should == [:"address.region", :"address.township", :"address.district", :"address.postcode", :"address.street", :"address.house"]
 
     appeal.address_attributes = Fabricate.attributes_for(:address, :postcode => "")
     appeal.save

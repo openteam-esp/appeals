@@ -6,4 +6,6 @@ Fabricator(:address) do
   district { Forgery(:address).province }
   township { Forgery(:address).city }
   postcode { Forgery(:address).zip }
+  street   { Forgery(:address).street_name }
+  house    { Forgery(:address).street_number }
 end

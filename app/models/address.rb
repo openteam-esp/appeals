@@ -3,7 +3,7 @@ class Address < ActiveRecord::Base
 
   attr_accessor :use_validation
 
-  validates_presence_of :region, :township, :district, :postcode, :if => :use_validation
+  validates_presence_of :region, :township, :district, :postcode, :street, :house, :if => :use_validation
 
   def full_address
     result = []
