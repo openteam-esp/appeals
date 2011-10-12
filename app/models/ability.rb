@@ -8,6 +8,10 @@ class Ability
       can :manage, Registration
 
       can :read, Appeal
+
+      can :update, Reply do |reply|
+        !reply.appeal.closed?
+      end
     end
   end
 end

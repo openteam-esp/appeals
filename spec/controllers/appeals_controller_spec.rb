@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe AppealsController do
   before do
-    set_current_user
+    set_current_user user
     sign_in user
   end
 
