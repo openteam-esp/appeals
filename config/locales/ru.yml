@@ -55,6 +55,7 @@ ru:
     models:
       address: адрес
       appeal: обращение
+      check_status: проверка состояния обращения
       registration: регистрация
       reply: ответ
       topic: тематика обращения
@@ -62,10 +63,15 @@ ru:
 
   back: Назад
   cancel: Отменить
+  check_status: Проверить состояние обращения
   clear: Очистить
   close: Закрыть
   edit_reply: Редактировать ответ
   add_reply: Написать ответ
+
+  date:
+    formats:
+      default: "%d %B %Y"
 
   errors:
     format: "%{attribute} %{message}"
@@ -133,7 +139,7 @@ ru:
 
   time:
     formats:
-      default: "%d.%m.%Y, %H:%M:%S"
+      default: "%d %B %Y"
 
   to_appeal_list: К списку обращений
 

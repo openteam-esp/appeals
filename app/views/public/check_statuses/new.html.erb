@@ -1,7 +1,13 @@
 <%= semantic_form_for @check_status, :url => public_check_status_path do |form| %>
+  <h3>Введите код обращения</h3>
   <%= form.semantic_errors %>
-  <%= form.inputs :part1, :part2, :part3, :part4 %>
+  <%= form.inputs do %>
+    <%= form.input :part1, :label => false %>
+    <%= form.input :part2, :label => false %>
+    <%= form.input :part3, :label => false %>
+    <%= form.input :part4, :label => false %>
+  <% end %>
   <%= form.buttons do %>
-    <%= form.commit_button %>
+    <%= form.commit_button t('check_status'), :button_html => { :class => 'button big primary' } %>
   <% end %>
 <% end %>

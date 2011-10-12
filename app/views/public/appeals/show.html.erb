@@ -1,5 +1,7 @@
-<% if @appeal %>
-  <%= render :partial => @appeal.state %>
-<% else %>
-  Обращение не найдено.
-<% end %>
+<div class="appeal_status">
+  <% if @appeal %>
+    <%= render :partial => @appeal.state %>
+  <% else %>
+    <h3>Обращение c кодом <%= params[:id] %> не найдено.</h3>
+  <% end %>
+</div>

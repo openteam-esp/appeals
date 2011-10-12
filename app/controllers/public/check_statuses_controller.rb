@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class Public::CheckStatusesController < ApplicationController
+  layout 'public/appeal'
+
   def new
     @check_status = CheckStatus.new
   end
