@@ -5,7 +5,7 @@ class Public::AppealsController < ApplicationController
 
   layout 'public/appeal'
 
-  before_filter :audit, :except => :show
+  before_filter :audit, :except => [:new, :show]
 
   def new
     new! { @appeal.build_address }
@@ -23,7 +23,7 @@ class Public::AppealsController < ApplicationController
 
   private
     def audit
-      Appeal.audit(request)
+      Appeal.request = request
     end
 end
 

@@ -1,5 +1,5 @@
 class Appeal < ActiveRecord::Base
-  cattr_accessor :user_ip, :proxy_ip, :user_agent, :referrer
+  cattr_accessor :request
 
   belongs_to :deleted_by, :class_name => 'User'
   belongs_to :destroy_appeal_job, :class_name => 'Delayed::Backend::ActiveRecord::Job'
@@ -127,13 +127,6 @@ class Appeal < ActiveRecord::Base
     "#{self.surname} #{self.name} #{self.patronymic}".squish
   end
 
-  def self.audit(request)
-    self.proxy_ip = request.env['HTTP_X_FORWARDED_FOR']
-    self.user_ip = request.remote_ip
-    self.user_agent = request.env['HTTP_USER_AGENT']
-    self.referrer = request.env['HTTP_REFERER']
-  end
-
   def attention_level
     return "blank" if closed?
     return "#{state}_#{((Time.now - created_at)/60/60/24).ceil}_days" if fresh?
@@ -150,10 +143,10 @@ class Appeal < ActiveRecord::Base
     end
 
     def set_audit_info
-      self.proxy_ip = self.class.proxy_ip
-      self.user_ip = self.class.user_ip
-      self.user_agent = self.class.user_agent
-      self.referrer = self.class.referrer
+      self.proxy_ip = self.class.request.env['HTTP_X_FORWARDED_FOR']
+      self.user_ip = self.class.request.remote_ip
+      self.user_agent = self.class.request.env['HTTP_USER_AGENT']
+      self.referrer = self.class.request.env['HTTP_REFERER']
     end
 
     def set_address_validation
