@@ -109,7 +109,7 @@ class Appeal < ActiveRecord::Base
     deleted_by_id
   end
 
-  def recycle
+  def restore
     self.tap do |appeal|
       appeal.update_attributes :deleted_by => nil,
                                :deleted_at => nil

@@ -136,7 +136,7 @@ ru:
       state:
         fresh: Новое обращение
         registered: Зарегистрировано
-        replied: Отвечено
+        closed: Отвечено
 
   time:
     formats:

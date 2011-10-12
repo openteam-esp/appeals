@@ -8,6 +8,7 @@ AppealBackend::Application.routes.draw do
     member do
       post :revert
       post :close
+      post :restore
     end
   end
 

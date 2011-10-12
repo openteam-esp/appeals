@@ -3,7 +3,7 @@ class AppealsController < AuthorizedApplicationController
 
   layout :resolve_layout
 
-  custom_actions :resource => [:revert, :close]
+  custom_actions :resource => [:close, :restore, :revert]
 
   has_scope :folder
   has_scope :page, :default => 1, :only => :index
@@ -25,7 +25,14 @@ class AppealsController < AuthorizedApplicationController
   end
 
   def destroy
-    destroy! { scoped_appeals_path(:folder => :trash) }
+    destroy! { scoped_appeals_path(:folder => @appeal.state) }
+  end
+
+  def restore
+    restore! {
+      @appeal.restore
+      redirect_to scoped_appeals_path(:folder => @appeal.state) and return
+    }
   end
 
   protected

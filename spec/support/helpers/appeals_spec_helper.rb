@@ -55,9 +55,9 @@ module AppealsSpecHelper
     end
   end
 
-  def recycled_appeal(options={})
-    @recycled_appeal ||= deleted_appeal.tap do |appeal|
-      appeal.recycle
+  def restored_appeal(options={})
+    @restored_appeal ||= deleted_appeal.tap do |appeal|
+      appeal.restore
     end
   end
 end

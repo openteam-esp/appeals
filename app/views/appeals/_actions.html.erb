@@ -11,5 +11,5 @@
     <% end %>
   <% end if @appeal.state_events.include?(:revert) %>
 
-  <%= link_to t('to_trash'), @appeal, :method => :delete, :class => 'button danger trash icon' %>
+  <%= link_to t('to_trash'), @appeal, :method => :delete, :class => 'button danger trash icon' unless @appeal.deleted? %>
 </div>

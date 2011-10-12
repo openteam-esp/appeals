@@ -152,8 +152,9 @@ describe Appeal do
     end
 
     describe "восстановление" do
-      it { recycled_appeal.should be_persisted }
-      it { recycled_appeal.destroy_appeal_job.should_not be_persisted }
+      it { restored_appeal.should be_persisted }
+      it { restored_appeal.should_not be_deleted }
+      it { restored_appeal.destroy_appeal_job.should_not be_persisted }
     end
   end
 

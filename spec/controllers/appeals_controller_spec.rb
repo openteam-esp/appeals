@@ -60,4 +60,12 @@ describe AppealsController do
       response.should redirect_to(scoped_appeals_path(:folder => :closed))
     end
   end
+
+  describe "POST restore" do
+    it 'should restore appeal' do
+      post :restore, :id => deleted_appeal.id
+      response.should redirect_to(scoped_appeals_path(:folder => deleted_appeal.state))
+      deleted_appeal.reload.should_not be_deleted
+    end
+  end
 end
