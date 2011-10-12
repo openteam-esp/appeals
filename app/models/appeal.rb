@@ -19,14 +19,20 @@ class Appeal < ActiveRecord::Base
   accepts_nested_attributes_for :address
   before_validation :set_address_validation, :if => :answer_kind_post?
 
+  scope :by_state, ->(state) { where(:state => state).not_deleted }
+  scope :not_deleted, where(:deleted_at => nil)
+  scope :trash, where('deleted_at IS NOT NULL')
+
   scope :folder, ->(state) {
     case state.to_sym
       when :fresh
-        where(:state => state).order('created_at')
+        by_state(state).order('created_at')
       when :registered
-        where(:state => state).joins(:registration).order('registrations.registered_on')
+        by_state(state).joins(:registration).order('registrations.registered_on')
       when :closed
-        where(:state => state).joins(:reply).order('replies.replied_on desc')
+        by_state(state).joins(:reply).order('replies.replied_on desc')
+      when :trash
+        trash
     end
   }
 
@@ -93,8 +99,8 @@ class Appeal < ActiveRecord::Base
 
   def destroy
     self.tap do |appeal|
-      appeal.update_attributes :deleted_by => User.current,
-                               :deleted_at => Time.now,
+      appeal.update_attributes :deleted_at => Time.now,
+                               :deleted_by => User.current,
                                :destroy_appeal_job => Delayed::Job.enqueue(:run_at => 30.days.since, :payload_object => DestroyAppealJob.new(self.id))
     end
   end

@@ -87,18 +87,22 @@ describe Appeal do
 
   describe 'папки обращений' do
     it 'новые' do
-      Appeal.folder(:fresh).where_values_hash.symbolize_keys.should == {:state => :fresh}
+      Appeal.folder(:fresh).where_values_hash.symbolize_keys.should == {:state => :fresh, :deleted_at => nil}
       Appeal.folder(:fresh).to_sql.should =~ /ORDER BY created_at/
     end
 
     it 'на рассмотрении' do
-      Appeal.folder(:registered).where_values_hash.symbolize_keys.should == {:state => :registered}
+      Appeal.folder(:registered).where_values_hash.symbolize_keys.should == {:state => :registered, :deleted_at => nil}
       Appeal.folder(:registered).to_sql.should =~ /ORDER BY registrations.registered_on/
     end
 
     it "закрытые" do
-      Appeal.folder(:closed).where_values_hash.symbolize_keys.should == {:state => :closed}
+      Appeal.folder(:closed).where_values_hash.symbolize_keys.should == {:state => :closed, :deleted_at => nil}
       Appeal.folder(:closed).to_sql.should =~ /ORDER BY replies.replied_on desc/
+    end
+
+    it "корзина" do
+      Appeal.folder(:trash).to_sql.should =~ /deleted_at IS NOT NULL/
     end
   end
 

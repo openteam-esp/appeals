@@ -1,6 +1,4 @@
 ru:
-  appeal_system: Система обработки обращений граждан
-
   activerecord:
     attributes:
       address:
@@ -61,13 +59,15 @@ ru:
       topic: тематика обращения
       user: пользователь
 
+  add_reply: Написать ответ
+  appeal_system: Система обработки обращений граждан
   back: Назад
   cancel: Отменить
   check_status: Проверить состояние обращения
   clear: Очистить
   close: Закрыть
   edit_reply: Редактировать ответ
-  add_reply: Написать ответ
+  to_trash: В корзину
 
   date:
     formats:
@@ -78,6 +78,7 @@ ru:
     messages:
       accepted: Должно быть одобренно
       already_confirmed: Уже подтверждено
+      appeal_not_found: Обращение с указанным номером не найдено
       blank: Поле не может быть пустым
       confirmation: Подтверждение не соответствует
       empty: Поле не может быть пустым
@@ -99,7 +100,6 @@ ru:
       too_long: "Слишком длинный (максимум %{count} символов)"
       too_short: "Слишком короткий (минимум %{count} символов)"
       wrong_length: "Имеет неправильную длину (должен быть %{count} символов)"
-      appeal_not_found: Обращение с указанным номером не найдено
 
   formtastic:
     required: обязательное поле
@@ -110,10 +110,10 @@ ru:
       resend_confirmation: Выслать заново
       resend_unlock: Выслать заново
       reset_password: Сброс пароля
+      search: Поиск
       sign_in: Вход
       sign_up: Регистрация
       update: Сохранить
-      search: Поиск
 
   logout: Выход
   new_appeal: Новое обращение
@@ -121,14 +121,15 @@ ru:
   register: Зарегистрировать
   reply: Сохранить ответ
   revert: Вернуть
-  revert_from_registered: Вернуть на регистрацию
   revert_from_closed: Вернуть на ответ
+  revert_from_registered: Вернуть на регистрацию
 
   sidebar:
     appeal:
+      closed: Закрытые
       fresh: Новые
       registered: На рассмотрении
-      closed: Закрытые
+      trash: Корзина
 
   state_machine:
     appeal:
@@ -146,7 +147,7 @@ ru:
   views:
     pagination:
       first: "&laquo; First"
-      previous: "&larr;"
-      next: "&rarr;"
       last: "Last &raquo;"
+      next: "&rarr;"
+      previous: "&larr;"
       truncate: "&hellip;"

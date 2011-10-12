@@ -9,6 +9,9 @@ SimpleNavigation::Configuration.run do |navigation|
     end
     primary.item "sidebar_appeal_closed", t("sidebar.appeal.closed"), scoped_appeals_path(:closed),
                  :highlights_on => lambda { params[:folder] == "closed" && params[:controller] == 'appeals' }
+
+    primary.item "sidebar_appeal_trash", t("sidebar.appeal.trash"), scoped_appeals_path(:trash),
+                 :highlights_on => lambda { params[:folder] == "trash" && params[:controller] == 'appeals' }
   end
 
 end

@@ -1,5 +1,5 @@
 class AppealsController < AuthorizedApplicationController
-  actions :index, :show
+  actions :index, :show, :destroy
 
   layout :resolve_layout
 
@@ -22,6 +22,10 @@ class AppealsController < AuthorizedApplicationController
       @appeal.close!
       redirect_to scoped_appeals_path(:folder => @appeal.state) and return
     }
+  end
+
+  def destroy
+    destroy! { scoped_appeals_path(:folder => :trash) }
   end
 
   protected

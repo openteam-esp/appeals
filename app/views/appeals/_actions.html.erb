@@ -9,3 +9,5 @@
       <%= form.commit_button t("revert_from_#{@appeal.state}"), :button_html => { :class => 'button revert' } %>
     <% end %>
   <% end if @appeal.state_events.include?(:revert) %>
+
+  <%= link_to t('to_trash'), @appeal, :method => :delete, :class => 'button' %>
