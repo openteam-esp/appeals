@@ -18,6 +18,20 @@ describe Appeal do
   it { Fabricate(:reply, :appeal => registered_appeal); registered_appeal.state_events.should == [:close, :revert] }
   it { Appeal.new(:state => 'closed').state_events.should == [:revert] }
 
+  describe 'валидация email' do
+    it 'должна пропускать ololo@ololo.com' do
+      appeal = Fabricate.build(:appeal, :email => 'ololo@ololo.com')
+      appeal.save
+      appeal.errors.keys.should be_empty
+    end
+
+    it 'не должна пропускать blah' do
+      appeal = Fabricate.build(:appeal, :email => 'blah')
+      appeal.save
+      appeal.errors.keys.should == [:email]
+    end
+  end
+
   describe 'при создании обращения' do
     it { Fabricate(:appeal).should be_fresh }
 
@@ -43,7 +57,7 @@ describe Appeal do
   it 'должен требовать адрес если выбран ответ по почте' do
     appeal = Fabricate.build(:appeal, :answer_kind => 'post')
     appeal.save
-    appeal.errors.keys.should == [:"address.region", :"address.township", :"address.district", :"address.postcode"]
+    appeal.errors.keys.should == [:"address.region", :"address.township", :"address.district", :"address.postcode", :"address.street", :"address.house"]
 
     appeal.address_attributes = Fabricate.attributes_for(:address, :postcode => "")
     appeal.save
@@ -166,27 +180,31 @@ describe Appeal do
 end
 
 
+
 # == Schema Information
 #
 # Table name: appeals
 #
-#  id          :integer         not null, primary key
-#  surname     :string(255)
-#  name        :string(255)
-#  patronymic  :string(255)
-#  topic_id    :integer
-#  email       :string(255)
-#  phone       :string(255)
-#  text        :text
-#  public      :boolean
-#  answer_kind :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#  state       :string(255)
-#  code        :string(255)
-#  user_ip     :string(255)
-#  proxy_ip    :string(255)
-#  user_agent  :string(255)
-#  referrer    :string(255)
+#  id                    :integer         not null, primary key
+#  surname               :string(255)
+#  name                  :string(255)
+#  patronymic            :string(255)
+#  topic_id              :integer
+#  email                 :string(255)
+#  phone                 :string(255)
+#  text                  :text
+#  public                :boolean
+#  answer_kind           :string(255)
+#  created_at            :datetime
+#  updated_at            :datetime
+#  state                 :string(255)
+#  code                  :string(255)
+#  user_ip               :string(255)
+#  proxy_ip              :string(255)
+#  user_agent            :string(255)
+#  referrer              :string(255)
+#  deleted_at            :datetime
+#  deleted_by_id         :integer
+#  destroy_appeal_job_id :integer
 #
 

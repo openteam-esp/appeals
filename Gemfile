@@ -12,9 +12,7 @@ gem 'has_searcher'
 gem 'inherited_resources'
 gem 'jquery-rails'
 gem 'kaminari'
-gem 'rack'
 gem 'rails',                                      :require => false
-gem 'russian',                                                                :git => 'git://github.com/tacid/russian'
 gem 'ryba',                                       :require => false
 gem 'simple-navigation'
 gem 'state_machine'
@@ -25,8 +23,7 @@ group :production do
 end
 
 group :development do
-  gem 'annotate',                                                             :git => 'git://github.com/jeremyolliver/annotate_models.git',
-                                                                              :branch => 'rake_compatibility'
+  gem 'annotate',               '~> 2.4.1.beta1', :require => false
   gem 'guard-rspec',                              :require => false
   gem 'guard-spork',                              :require => false
   gem 'hirb',                                     :require => false

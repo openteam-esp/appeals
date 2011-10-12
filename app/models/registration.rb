@@ -11,15 +11,17 @@ class Registration < ActiveRecord::Base
     end
 end
 
+
 # == Schema Information
 #
 # Table name: registrations
 #
-#  id           :integer         not null, primary key
+#  id            :integer         not null, primary key
 #  registered_on :date
-#  number       :string(255)
-#  directed_to  :string(255)
-#  appeal_id    :integer
-#  created_at   :datetime
-#  updated_at   :datetime
+#  number        :string(255)
+#  directed_to   :string(255)
+#  appeal_id     :integer
+#  created_at    :datetime
+#  updated_at    :datetime
 #
+

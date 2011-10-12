@@ -3,6 +3,7 @@ class AppealSearch < Search
   column :state,    :string
 end
 
+
 # == Schema Information
 #
 # Table name: searches

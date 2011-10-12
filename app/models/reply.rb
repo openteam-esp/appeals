@@ -6,6 +6,7 @@ class Reply < ActiveRecord::Base
   validates_presence_of :number, :replied_on, :replied_by, :text, :if => Proc.new { | reply | reply.use_validation}
 end
 
+
 # == Schema Information
 #
 # Table name: replies
@@ -20,3 +21,4 @@ end
 #  created_at :datetime
 #  updated_at :datetime
 #
+

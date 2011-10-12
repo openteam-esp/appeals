@@ -4,6 +4,7 @@ class Section < ActiveRecord::Base
   validates_presence_of :title
 end
 
+
 # == Schema Information
 #
 # Table name: sections
@@ -13,3 +14,4 @@ end
 #  created_at :datetime
 #  updated_at :datetime
 #
+

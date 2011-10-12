@@ -3,7 +3,7 @@ class Address < ActiveRecord::Base
 
   attr_accessor :use_validation
 
-  validates_presence_of :region, :township, :district, :postcode, :if => :use_validation
+  validates_presence_of :region, :township, :district, :postcode, :street, :house, :if => :use_validation
 
   def full_address
     result = []
@@ -19,18 +19,22 @@ class Address < ActiveRecord::Base
   end
 end
 
+
 # == Schema Information
 #
 # Table name: addresses
 #
 #  id         :integer         not null, primary key
-#  postcode   :integer
+#  appeal_id  :integer
+#  postcode   :string(255)
 #  region     :string(255)
 #  district   :string(255)
 #  street     :string(255)
+#  township   :string(255)
 #  house      :string(255)
 #  building   :string(255)
 #  flat       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
 #
+
