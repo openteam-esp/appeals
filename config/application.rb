@@ -57,7 +57,7 @@ module AppealBackend
 
     stylesheets_directory = "#{Rails.root}/app/assets/stylesheets"
 
-    config.sass.preferred_syntax = :sass
+    config.sass.preferred_syntax = :sass if config.respond_to? :sass
 
   end
 end
