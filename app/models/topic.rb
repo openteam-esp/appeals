@@ -8,6 +8,7 @@ class Topic < ActiveRecord::Base
   end
 end
 
+
 # == Schema Information
 #
 # Table name: topics
@@ -18,3 +19,4 @@ end
 #  created_at :datetime
 #  updated_at :datetime
 #
+

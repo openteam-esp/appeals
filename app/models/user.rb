@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -40,3 +41,4 @@ end
 #  updated_at             :datetime
 #  name                   :string(255)
 #
+
