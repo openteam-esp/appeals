@@ -1,4 +1,5 @@
-  <%= semantic_form_for @appeal, :url => close_appeal_path(@appeal), :html => {:method => :post} do |form| %>
+<div class="actions button-group">
+<%= semantic_form_for @appeal, :url => close_appeal_path(@appeal), :html => {:method => :post} do |form| %>
     <%= form.buttons do %>
       <%= form.commit_button t('close'), :button_html => { :class => "button primary close #{'disable' unless @appeal.state_events.include?(:close)}" } %>
     <% end %>
@@ -10,4 +11,5 @@
     <% end %>
   <% end if @appeal.state_events.include?(:revert) %>
 
-  <%= link_to t('to_trash'), @appeal, :method => :delete, :class => 'button' %>
+  <%= link_to t('to_trash'), @appeal, :method => :delete, :class => 'button danger trash icon' %>
+</div>

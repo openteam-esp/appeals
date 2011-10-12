@@ -121,8 +121,8 @@ ru:
   register: Зарегистрировать
   reply: Сохранить ответ
   revert: Вернуть
-  revert_from_closed: Вернуть на ответ
-  revert_from_registered: Вернуть на регистрацию
+  revert_from_closed: На ответ
+  revert_from_registered: На регистрацию
 
   sidebar:
     appeal:
