@@ -20,6 +20,11 @@
     <%= form.input :public %>
   <% end %>
 
+  <%= form.inputs :assets do %>
+    <%= render @assets %>
+    <%= form.input :file, :as => :file %>
+  <% end %>
+
   <%= form.buttons do %>
     <li>
       <%= link_to t('cancel'), :back, :class => 'button cancel' %>

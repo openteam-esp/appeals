@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011072508) do
+ActiveRecord::Schema.define(:version => 20111012082757) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "appeal_id"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(:version => 20111011072508) do
     t.datetime "deleted_at"
     t.integer  "deleted_by_id"
     t.integer  "destroy_appeal_job_id"
+  end
+
+  create_table "assets", :force => true do |t|
+    t.integer  "appeal_id"
+    t.string   "file_name"
+    t.string   "file_mime_type"
+    t.integer  "file_size"
+    t.string   "file_uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "delayed_jobs", :force => true do |t|

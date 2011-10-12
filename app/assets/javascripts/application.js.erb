@@ -7,6 +7,8 @@
  *= require jquery
  *= require jquery-ui
  *= require jquery.ui.datepicker-ru
+ *= require jquery.iframe.transport
+ *= require jquery.fileupload
  *= require jquery_ujs
  */
 
@@ -25,9 +27,34 @@ function init_datepicker() {
 
 };
 
+function assets_manage() {
+  if ($.fn.fileupload) {
+    $("#appeal_file").fileupload({
+      url: "/public/assets",
+      dataType: "html",
+      start: function(e) {
+        //upload_link.addClass("ajax_loading");
+      },
+      stop: function(e) {
+        //upload_link.removeClass("ajax_loading");
+      },
+      add: function(e, data) {
+        data.submit()
+        .success(function (result, textStatus, jqXHR) {
+        })
+        .error(function (jqXHR, textStatus, errorThrown) {
+          alert(errorThrown + "\n\n" + jqXHR.responseText);
+        });
+      }
+    });
+  };
+};
+
 $(function() {
 
   init_datepicker();
+
+  assets_manage();
 
   $(".focus_first:first").focus();
 

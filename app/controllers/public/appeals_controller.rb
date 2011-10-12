@@ -8,7 +8,10 @@ class Public::AppealsController < ApplicationController
   before_filter :audit, :except => [:new, :show]
 
   def new
-    new! { @appeal.build_address }
+    new! {
+      @assets = Asset.find(session[:asset_ids] || [])
+      @appeal.build_address
+    }
   end
 
   def create

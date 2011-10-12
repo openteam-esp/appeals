@@ -15,6 +15,7 @@ AppealBackend::Application.routes.draw do
   namespace :public do
     resources :appeals, :only => [:create, :new, :show]
     resource :check_status, :only => [:create, :new]
+    resources :assets, :only => [:create]
   end
 
   get '/:folder/appeals' => 'appeals#index',
