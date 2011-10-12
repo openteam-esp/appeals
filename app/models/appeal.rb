@@ -1,5 +1,6 @@
 class Appeal < ActiveRecord::Base
-  cattr_accessor :request
+  class_attribute :request_env
+  self.request_env = {}
 
   belongs_to :deleted_by,         :class_name => 'User'
   belongs_to :destroy_appeal_job, :class_name => 'Delayed::Backend::ActiveRecord::Job'
@@ -151,10 +152,10 @@ class Appeal < ActiveRecord::Base
     end
 
     def set_audit_info
-      self.proxy_ip = self.class.request.env['HTTP_X_FORWARDED_FOR']
-      self.user_ip = self.class.request.remote_ip
-      self.user_agent = self.class.request.env['HTTP_USER_AGENT']
-      self.referrer = self.class.request.env['HTTP_REFERER']
+      self.proxy_ip = self.class.request_env['HTTP_X_FORWARDED_FOR']
+      self.user_ip = self.class.request_env['REMOTE_ADDR']
+      self.user_agent = self.class.request_env['HTTP_USER_AGENT']
+      self.referrer = self.class.request_env['HTTP_REFERER']
     end
 
     def set_address_validation

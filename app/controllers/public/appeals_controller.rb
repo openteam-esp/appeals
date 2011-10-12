@@ -23,7 +23,7 @@ class Public::AppealsController < ApplicationController
 
   private
     def audit
-      Appeal.request = request
+      Appeal.request_env = request.env
     end
 end
 
