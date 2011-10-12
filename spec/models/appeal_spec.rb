@@ -160,6 +160,8 @@ describe Appeal do
 
   describe "удаление минуя корзину" do
     let(:destroyed_appeal) { closed_appeal.destroy_without_trash }
+
+    it { destroyed_appeal.should_not be_persisted }
   end
 end
 
