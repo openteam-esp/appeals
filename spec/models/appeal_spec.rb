@@ -18,6 +18,20 @@ describe Appeal do
   it { Fabricate(:reply, :appeal => registered_appeal); registered_appeal.state_events.should == [:close, :revert] }
   it { Appeal.new(:state => 'closed').state_events.should == [:revert] }
 
+  describe 'валидация email' do
+    it 'должна пропускать ololo@ololo.com' do
+      appeal = Fabricate.build(:appeal, :email => 'ololo@ololo.com')
+      appeal.save
+      appeal.errors.keys.should be_empty
+    end
+
+    it 'не должна пропускать blah' do
+      appeal = Fabricate.build(:appeal, :email => 'blah')
+      appeal.save
+      appeal.errors.keys.should == [:email]
+    end
+  end
+
   describe 'при создании обращения' do
     it { Fabricate(:appeal).should be_fresh }
 

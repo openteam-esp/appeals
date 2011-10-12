@@ -1,22 +1,30 @@
 class Appeal < ActiveRecord::Base
   cattr_accessor :user_ip, :proxy_ip, :user_agent, :referrer
 
-  belongs_to :deleted_by, :class_name => 'User'
+  belongs_to :deleted_by,         :class_name => 'User'
   belongs_to :destroy_appeal_job, :class_name => 'Delayed::Backend::ActiveRecord::Job'
   belongs_to :topic
 
-  has_one :address, :dependent => :destroy
+  has_one :address,      :dependent => :destroy
   has_one :registration, :dependent => :destroy
-  has_one :reply, :dependent => :destroy
+  has_one :reply,        :dependent => :destroy
 
-  validates_presence_of :surname, :name, :answer_kind, :topic, :text
+  validates :email,
+            :presence => true,
+            :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i, :if => :answer_kind_email?
 
-  validates_presence_of :email,   :if => :answer_kind_email?
+  validates_presence_of :answer_kind,
+                        :name,
+                        :surname,
+                        :text,
+                        :topic
+
   validates_presence_of :address, :if => :answer_kind_post?
 
   validates_uniqueness_of :code
 
   accepts_nested_attributes_for :address
+
   before_validation :set_address_validation, :if => :answer_kind_post?
 
   scope :by_state, ->(state) { where(:state => state).not_deleted }
