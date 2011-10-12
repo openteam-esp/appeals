@@ -81,7 +81,7 @@ class Appeal < ActiveRecord::Base
     end
 
     text :reply_replied_on do
-      I18n.l self.reply_replied_on if self.reply
+      I18n.l(self.reply_replied_on) if self.reply.try(:replied_on)
     end
 
     text :reply_replied_by do

@@ -71,7 +71,7 @@ ru:
 
   date:
     formats:
-      default: "%d %B %Y"
+      default: "%d.%m.%Y"
 
   errors:
     format: "%{attribute} %{message}"

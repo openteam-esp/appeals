@@ -5,7 +5,11 @@
                       :html => { :remote => true } do |form| %>
   <%= form.inputs do %>
     <%= form.input :number %>
-    <%= form.input :replied_on, :as => :string, :input_html => { :class => "datepicker" } %>
+    <%= form.input :replied_on, :as => :string,
+                   :input_html => {
+                     :class => "datepicker",
+                     :value => @appeal.reply.replied_on ? I18n.l(@appeal.reply.replied_on) : ""
+                   } %>
     <%= form.input :replied_by %>
     <%= form.input :text %>
     <%= form.input :public %>
