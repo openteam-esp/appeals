@@ -14,5 +14,5 @@
 <%= link_to t("edit_reply"),
             edit_appeal_reply_path(@appeal),
             :remote => true,
-            :class => 'button icon edit reply_link' if @appeal.registered? %>
+            :class => 'button icon edit reply_link' if can?(:update, @appeal.reply) %>
 
