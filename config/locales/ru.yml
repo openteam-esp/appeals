@@ -120,6 +120,7 @@ ru:
   not_specified: Не указано
   register: Зарегистрировать
   reply: Сохранить ответ
+  restore: Восстановить
   revert: Вернуть
   revert_from_closed: На ответ
   revert_from_registered: На регистрацию
