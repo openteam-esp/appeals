@@ -13,5 +13,7 @@ class Ability
         !reply.appeal.closed?
       end
     end
+
+    can :manage, Upload
   end
 end

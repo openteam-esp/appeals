@@ -54,6 +54,13 @@ module AppealBackend
     end
 
     config.middleware.insert_after 'Warden::Manager', 'SetCurrentUserMiddleware'
+    config.middleware.insert_after 'SetCurrentUserMiddleware', 'AuthorizeUploadsMiddleware'
+    config.middleware.insert_after 'AuthorizeUploadsMiddleware', 'Dragonfly::Middleware', :uploads
+    config.middleware.insert_before 'Dragonfly::Middleware', 'Rack::Cache', {
+      :verbose     => true,
+      :metastore   => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"),
+      :entitystore => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
+    } if defined?(Rack::Cache)
 
     stylesheets_directory = "#{Rails.root}/app/assets/stylesheets"
 

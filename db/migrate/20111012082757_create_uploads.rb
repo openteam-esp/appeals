@@ -1,6 +1,6 @@
-class CreateAssets < ActiveRecord::Migration
+class CreateUploads < ActiveRecord::Migration
   def change
-    create_table "assets", :force => true do |t|
+    create_table "uploads", :force => true do |t|
       t.integer  "appeal_id"
       t.string   "file_name"
       t.string   "file_mime_type"

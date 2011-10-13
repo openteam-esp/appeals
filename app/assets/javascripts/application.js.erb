@@ -27,10 +27,10 @@ function init_datepicker() {
 
 };
 
-function assets_manage() {
+function uploads_manage() {
   if ($.fn.fileupload) {
     $("#appeal_file").fileupload({
-      url: "/public/assets",
+      url: "/public/uploads",
       dataType: "html",
       start: function(e) {
         //upload_link.addClass("ajax_loading");
@@ -54,7 +54,7 @@ $(function() {
 
   init_datepicker();
 
-  assets_manage();
+  uploads_manage();
 
   $(".focus_first:first").focus();
 

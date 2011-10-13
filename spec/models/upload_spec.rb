@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Asset do
+describe Upload do
   pending "add some examples to (or delete) #{__FILE__}"
 end
 # == Schema Information
 #
-# Table name: assets
+# Table name: uploads
 #
 #  id             :integer         not null, primary key
 #  appeal_id      :integer

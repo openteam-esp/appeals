@@ -1,8 +1,10 @@
 source :rubygems
 
 gem 'cancan'
+gem 'configliere'
 gem 'delayed_job'
 gem 'devise'
+gem 'dragonfly'
 gem 'fabrication',                                :require => false
 gem 'forgery',                                    :require => false
 gem 'formtastic'

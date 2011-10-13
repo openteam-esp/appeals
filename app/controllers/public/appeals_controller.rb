@@ -9,7 +9,7 @@ class Public::AppealsController < ApplicationController
 
   def new
     new! {
-      @assets = Asset.find(session[:asset_ids] || [])
+      @uploads = Upload.find(session[:upload_ids] || [])
       @appeal.build_address
     }
   end
