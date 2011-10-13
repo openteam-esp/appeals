@@ -87,6 +87,18 @@ class Appeal < ActiveRecord::Base
       appeal.registration.destroy
     end
 
+    after_transition :noted => :registered do |appeal, transition|
+      appeal.note.destroy
+    end
+
+    after_transition :redirected => :registered do |appeal, transition|
+      appeal.redirect.destroy
+    end
+
+    after_transition :reviewing => :registered do |appeal, transition|
+      appeal.review.destroy
+    end
+
     event :to_register do
       transition :fresh => :registered
     end

@@ -149,16 +149,38 @@ describe Appeal do
   end
 
   describe 'переход в предыдущее состояние' do
-    xit 'registered -> fresh' do
-      registered_appeal.revert
+    it 'registered -> fresh' do
+      registered_appeal.to_revert
 
       registered_appeal.reload.should be_fresh
       registered_appeal.registration.should be_nil
     end
 
-    xit "closed -> registered" do
-      closed_appeal.revert
-      closed_appeal.reload.should be_registered
+    it "noted -> registered" do
+      noted_appeal.to_revert
+
+      noted_appeal.reload.should be_registered
+      noted_appeal.reload.note.should be_nil
+    end
+
+    it "redirected -> registered" do
+      redirected_appeal.to_revert
+
+      redirected_appeal.reload.should be_registered
+      redirected_appeal.reload.redirect.should be_nil
+    end
+
+    it "reviewing -> registered" do
+      reviewing_appeal.to_revert
+
+      reviewing_appeal.reload.should be_registered
+      reviewing_appeal.reload.review.should be_nil
+    end
+
+    it "closed -> reviewing" do
+      closed_appeal.to_revert
+
+      closed_appeal.reload.should be_reviewing
       closed_appeal.reply.should be_persisted
     end
   end
