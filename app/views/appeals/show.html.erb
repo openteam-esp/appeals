@@ -24,6 +24,18 @@
     <div class="appeal_info">
       <%= show_attribute(@appeal, :text) %>
     </div>
+    <%= content_tag :div, :class => "appeal_info" do %>
+      <div class="show_attribute text">
+        <span class="label">Вложения</span>
+        <span class="value">
+          <ul>
+            <% @appeal.uploads.each do |upload| %>
+              <li><%= show_upload(upload) %></li>
+            <% end %>
+          </ul>
+        </span>
+      </div>
+    <% end if @appeal.uploads.any?%>
 
 
     <div class="reply_wrapper">
