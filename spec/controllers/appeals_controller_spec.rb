@@ -47,16 +47,16 @@ describe AppealsController do
 
     it "should revert closed appeal" do
       post :revert, :id => closed_appeal.id
-      closed_appeal.reload.should be_registered
-      response.should redirect_to(scoped_appeals_path(:folder => :registered))
+      closed_appeal.reload.should be_reviewing
+      response.should redirect_to(scoped_appeals_path(:folder => :reviewing))
     end
   end
 
   describe 'POST close' do
-    it 'should close registered appeal' do
-      Fabricate(:reply, :appeal => registered_appeal)
-      post :close, :id => registered_appeal.id
-      registered_appeal.reload.should be_closed
+    it 'should close reviewing appeal' do
+      Fabricate(:reply, :appeal => reviewing_appeal)
+      post :close, :id => reviewing_appeal.id
+      reviewing_appeal.reload.should be_closed
       response.should redirect_to(scoped_appeals_path(:folder => :closed))
     end
   end

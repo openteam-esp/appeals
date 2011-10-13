@@ -12,14 +12,14 @@ class AppealsController < AuthorizedApplicationController
 
   def revert
     revert! {
-      @appeal.revert!
+      @appeal.to_revert!
       redirect_to scoped_appeals_path(:folder => @appeal.state) and return
     }
   end
 
   def close
     close! {
-      @appeal.close!
+      @appeal.to_close!
       redirect_to scoped_appeals_path(:folder => @appeal.state) and return
     }
   end

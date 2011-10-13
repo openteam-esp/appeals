@@ -22,7 +22,7 @@ AppealBackend::Application.routes.draw do
 
   get '/:folder/appeals' => 'appeals#index',
       :as => :scoped_appeals,
-      :constraints => { :folder => /(fresh|registered|closed|trash)/ }
+      :constraints => { :folder => /(fresh|registered|noted|redirected|reviewing|closed|trash)/ }
 
   scope :folder => 'fresh' do
     root :to => 'appeals#index'

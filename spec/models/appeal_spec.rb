@@ -91,24 +91,24 @@ describe Appeal do
   end
 
   describe "закрытие обращения" do
-    xit "без ответа" do
-      registered_appeal.close
-      registered_appeal.should be_registered
+    it "без ответа" do
+      reviewing_appeal.to_close
+      reviewing_appeal.should be_reviewing
     end
 
-    xit "c незаполенным ответом" do
-      registered_appeal.create_reply!
-      registered_appeal.reply.should be_persisted
-      registered_appeal.close
-      registered_appeal.reply.errors.keys.should == [:number, :replied_on, :replied_by, :text]
-      registered_appeal.should be_registered
+    it "c незаполенным ответом" do
+      reviewing_appeal.create_reply!
+      reviewing_appeal.reply.should be_persisted
+      reviewing_appeal.to_close
+      reviewing_appeal.reply.errors.keys.should == [:number, :replied_on, :replied_by, :text]
+      reviewing_appeal.should be_reviewing
     end
 
-    xit "с заполненным ответом" do
-      registered_appeal.create_reply Fabricate.attributes_for(:reply)
-      registered_appeal.close
-      registered_appeal.reply.errors.keys.should be_empty
-      registered_appeal.should be_closed
+    it "с заполненным ответом" do
+      reviewing_appeal.create_reply Fabricate.attributes_for(:reply)
+      reviewing_appeal.to_close
+      reviewing_appeal.reply.errors.keys.should be_empty
+      reviewing_appeal.should be_closed
     end
   end
 
@@ -186,18 +186,20 @@ describe Appeal do
   end
 
   describe "должно знать уровень важности для подсветки в виде" do
-    xit "для нового" do
+    it "для нового" do
       fresh_appeal.attention_level.should == "fresh_1_days"
     end
 
-    xit "для зарегистрированного" do
+    it "для зарегистрированного" do
       create_registered_appeal(:registration => {:registered_on => 20.days.ago}).attention_level.should == "registered_21_days"
       registered_appeal.attention_level.should == "registered_1_days"
     end
 
-    xit "для закрытого" do
-      closed_appeal.attention_level.should == "blank"
-    end
+    it { reviewing_appeal.attention_level.should_not == "blank" }
+
+    it { closed_appeal.attention_level.should == "blank" }
+    it { redirected_appeal.attention_level.should == "blank" }
+    it { noted_appeal.attention_level.should == "blank" }
   end
 
   describe 'корзина' do
@@ -206,26 +208,25 @@ describe Appeal do
         set_current_user
       end
 
-      xit { deleted_appeal.should be_persisted }
-      xit { deleted_appeal.should be_deleted }
-      xit { deleted_appeal.registration.should be_persisted }
-      xit { deleted_appeal.reply.should be_persisted }
-      xit { deleted_appeal.destroy_appeal_job.should be_persisted }
-
-      xit { deleted_appeal.destroy_without_trash.should_not be_persisted }
+      it { deleted_appeal.should be_persisted }
+      it { deleted_appeal.should be_deleted }
+      it { deleted_appeal.registration.should be_persisted }
+      it { deleted_appeal.review.should be_persisted }
+      it { deleted_appeal.reply.should be_persisted }
+      it { deleted_appeal.destroy_appeal_job.should be_persisted }
     end
 
     describe "восстановление" do
-      xit { restored_appeal.should be_persisted }
-      xit { restored_appeal.should_not be_deleted }
-      xit { restored_appeal.destroy_appeal_job.should_not be_persisted }
+      it { restored_appeal.should be_persisted }
+      it { restored_appeal.should_not be_deleted }
+      it { restored_appeal.destroy_appeal_job.should_not be_persisted }
     end
   end
 
   describe "удаление минуя корзину" do
     let(:destroyed_appeal) { closed_appeal.destroy_without_trash }
 
-    xit { destroyed_appeal.should_not be_persisted }
+    it { destroyed_appeal.should_not be_persisted }
   end
 end
 
