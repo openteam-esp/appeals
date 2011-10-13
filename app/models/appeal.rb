@@ -35,18 +35,30 @@ class Appeal < ActiveRecord::Base
   scope :not_deleted, where(:deleted_at => nil)
   scope :trash, where('deleted_at IS NOT NULL')
 
-  scope :folder, ->(state) {
+  scope :folder, ->(state) do
     case state.to_sym
-      when :fresh
-        by_state(state).order('created_at')
-      when :registered
-        by_state(state).joins(:registration).order('registrations.registered_on')
       when :closed
         by_state(state).joins(:reply).order('replies.replied_on desc')
+
+      when :fresh
+        by_state(state).order('created_at')
+
+      when :noted
+        by_state(state).joins(:note).order('notes.created_at')
+
+      when :redirected
+        by_state(state).joins(:redirect).order('redirects.created_at')
+
+      when :registered
+        by_state(state).joins(:registration).order('registrations.registered_on')
+
+      when :reviewing
+        by_state(state).joins(:review).order('reviews.created_at')
+
       when :trash
         trash
     end
-  }
+  end
 
   before_create :set_code
   before_create :set_audit_info

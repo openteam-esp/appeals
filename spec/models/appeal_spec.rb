@@ -113,22 +113,37 @@ describe Appeal do
   end
 
   describe 'папки обращений' do
-    xit 'новые' do
+    it 'новые' do
       Appeal.folder(:fresh).where_values_hash.symbolize_keys.should == {:state => :fresh, :deleted_at => nil}
       Appeal.folder(:fresh).to_sql.should =~ /ORDER BY created_at/
     end
 
-    xit 'на рассмотрении' do
+    it "зарегистрированные" do
       Appeal.folder(:registered).where_values_hash.symbolize_keys.should == {:state => :registered, :deleted_at => nil}
       Appeal.folder(:registered).to_sql.should =~ /ORDER BY registrations.registered_on/
     end
 
-    xit "закрытые" do
+    it 'на рассмотрении' do
+      Appeal.folder(:reviewing).where_values_hash.symbolize_keys.should == {:state => :reviewing, :deleted_at => nil}
+      Appeal.folder(:reviewing).to_sql.should =~ /ORDER BY reviews.created_at/
+    end
+
+    it "закрытые" do
       Appeal.folder(:closed).where_values_hash.symbolize_keys.should == {:state => :closed, :deleted_at => nil}
       Appeal.folder(:closed).to_sql.should =~ /ORDER BY replies.replied_on desc/
     end
 
-    xit "корзина" do
+    it "принятые к сведению" do
+      Appeal.folder(:noted).where_values_hash.symbolize_keys.should == {:state => :noted, :deleted_at => nil}
+      Appeal.folder(:noted).to_sql.should =~ /ORDER BY notes.created_at/
+    end
+
+    it "переадресованные" do
+      Appeal.folder(:redirected).where_values_hash.symbolize_keys.should == {:state => :redirected, :deleted_at => nil}
+      Appeal.folder(:redirected).to_sql.should =~ /ORDER BY redirects.created_at/
+    end
+
+    it "корзина" do
       Appeal.folder(:trash).to_sql.should =~ /deleted_at IS NOT NULL/
     end
   end
