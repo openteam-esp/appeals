@@ -2,7 +2,7 @@ class Upload < ActiveRecord::Base
 
   belongs_to :appeal
 
-  default_scope order('id desc')
+  default_scope order :id
 
   upload_accessor :file do
     storage_path { "#{I18n.l Date.today, :format => "%Y/%m/%d"}/#{Time.now.to_i}-#{file_name}"}

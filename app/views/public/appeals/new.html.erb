@@ -20,9 +20,9 @@
     <%= form.input :public %>
   <% end %>
 
-  <%= form.inputs :uploads do %>
+  <%= form.inputs :class => "inputs uploads" do %>
     <%= render uploads %>
-    <%= form.input :file, :as => :file, :input_html => { :name => 'upload[file]' } %>
+    <%= form.input :file, :as => :file, :input_html => { :name => 'upload[file]', :id => "upload_file" } %>
   <% end %>
 
   <%= form.buttons do %>

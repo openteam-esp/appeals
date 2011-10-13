@@ -19,5 +19,7 @@ class ApplicationController < ActionController::Base
     def uploads
       session[:upload_ids] ||= []
       uploads = Upload.find_all_by_id(session[:upload_ids])
+      session[:upload_ids] = uploads.map(&:id)
+      uploads
     end
 end

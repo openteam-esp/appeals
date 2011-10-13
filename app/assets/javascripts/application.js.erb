@@ -29,7 +29,7 @@ function init_datepicker() {
 
 function uploads_manage() {
   if ($.fn.fileupload) {
-    $("#appeal_file").fileupload({
+    $("#upload_file").fileupload({
       url: "/public/uploads",
       dataType: "html",
       start: function(e) {
@@ -41,6 +41,10 @@ function uploads_manage() {
       add: function(e, data) {
         data.submit()
         .success(function (result, textStatus, jqXHR) {
+          $("<div id='ajax_result' />").appendTo("body").hide().html(result);
+          $("#new_appeal .uploads").html($("#ajax_result .inputs").html());
+          $("#ajax_result").remove();
+          uploads_manage();
         })
         .error(function (jqXHR, textStatus, errorThrown) {
           alert(errorThrown + "\n\n" + jqXHR.responseText);
