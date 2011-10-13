@@ -68,6 +68,12 @@ $(function() {
     return false;
   });
 
+  $('.actions a').click(function(){
+    var id = $(this).attr('id');
+    $('.formtastic.'+id).toggle('slow');
+    return false;
+  });
+
   $('.reply_wrapper')
     .bind('ajax:success', function(evt, data, status, xhr){
       $('.reply_wrapper').html(xhr.responseText);

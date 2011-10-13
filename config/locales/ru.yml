@@ -31,6 +31,12 @@ ru:
         user_agent: Браузер пользователя
         user_ip: IP пользователя
 
+      note:
+        public: Опубликовать обращение
+
+      redirect:
+        recipient: Куда переадресовано
+
       registration:
         directed_to: Назначено
         number: Номер
@@ -43,6 +49,9 @@ ru:
         replied_on: Когда отвечено
         text: Текст ответа
 
+      review:
+        recipient: Кем рассматривается
+
       user:
         email: Email
         name: ФИО
@@ -54,8 +63,11 @@ ru:
       address: адрес
       appeal: обращение
       check_status: проверка состояния обращения
+      note: рассмотрение
+      redirect: переадресация
       registration: регистрация
       reply: ответ
+      review: рассмотрение
       topic: тематика обращения
       user: пользователь
 
@@ -118,20 +130,27 @@ ru:
 
   logout: Выход
   new_appeal: Новое обращение
+  note: Принять к сведению
   not_specified: Не указано
+  redirect: Переадресовать
   register: Зарегистрировать
   reply: Сохранить ответ
   restore: Восстановить
   revert: Вернуть
   revert_from_closed: На ответ
   revert_from_registered: На регистрацию
+  review: Подать на рассмотрение
+  send: Отправить
 
   sidebar:
     appeal:
       closed: Закрытые
       fresh: Новые
-      registered: На рассмотрении
+      registered: Зарегистрированные
       trash: Корзина
+      reviewing: На рассмотрении
+      redirected: Переадресованные
+      noted: Принятые к сведению
 
   show_attribute:
     "no": Нет
