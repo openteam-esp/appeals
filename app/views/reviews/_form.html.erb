@@ -1,0 +1,7 @@
+<%= link_to t('review'), '#', :class => 'button icon search primary', :id => 'review' %>
+<%= semantic_form_for @appeal.build_review, :url => appeal_review_path(@appeal), :remote => true do |form| %>
+  <%= form.inputs :recipient %>
+  <%= form.buttons do %>
+    <%= form.commit_button t('send'), :button_html => { :class => "button review" } %>
+  <% end %>
+<% end %>

@@ -3,7 +3,7 @@ class RedirectsController < AuthorizedApplicationController
 
   belongs_to :appeal, :singleton => true
 
-  layout "system/appeal"
+  layout false
 
   def create
     create! do |success, failure|

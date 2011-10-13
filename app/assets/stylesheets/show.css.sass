@@ -124,7 +124,7 @@
 
     a
       &#note, &#review, &#redirect
-        margin: 10px 200px 0 0
+        margin: 10px 165px 0 0
 
     .button-group
       margin: 10px 0 0 0
@@ -136,14 +136,26 @@
         height: 27px
 
       &.note, &.review, &.redirect
-        border: 1px solid #666
-        border-top: none
+        border-bottom: 1px solid #aaa
         display: none
-        padding: 5px
+        float: none
+        padding: 5px 5px 10px 5px
+        width: 290px
+
+        label
+          line-height: 27px
+
+        .stringish
+          input
+            height: auto
+            width: 277px
 
         .buttons
+          margin: 10px 0 0 0
+
           input
             float: right
 
     .buttons
+      +clearfix
       margin: 0

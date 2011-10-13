@@ -1,0 +1,7 @@
+<%= link_to t('note'), '#', :class => 'button icon approve', :id => 'note' %>
+<%= semantic_form_for @appeal.build_note, :url => appeal_note_path(@appeal), :remote => true do |form| %>
+  <%= form.inputs :public %>
+  <%= form.buttons do %>
+    <%= form.commit_button t('send'), :button_html => { :class => "button note" } %>
+  <% end %>
+<% end %>

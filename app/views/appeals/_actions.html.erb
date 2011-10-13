@@ -1,30 +1,18 @@
 <div class="actions <%= margin_top ? 'big_margin_top' : '' %>">
+  <div class="note_wrapper">
+    <%= render :partial => 'notes/form' if @appeal.registered? %>
+    <%= render @appeal.note if @appeal.note.try(:persisted?) %>
+  </div>
 
-  <% if @appeal.registered? %>
-    <%= link_to t('note'), '#', :class => 'button icon approve', :id => 'note' %>
-    <%= semantic_form_for @appeal.build_note, :url => appeal_note_path(@appeal) do |form| %>
-      <%= form.inputs :public %>
-      <%= form.buttons do %>
-        <%= form.commit_button t('send'), :button_html => { :class => "button note" } %>
-      <% end %>
-    <% end %>
+  <div class="redirect_wrapper">
+    <%= render :partial => 'redirects/form' if @appeal.registered? %>
+    <%= render @appeal.redirect if @appeal.redirect.try(:persisted?) %>
+  </div>
 
-    <%= link_to t('redirect'), '#', :class => 'button icon mail', :id => 'redirect' %>
-    <%= semantic_form_for @appeal.build_redirect, :url => appeal_redirect_path(@appeal) do |form| %>
-      <%= form.inputs :recipient %>
-      <%= form.buttons do %>
-        <%= form.commit_button t('send'), :button_html => { :class => "button redirect" } %>
-      <% end %>
-    <% end %>
-
-    <%= link_to t('review'), '#', :class => 'button icon search primary', :id => 'review' %>
-    <%= semantic_form_for @appeal.build_review, :url => appeal_review_path(@appeal) do |form| %>
-      <%= form.inputs :recipient %>
-      <%= form.buttons do %>
-        <%= form.commit_button t('send'), :button_html => { :class => "button review" } %>
-      <% end %>
-    <% end %>
-  <% end %>
+  <div class="review_wrapper">
+    <%= render :partial => 'reviews/form' if @appeal.registered? %>
+    <%= render @appeal.review if @appeal.review.try(:persisted?) %>
+  </div>
 
   <%= semantic_form_for @appeal, :url => close_appeal_path(@appeal), :html => {:method => :post} do |form| %>
     <%= form.buttons do %>

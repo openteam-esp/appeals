@@ -16,8 +16,8 @@
     .fresh_#{$i}_days
       +very_ahtung
   @for $i from 25 through 31
-    .registered_#{$i}_days
+    .registered_#{$i}_days, .reviewing_#{$i}_days
       background-color: hsl(0, 100, 100 - (($i - 25) * 5))
   @for $i from 31 through 50
-    .registered_#{$i}_days
+    .registered_#{$i}_days, .reviewing_#{$i}_days
       +very_ahtung

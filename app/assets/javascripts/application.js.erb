@@ -87,8 +87,9 @@ $(function() {
   });
 
   $('.actions a').click(function(){
-    var id = $(this).attr('id');
-    $('.formtastic.'+id).toggle('slow');
+    var target = $('.formtastic.'+$(this).attr('id'));
+    $('.formtastic.note, .formtastic.redirect, .formtastic.review').not(target).slideUp('slow');
+    target.slideToggle('slow');
     return false;
   });
 

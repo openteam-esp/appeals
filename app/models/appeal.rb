@@ -186,7 +186,7 @@ class Appeal < ActiveRecord::Base
   def attention_level
     return "blank" if closed? || noted? || redirected?
     return "#{state}_#{((Time.now - created_at)/60/60/24).ceil}_days" if fresh?
-    return "#{state}_#{(Date.today - registration_registered_on).to_i+1}_days" if registered?
+    return "#{state}_#{(Date.today - registration_registered_on).to_i+1}_days" if registered? || reviewing?
   end
 
   private

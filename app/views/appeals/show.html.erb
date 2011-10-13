@@ -42,7 +42,7 @@
       <% if @appeal.reply %>
         <%= render @appeal.reply %>
       <% else %>
-        <%= link_to t('add_reply'), new_appeal_reply_path(@appeal), :remote => true, :class => 'button icon add reply_link' if @appeal.registered? %>
+        <%= link_to t('add_reply'), new_appeal_reply_path(@appeal), :remote => true, :class => 'button icon add reply_link' if @appeal.reviewing? %>
       <% end %>
     </div>
   </div>

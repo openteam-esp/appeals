@@ -3,11 +3,11 @@ class NotesController < AuthorizedApplicationController
 
   belongs_to :appeal, :singleton => true
 
-  layout "system/appeal"
+  layout false
 
   def create
     create! do |success, failure|
-      success.html { redirect_to scoped_appeals_path(:folder => :fresh) }
+      success.html { render 'notes/note' }
       failure.html { render "appeals/show" }
     end
   end
