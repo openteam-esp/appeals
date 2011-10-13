@@ -136,17 +136,6 @@ ru:
     "no": Нет
     "yes": Да
 
-  state_machine:
-    appeal:
-      state:
-        fresh: Новое обращение
-        registered: Зарегистрировано
-        closed: Отвечено
-
-  time:
-    formats:
-      default: "%d %B %Y"
-
   to_appeal_list: К списку обращений
 
   views:

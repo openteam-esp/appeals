@@ -1,0 +1,10 @@
+ru:
+  activerecord:
+    state_machines:
+      appeal:
+        state:
+          states:
+            fresh: Новое обращение
+            registered: Зарегистрировано
+            closed: Отвечено
+
