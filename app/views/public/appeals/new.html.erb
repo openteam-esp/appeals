@@ -1,6 +1,6 @@
 <h1><%= t 'new_appeal' %></h1>
 
-<%= semantic_form_for [:public, @appeal] do |form| %>
+<%= semantic_form_for [:public, @appeal], :html => { :multipart => true } do |form| %>
   <%= form.inputs do %>
     <%= form.input :surname %>
     <%= form.input :name %>
@@ -21,8 +21,8 @@
   <% end %>
 
   <%= form.inputs :uploads do %>
-    <%= render @uploads %>
-    <%= form.input :file, :as => :file %>
+    <%= render uploads %>
+    <%= form.input :file, :as => :file, :input_html => { :name => 'upload[file]' } %>
   <% end %>
 
   <%= form.buttons do %>

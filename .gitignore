@@ -4,6 +4,7 @@ db/*.sqlite3
 log/*.log
 log/*.log.lck
 tmp/
+uploads/
 .sass-cache/
 config/database.yml
 config/sunspot.yml

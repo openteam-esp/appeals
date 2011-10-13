@@ -18,6 +18,8 @@ AppealBackend::Application.routes.draw do
     resources :uploads, :only => [:create]
   end
 
+  get '/uploads/:id/*file_name' => Dragonfly[:uploads].endpoint { |params, app| app.fetch(Upload.find(params[:id]).file_uid) }, :as => :upload
+
   get '/:folder/appeals' => 'appeals#index',
       :as => :scoped_appeals,
       :constraints => { :folder => /(fresh|registered|closed|trash)/ }

@@ -9,7 +9,6 @@ class Public::AppealsController < ApplicationController
 
   def new
     new! {
-      @uploads = Upload.find(session[:upload_ids] || [])
       @appeal.build_address
     }
   end
