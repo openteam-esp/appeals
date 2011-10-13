@@ -21,6 +21,7 @@ gem 'state_machine'
 gem 'sunspot_rails',            '~> 1.3.0.rc4'
 
 group :production do
+  gem 'hoptoad_notifier'
   gem 'pg',                                       :require => false
 end
 
