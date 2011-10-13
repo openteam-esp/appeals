@@ -7,7 +7,7 @@ class Registration < ActiveRecord::Base
 
   private
     def register_appeal
-      self.appeal.register!
+      self.appeal.to_register!
     end
 end
 

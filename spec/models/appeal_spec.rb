@@ -4,8 +4,12 @@ require 'spec_helper'
 
 describe Appeal do
   it { should belong_to(:destroy_appeal_job) }
+
   it { should have_one(:address) }
+  it { should have_one(:note) }
+  it { should have_one(:redirect) }
   it { should have_one(:registration) }
+  it { should have_one(:review) }
 
   it { should validate_presence_of(:surname) }
   it { should validate_presence_of(:name) }
@@ -15,14 +19,17 @@ describe Appeal do
 
   it { Appeal.state_machines[:state].states.map(&:name).should == [:fresh, :closed, :noted, :redirected, :registered, :reviewing] }
 
-  it { Appeal.new(:state => 'fresh').state_events.should == [:to_register] }
-  it { Appeal.new(:state => 'registered').state_events.should == [:to_note, :to_redirect, :to_review, :to_revert] }
-  it { Appeal.new(:state => 'noted').state_events.should == [:to_revert] }
-  it { Appeal.new(:state => 'redirected').state_events.should == [:to_revert] }
-  xit { Appeal.new(:state => 'taking_up').state_events.should == [:to_close, :to_revert] }
+  it { fresh_appeal.state_events.should == [:to_register] }
+  it { registered_appeal.state_events.should == [:to_note, :to_redirect, :to_review, :to_revert] }
+  it { noted_appeal.state_events.should == [:to_revert] }
+  it { redirected_appeal.state_events.should == [:to_revert] }
 
-  xit { Fabricate(:reply, :appeal => registered_appeal); registered_appeal.state_events.should == [:to_close, :to_revert] }
-  xit { Appeal.new(:state => 'closed').state_events.should == [:to_revert] }
+  it "reviewing_appeal events" do
+    reviewing_appeal.stub!(:reply_valid?).and_return(true)
+    reviewing_appeal.state_events.should == [:to_close, :to_revert]
+  end
+
+  it { closed_appeal.state_events.should == [:to_revert] }
 
   describe 'валидация email' do
     it 'должна пропускать ololo@ololo.com' do

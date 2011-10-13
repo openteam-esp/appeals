@@ -7,8 +7,11 @@ class Appeal < ActiveRecord::Base
   belongs_to :topic
 
   has_one :address,      :dependent => :destroy
+  has_one :note,         :dependent => :destroy
+  has_one :redirect,     :dependent => :destroy
   has_one :registration, :dependent => :destroy
   has_one :reply,        :dependent => :destroy
+  has_one :review,       :dependent => :destroy
 
   validates :email,
             :presence => true,
