@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111012082757) do
+ActiveRecord::Schema.define(:version => 20111013023054) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "appeal_id"
@@ -65,6 +65,24 @@ ActiveRecord::Schema.define(:version => 20111012082757) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "notes", :force => true do |t|
+    t.boolean  "public"
+    t.integer  "appeal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notes", ["appeal_id"], :name => "index_notes_on_appeal_id"
+
+  create_table "redirects", :force => true do |t|
+    t.string   "recipient"
+    t.integer  "appeal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "redirects", ["appeal_id"], :name => "index_redirects_on_appeal_id"
+
   create_table "registrations", :force => true do |t|
     t.date     "registered_on"
     t.string   "number"
@@ -86,6 +104,15 @@ ActiveRecord::Schema.define(:version => 20111012082757) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "reviews", :force => true do |t|
+    t.string   "recipient"
+    t.integer  "appeal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["appeal_id"], :name => "index_reviews_on_appeal_id"
 
   create_table "sections", :force => true do |t|
     t.string   "title"
