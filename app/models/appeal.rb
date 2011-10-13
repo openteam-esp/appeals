@@ -63,22 +63,41 @@ class Appeal < ActiveRecord::Base
   state_machine :state, :initial => :fresh do
     state :closed
     state :fresh
+    state :noted
+    state :redirected
     state :registered
+    state :reviewing
 
     after_transition :registered => :fresh do |appeal, transition|
       appeal.registration.destroy
     end
 
-    event :register do
+    event :to_register do
       transition :fresh => :registered
     end
 
-    event :close do
-      transition :registered => :closed, :if => :reply_valid?
+    event :to_note do
+      transition :registered => :noted
     end
 
-    event :revert do
-      transition :closed => :registered, :registered => :fresh
+    event :to_redirect do
+      transition :registered => :redirected
+    end
+
+    event :to_review do
+      transition :registered => :reviewing
+    end
+
+    event :to_close do
+      transition :reviewing => :closed, :if => :reply_valid?
+    end
+
+    event :to_revert do
+      transition :registered => :fresh,
+                 :noted => :registered,
+                 :redirected => :registered,
+                 :reviewing => :registered,
+                 :closed => :reviewing
     end
   end
 

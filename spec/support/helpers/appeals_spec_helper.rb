@@ -14,24 +14,17 @@ module AppealsSpecHelper
     result
   end
 
-  def user(options={})
-    @user ||= create_user(options)
-  end
-
   def create_user(options={})
     Fabricate(:user, options)
   end
 
-  def fresh_appeal(options={})
-    @fresh_appeal ||= create_fresh_appeal(options)
+  def user(options={})
+    @user ||= create_user(options)
   end
+
 
   def create_fresh_appeal(options={})
     Fabricate(:appeal, options)
-  end
-
-  def registered_appeal(options={})
-    @registered_appeal ||= create_registered_appeal(options)
   end
 
   def create_registered_appeal(options={})
@@ -40,6 +33,14 @@ module AppealsSpecHelper
       appeal.create_registration Fabricate.attributes_for(:registration, registration_options)
       appeal.reload
     end
+  end
+
+  def fresh_appeal(options={})
+    @fresh_appeal ||= create_fresh_appeal(options)
+  end
+
+  def registered_appeal(options={})
+    @registered_appeal ||= create_registered_appeal(options)
   end
 
   def closed_appeal(options={})
