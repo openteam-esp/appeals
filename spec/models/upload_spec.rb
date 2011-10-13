@@ -1,8 +1,15 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Upload do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "должна создаваться job удаления" do
+    Delayed::Job.should_receive :enqueue
+    Upload.create!
+  end
+
 end
+
 # == Schema Information
 #
 # Table name: uploads
