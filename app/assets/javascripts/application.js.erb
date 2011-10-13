@@ -33,10 +33,12 @@ function uploads_manage() {
       url: "/public/uploads",
       dataType: "html",
       start: function(e) {
-        //upload_link.addClass("ajax_loading");
+        $("#upload_file").attr("disabled","disabled");
+        $("#upload_file_input").addClass("ajax_loading");
       },
       stop: function(e) {
-        //upload_link.removeClass("ajax_loading");
+        $("#upload_file").removeAttr("disabled");
+        $("#upload_file_input").removeClass("ajax_loading");
       },
       add: function(e, data) {
         data.submit()
@@ -82,3 +84,24 @@ $(function() {
     });
 
 });
+
+function preload_images(images) {
+  $("<div />")
+    .addClass("images_preload")
+    .appendTo("body")
+    .css({
+      "position": "absolute",
+      "bottom": 0,
+      "left": 0,
+      "visibility": "hidden",
+      "z-index": -9999
+    });
+  $.each(images, function(index, value) {
+    $("<img src='" + value + "' />").appendTo($(".images_preload"));
+  });
+};
+
+preload_images([
+  "<%= image_path("ajax_loading.gif") %>",
+  "<%= image_path("ui/calendar.png") %>"
+]);
