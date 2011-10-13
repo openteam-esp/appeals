@@ -50,10 +50,24 @@ def rand_days_ago(days)
   rand(days*24*60).minutes.ago
 end
 
-def create_registred_appeal
+def create_registered_appeal
   appeal = create_appeal
-  appeal.create_registration(:number => appeal.send(:generate_code, 4, 2, '/'), :registered_on => rand_days_ago(30), :directed_to => Ryba::Name.full_name)
-  appeal
+  appeal.create_registration(:number => appeal.send(:generate_code, 4, 2, '/'), :registered_on => rand_days_ago(30))
+  appeal.reload
+end
+
+def create_noted_appeal
+  create_registered_appeal.create_note
+end
+
+def create_redirected_appeal
+  create_registered_appeal.create_redirect(:recipient => Ryba::Name.full_name)
+end
+
+def create_reviewing_appeal
+  appeal = create_registered_appeal
+  appeal.create_review(:recipient => Ryba::Name.full_name)
+  appeal.reload
 end
 
 Appeal.destroy_all
@@ -63,13 +77,16 @@ Appeal.destroy_all
 end
 
 20.times do
-  create_registred_appeal
+  create_registered_appeal
+  create_noted_appeal
+  create_redirected_appeal
+  create_reviewing_appeal
 end
 
-30.times do
-  appeal = create_registred_appeal.reload
+10.times do
+  appeal = create_reviewing_appeal
   Fabricate(:reply, :appeal => appeal, :replied_on => rand_days_ago(60))
-  appeal.close!
+  appeal.to_close!
 end
 
 Appeal.record_timestamps = false
