@@ -5,7 +5,7 @@ class AuthorizeUploadsMiddleware
 
   def call(env)
     if env['PATH_INFO'] =~ %r{^/uploads/(\d+)/(.*)}
-      throw(:warden) unless Ability.new.can? :read, Upload.where(:file_name => $2).find($1)
+      throw(:warden) unless Ability.new.can? :read, Upload.where(:file_name => Rack::Utils.unescape($2)).find($1)
     end
     @app.call(env)
   end
