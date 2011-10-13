@@ -34,11 +34,11 @@ function uploads_manage() {
       dataType: "html",
       start: function(e) {
         $("#upload_file").attr("disabled","disabled");
-        $("#upload_file_input").addClass("ajax_loading");
+        $("#upload_file_link").addClass("ajax_loading");
       },
       stop: function(e) {
         $("#upload_file").removeAttr("disabled");
-        $("#upload_file_input").removeClass("ajax_loading");
+        $("#upload_file_link").removeClass("ajax_loading");
       },
       add: function(e, data) {
         data.submit()
