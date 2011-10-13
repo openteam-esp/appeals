@@ -15,7 +15,11 @@ class Public::AppealsController < ApplicationController
 
   def create
     create! { |success, failure|
-      success.html { redirect_to public_appeal_path(@appeal.code) }
+      success.html {
+        @appeal.uploads = uploads
+        session.delete(:upload_ids)
+        redirect_to public_appeal_path(@appeal.code)
+      }
     }
   end
 
