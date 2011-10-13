@@ -18,7 +18,7 @@ AppealBackend::Application.routes.draw do
   namespace :public do
     resources :appeals, :only => [:create, :new, :show]
     resource :check_status, :only => [:create, :new]
-    resources :uploads, :only => [:create]
+    resources :uploads, :only => [:create, :destroy]
   end
 
   get '/uploads/:id/*file_name' => Dragonfly[:uploads].endpoint { |params, app| app.fetch(Upload.find(params[:id]).file_uid) }, :as => :upload

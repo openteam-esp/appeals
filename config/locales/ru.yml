@@ -74,11 +74,13 @@ ru:
   add_reply: Написать ответ
   add_upload: Добавить вложение
   appeal_system: Система обработки обращений граждан
+  are_you_sure: Уверены что хотите удалить?
   back: Назад
   cancel: Отменить
   check_status: Проверить состояние обращения
   clear: Очистить
   close: Закрыть
+  delete: Удалить
   edit_reply: Редактировать ответ
   to_trash: В корзину
 

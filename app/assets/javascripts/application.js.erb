@@ -35,10 +35,12 @@ function uploads_manage() {
       start: function(e) {
         $("#upload_file").attr("disabled","disabled");
         $("#upload_file_link").addClass("ajax_loading");
+        $("#upload_file_link a").addClass("disable");
       },
       stop: function(e) {
         $("#upload_file").removeAttr("disabled");
         $("#upload_file_link").removeClass("ajax_loading");
+        $("#upload_file_link a").removeClass("disable");
       },
       add: function(e, data) {
         data.submit()
@@ -54,6 +56,22 @@ function uploads_manage() {
       }
     });
   };
+  $("form.appeal .uploads .upload .icon_delete")
+    .bind("ajax:beforeSend", function(evt, jqXHR, settings) {
+      $(this).parent().addClass("ajax_loading");
+    })
+    .bind("ajax:complete", function(evt, jqXHR, textStatus) {
+      $(this).parent().removeClass("ajax_loading");
+    })
+    .bind("ajax:success", function(evt, result, textStatus, jqXHR) {
+      $("<div id='ajax_result' />").appendTo("body").hide().html(result);
+      $("#new_appeal .uploads").html($("#ajax_result .inputs").html());
+      $("#ajax_result").remove();
+      uploads_manage();
+    })
+    .bind("ajax:error", function(evt, jqXHR, textStatus, errorThrown) {
+      alert(errorThrown + "\n\n" + jqXHR.responseText);
+    });
 };
 
 $(function() {

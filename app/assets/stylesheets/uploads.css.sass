@@ -3,6 +3,19 @@
 .formtastic
   fieldset.uploads
     position: relative
+  .upload
+    div
+      +inline-block
+      .icon_delete
+        +inline-block
+        +clearfix
+        width: 16px
+        height: 16px
+        text-indent: -9999em
+        outline: none
+        background: transparent image_url("icon_remove.png") no-repeat
+        margin-left: 5px
+
   #upload_file_input
     margin: 0
     #upload_file
