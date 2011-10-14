@@ -1,5 +1,5 @@
 <%= link_to t('redirect'), '#', :class => 'button icon mail', :id => 'redirect' %>
-<%= semantic_form_for @appeal.build_redirect, :url => appeal_redirect_path(@appeal), :remote => true do |form| %>
+<%= semantic_form_for @appeal.build_redirect, :url => appeal_redirect_path(@appeal), :validate => true do |form| %>
   <%= form.inputs :recipient %>
   <%= form.buttons do %>
     <%= form.commit_button t('send'), :button_html => { :class => "button redirect" } %>

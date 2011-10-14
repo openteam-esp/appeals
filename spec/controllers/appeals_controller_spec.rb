@@ -38,34 +38,45 @@ describe AppealsController do
     end
   end
 
-  describe 'POST revert' do
-    it 'should revert registered appeal' do
-      post :revert, :id => registered_appeal.id
-      registered_appeal.reload.should be_fresh
-      response.should redirect_to(scoped_appeals_path(:folder => :fresh))
-    end
-
-    it "should revert closed appeal" do
-      post :revert, :id => closed_appeal.id
-      closed_appeal.reload.should be_reviewing
-      response.should redirect_to(scoped_appeals_path(:folder => :reviewing))
-    end
-  end
-
   describe 'POST close' do
     it 'should close reviewing appeal' do
       Fabricate(:reply, :appeal => reviewing_appeal)
       post :close, :id => reviewing_appeal.id
+
       reviewing_appeal.reload.should be_closed
-      response.should redirect_to(scoped_appeals_path(:folder => :closed))
+      response.should redirect_to(scoped_appeals_path(:folder => :reviewing))
     end
   end
 
   describe "POST restore" do
     it 'should restore appeal' do
       post :restore, :id => deleted_appeal.id
-      response.should redirect_to(scoped_appeals_path(:folder => deleted_appeal.state))
+
       deleted_appeal.reload.should_not be_deleted
+      response.should redirect_to(scoped_appeals_path(:folder => deleted_appeal.state))
+    end
+  end
+
+  describe 'POST revert for' do
+    describe 'registered appeal' do
+      before { post :revert, :id => registered_appeal }
+
+      it { registered_appeal.reload.should be_fresh }
+      it { response.should redirect_to(scoped_appeals_path(:folder => :fresh)) }
+    end
+
+    describe 'noted appeal' do
+      before { post :revert, :id => noted_appeal }
+
+      it { noted_appeal.reload.should be_registered }
+      it { response.should redirect_to(scoped_appeals_path(:folder => :registered)) }
+    end
+
+    describe 'closed appeal' do
+      before { post :revert, :id => closed_appeal }
+
+      it { closed_appeal.reload.should be_reviewing }
+      it { response.should redirect_to(scoped_appeals_path(:folder => :reviewing)) }
     end
   end
 end

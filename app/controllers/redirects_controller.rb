@@ -7,7 +7,7 @@ class RedirectsController < AuthorizedApplicationController
 
   def create
     create! do |success, failure|
-      success.html { redirect_to scoped_appeals_path(:folder => :fresh) }
+      success.html { redirect_to scoped_appeals_path(:folder => :registered) }
       failure.html { render "appeals/show" }
     end
   end

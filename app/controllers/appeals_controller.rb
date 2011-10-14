@@ -20,7 +20,7 @@ class AppealsController < AuthorizedApplicationController
   def close
     close! {
       @appeal.to_close!
-      redirect_to scoped_appeals_path(:folder => @appeal.state) and return
+      redirect_to scoped_appeals_path(:folder => :reviewing) and return
     }
   end
 
