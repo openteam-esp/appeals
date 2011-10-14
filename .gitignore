@@ -8,6 +8,7 @@ uploads/*
 .sass-cache/
 config/database.yml
 config/sunspot.yml
+config/settings.yml
 *.swp
 .rake_tasks~
 solr/data
