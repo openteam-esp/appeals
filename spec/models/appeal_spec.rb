@@ -92,6 +92,10 @@ describe Appeal do
     appeal.should be_persisted
   end
 
+  describe 'при переводе обращения на рассмотрение должен создаваться ответ' do
+    it { reviewing_appeal.reply.should be_persisted }
+  end
+
   describe "закрытие обращения" do
     it "без ответа" do
       reviewing_appeal.to_close

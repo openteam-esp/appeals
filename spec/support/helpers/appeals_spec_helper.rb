@@ -81,7 +81,7 @@ module AppealsSpecHelper
 
   def closed_appeal(options={})
     @closed_appeal ||= reviewing_appeal.tap do |appeal|
-      Fabricate(:reply, :appeal => appeal)
+      appeal.reply.update_attributes Fabricate.attributes_for(:reply)
       appeal.to_close!
     end
   end

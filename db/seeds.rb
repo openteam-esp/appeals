@@ -85,7 +85,7 @@ end
 
 10.times do
   appeal = create_reviewing_appeal
-  Fabricate(:reply, :appeal => appeal, :replied_on => rand_days_ago(60))
+  appeal.reply.update_attributes Fabricate.attributes_for(:reply).merge(:replied_on => rand_days_ago(60))
   appeal.to_close!
 end
 

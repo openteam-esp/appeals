@@ -40,7 +40,7 @@ describe AppealsController do
 
   describe 'POST close' do
     it 'should close reviewing appeal' do
-      Fabricate(:reply, :appeal => reviewing_appeal)
+      Appeal.any_instance.stub(:reply_valid?).and_return(true)
       post :close, :id => reviewing_appeal.id
 
       reviewing_appeal.reload.should be_closed

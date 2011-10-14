@@ -88,6 +88,10 @@ class Appeal < ActiveRecord::Base
       appeal.registration.destroy
     end
 
+    after_transition :registered => :reviewing do |appeal, transition|
+      appeal.create_reply unless appeal.reply
+    end
+
     after_transition :noted => :registered do |appeal, transition|
       appeal.note.destroy
     end
