@@ -29,6 +29,10 @@ function init_datepicker() {
 
 function uploads_manage() {
   if ($.fn.fileupload) {
+    $("#upload_file_link a").click(function() {
+      $("#upload_file").click();
+      return false;
+    });
     $("#upload_file").fileupload({
       url: "/public/uploads",
       dataType: "html",
