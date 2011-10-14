@@ -5,6 +5,9 @@ ru:
         state:
           states:
             fresh: Новое обращение
+            noted: Принято к сведению
+            redirected: Переадресовано
             registered: Зарегистрировано
+            reviewing: На рассмотрении
             closed: Отвечено
 

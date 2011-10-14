@@ -14,13 +14,12 @@
     <%= render @appeal.review if @appeal.review.try(:persisted?) %>
   </div>
 
-  <%= semantic_form_for @appeal, :url => close_appeal_path(@appeal), :html => {:method => :post} do |form| %>
-    <%= form.buttons do %>
-      <%= form.commit_button t('close'), :button_html => { :class => "button primary close #{'disable' unless @appeal.state_events.include?(:to_close)}" } %>
-    <% end %>
-  <% end if @appeal.reviewing? %>
-
   <div class="button-group">
+    <%= semantic_form_for @appeal, :url => close_appeal_path(@appeal), :html => {:method => :post} do |form| %>
+      <%= form.buttons do %>
+        <%= form.commit_button t('close'), :button_html => { :class => "button primary close #{'disable' unless @appeal.state_events.include?(:to_close)}" } %>
+      <% end %>
+      <% end if @appeal.reviewing? %>
     <%= semantic_form_for @appeal, :url => revert_appeal_path(@appeal), :html => {:method => :post} do |form| %>
       <%= form.buttons do %>
         <%= form.commit_button t("revert_from_#{@appeal.state}"), :button_html => { :class => 'button revert' } %>

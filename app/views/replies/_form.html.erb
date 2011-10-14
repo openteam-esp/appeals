@@ -12,7 +12,7 @@
                    } %>
     <%= form.input :replied_by %>
     <%= form.input :text %>
-    <%= form.input :public %>
+    <%= form.input :public if @appeal.public %>
   <% end %>
   <%= form.buttons do %>
     <%= form.commit_button t('reply'), :button_html => { :class => 'button reply' } %>

@@ -1,5 +1,6 @@
 <%= semantic_form_for @appeal.registration || @appeal.build_registration,
                       :url => appeal_registration_path(@appeal),
+                      :validate => true,
                       :html => { :class => 'big_margin_top'} do |form| %>
 
   <%= form.inputs do %>
