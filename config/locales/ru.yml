@@ -139,8 +139,11 @@ ru:
   reply: Сохранить ответ
   restore: Восстановить
   revert: Вернуть
-  revert_from_closed: На ответ
-  revert_from_registered: На регистрацию
+  revert_from_closed: В рассматриваемые
+  revert_from_registered: В новые
+  revert_from_noted: В зарегистрированные
+  revert_from_redirected: В зарегистрированные
+  revert_from_reviewing: В зарегистрированные
   review: Подать на рассмотрение
   send: Отправить
 
