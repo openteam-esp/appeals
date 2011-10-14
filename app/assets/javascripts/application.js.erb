@@ -30,13 +30,21 @@ function init_datepicker() {
 
 function uploads_manage() {
   if ($.fn.fileupload) {
+    var url = "";
+    if (window.location.pathname.search(/public/) == -1) {
+      if ($("form.formtastic.reply").length)
+        url = "/replies/" + $("form.formtastic.reply").attr("id").match(/\d+/) + "/uploads";
+    } else {
+      url = "/public/uploads";
+    };
     $("#upload_file_link a").click(function() {
       $("#upload_file").click();
       return false;
     });
     $("#upload_file").fileupload({
-      url: "/public/uploads",
+      url: url,
       dataType: "html",
+      formData: "_method=post",
       start: function(e) {
         $("#upload_file").attr("disabled","disabled");
         $("#upload_file_link").addClass("ajax_loading");
@@ -61,7 +69,7 @@ function uploads_manage() {
       }
     });
   };
-  $("form.appeal .uploads .upload .icon_delete")
+  $("form.formtastic .uploads .upload .icon_delete")
     .bind("ajax:beforeSend", function(evt, jqXHR, settings) {
       $(this).parent().addClass("ajax_loading");
     })
@@ -103,6 +111,7 @@ $(function() {
       $('.reply_wrapper').html(xhr.responseText);
       $('.close').addClass('disable');
       init_datepicker();
+      uploads_manage();
     })
     .bind('ajax:complete', function(evt, xhr, status){
       $('.reply_wrapper').html(xhr.responseText);

@@ -1,6 +1,6 @@
 <%= semantic_form_for [:public, Upload.new] do | form | %>
   <%= form.inputs do %>
-    <%= render uploads %>
+    <%= render @reply.uploads %>
     <%= content_tag :li, link_to(t("add_upload"), "#", :class => "button icon add"), :id => "upload_file_link" %>
     <%= form.input :file, :as => :file, :label => false %>
   <% end %>

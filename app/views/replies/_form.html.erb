@@ -1,6 +1,6 @@
 <h3 class='big_margin_top'>Ответ на обращение</h3>
 
-<%= semantic_form_for @appeal.reply || @appeal.build_reply,
+<%= semantic_form_for @reply,
                       :url => appeal_reply_path(@appeal),
                       :html => { :remote => true } do |form| %>
   <%= form.inputs do %>
@@ -8,11 +8,18 @@
     <%= form.input :replied_on, :as => :string,
                    :input_html => {
                      :class => "datepicker",
-                     :value => @appeal.reply.replied_on ? I18n.l(@appeal.reply.replied_on) : ""
+                     :value => @reply.replied_on ? I18n.l(@reply.replied_on) : ""
                    } %>
     <%= form.input :replied_by %>
     <%= form.input :text %>
     <%= form.input :public if @appeal.public %>
+  <% end %>
+  <%= form.inputs :class => "inputs uploads" do %>
+    <%= render @reply.uploads %>
+    <%= content_tag :li, link_to(t("add_upload"), "#", :class => "button icon add"), :id => "upload_file_link" %>
+    <%= form.input :file, :as => :file, :label => false,
+                   :wrapper_html => { :id => 'upload_file_input' },
+                   :input_html => { :name => 'upload[file]', :id => "upload_file" } %>
   <% end %>
   <%= form.buttons do %>
     <%= form.commit_button t('reply'), :button_html => { :class => 'button reply' } %>
