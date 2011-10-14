@@ -15,9 +15,7 @@ AppealBackend::Application.routes.draw do
     end
   end
 
-  resource :reply, :only => [] do
-    resources :uploads, :only => :create
-  end
+  post 'replies/:reply_id/upload' => 'uploads#create', :as => 'reply_uploads'
   resources :uploads, :only => :destroy
 
   namespace :public do
