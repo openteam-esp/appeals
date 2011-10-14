@@ -1,6 +1,6 @@
 <h3 class='big_margin_top'>Ответ на обращение</h3>
 
-<div class="reply_info" can_close=<%= @appeal.state_events.include?(:close) %>>
+<div class="reply_info" can_close=<%= @appeal.state_events.include?(:to_close) %>>
   <%= show_attribute(@appeal.reply, :number) %>
   <%= show_attribute(@appeal.reply, :replied_on) %>
   <%= show_attribute(@appeal.reply, :replied_by) %>
