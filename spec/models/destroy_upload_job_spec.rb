@@ -15,7 +15,7 @@ describe DestroyUploadJob do
     end
   end
   describe "у привязанного файла" do
-    before { upload.update_attribute :appeal, Fabricate(:appeal) }
+    before { upload.update_attribute :uploadable, Fabricate(:appeal) }
     it "после выполнения не удаляет файл" do
       upload
       expect{ job.invoke_job }.to_not change{Upload.count}.by(-1)

@@ -3,6 +3,7 @@
 require 'spec_helper'
 
 describe Upload do
+  it { should belong_to(:uploadable) }
   it "должна создаваться job удаления" do
     Delayed::Job.should_receive :enqueue
     Upload.create!

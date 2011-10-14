@@ -12,7 +12,7 @@ class Appeal < ActiveRecord::Base
   has_one  :registration, :dependent => :destroy
   has_one  :reply,        :dependent => :destroy
   has_one  :review,       :dependent => :destroy
-  has_many :uploads,      :dependent => :destroy
+  has_many :uploads,      :dependent => :destroy, :as => :uploadable
 
   validates :email,
             :presence => true,

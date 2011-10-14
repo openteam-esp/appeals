@@ -2,7 +2,7 @@ class Upload < ActiveRecord::Base
 
   attr_reader :destroy_detached_upload_job
 
-  belongs_to :appeal
+  belongs_to :uploadable, :polymorphic => true
 
   after_create :create_destroy_detached_upload_job
 

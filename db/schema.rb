@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111013033957) do
+ActiveRecord::Schema.define(:version => 20111014041623) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "appeal_id"
@@ -129,13 +129,14 @@ ActiveRecord::Schema.define(:version => 20111013033957) do
   add_index "topics", ["section_id"], :name => "index_topics_on_section_id"
 
   create_table "uploads", :force => true do |t|
-    t.integer  "appeal_id"
+    t.integer  "uploadable_id"
     t.string   "file_name"
     t.string   "file_mime_type"
     t.integer  "file_size"
     t.string   "file_uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "uploadable_type"
   end
 
   create_table "users", :force => true do |t|
