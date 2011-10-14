@@ -7,7 +7,7 @@ class Ability
     unless user.new_record?
       can :manage, Registration
 
-      can [:close, :read, :restore, :revert, :review], Appeal
+      can [:close, :destroy, :read, :restore, :revert, :review], Appeal
 
       can :create, [Note, Redirect, Review] do |object|
         object.appeal.registered?
