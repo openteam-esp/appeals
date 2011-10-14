@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014041623) do
+ActiveRecord::Schema.define(:version => 20111014090741) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "appeal_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20111014041623) do
     t.datetime "deleted_at"
     t.integer  "deleted_by_id"
     t.integer  "destroy_appeal_job_id"
+    t.string   "social_status"
   end
 
   create_table "delayed_jobs", :force => true do |t|

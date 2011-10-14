@@ -25,6 +25,29 @@ ru:
         proxy_ip: IP прокси-сервера
         public: Я разрешаю размещение обращения в открытом доступе
         referrer: Точка входа
+        social_status: Социальный статус
+        social_status_enum:
+          refugee: Беженец
+          tramp: Без определенного места жительства
+          unemployed: Безработный
+          soldier: Военнослужащий
+          idle: Временно неработающий
+          settler: Вынужденный переселенец
+          housewife: Домохозяйка
+          prisoner: Заключённый
+          politician: Общественно-политический деятель
+          pensioner: Пенсионер
+          businessman: Предприниматель
+          workman: Рабочий
+          farm_worker: Сельскохозяйственный рабочий
+          padre: Священнослужитель
+          clerk: Служащий
+          student: Студент
+          brainpower: Творческая и научная интеллигенция
+          pupil: Учащийся
+          farmer: Фермер
+          other: Другое
+
         surname: Фамилия
         text: Текст обращения
         topic: Тематика обращения

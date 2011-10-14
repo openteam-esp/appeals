@@ -16,6 +16,7 @@
   <%= form.inputs do %>
     <%= form.input :phone %>
     <%= form.input :topic, :prompt => '- не выбрано -' %>
+    <%= form.input :social_status, :prompt => '- не выбрано -', :collection => Appeal.values_for_select_tag(:social_status), :required => false %>
     <%= form.input :text %>
     <%= form.input :public %>
   <% end %>

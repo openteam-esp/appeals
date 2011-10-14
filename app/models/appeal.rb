@@ -72,7 +72,7 @@ class Appeal < ActiveRecord::Base
            :to => :reply,
            :prefix => true, :allow_nil => true
 
-  has_enum :answer_kind, %w[email post]
+  has_enums
 
   paginates_per 15
 
