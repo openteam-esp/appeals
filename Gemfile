@@ -1,6 +1,7 @@
 source :rubygems
 
 gem 'cancan'
+gem 'client_side_validations'
 gem 'configliere'
 gem 'delayed_job'
 gem 'devise'
