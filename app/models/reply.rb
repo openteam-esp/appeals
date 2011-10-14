@@ -2,6 +2,7 @@ class Reply < ActiveRecord::Base
   attr_accessor :use_validation
 
   belongs_to :appeal
+  has_many :uploads, :as => :uploadable, :dependent => :destroy
 
   validates_presence_of :number, :replied_on, :replied_by, :text, :if => Proc.new { | reply | reply.use_validation}
 end

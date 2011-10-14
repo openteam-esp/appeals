@@ -5,8 +5,8 @@ AppealBackend::Application.routes.draw do
     resource :note,         :only => [:create, :new]
     resource :redirect,     :only => [:create, :new]
     resource :registration, :only => [:create, :new]
-    resource :reply,        :only => [:create, :edit, :new, :update]
     resource :review,       :only => [:create, :new]
+    resource :reply,        :only => [:create, :edit, :new, :update]
 
     member do
       post :close
@@ -14,6 +14,11 @@ AppealBackend::Application.routes.draw do
       post :revert
     end
   end
+
+  resource :reply, :only => [] do
+    resources :uploads, :only => :create
+  end
+  resources :uploads, :only => :destroy
 
   namespace :public do
     resources :appeals, :only => [:create, :new, :show]

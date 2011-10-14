@@ -2,8 +2,6 @@
 
 require 'spec_helper'
 
-describe Ability do
-  it 'нельзя редактировать ответ если обращение закрыто' do
-    ability = Ability.new
-  end
+describe Reply do
+  it { should have_many(:uploads).dependent(:destroy) }
 end

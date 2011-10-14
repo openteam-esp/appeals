@@ -5,11 +5,13 @@ require 'spec_helper'
 describe Appeal do
   it { should belong_to(:destroy_appeal_job) }
 
-  it { should have_one(:address) }
-  it { should have_one(:note) }
-  it { should have_one(:redirect) }
-  it { should have_one(:registration) }
-  it { should have_one(:review) }
+  it { should have_one(:address).dependent(:destroy) }
+  it { should have_one(:note).dependent(:destroy) }
+  it { should have_one(:redirect).dependent(:destroy) }
+  it { should have_one(:registration).dependent(:destroy) }
+  it { should have_one(:review).dependent(:destroy) }
+
+  it { should have_many(:uploads).dependent(:destroy) }
 
   it { should validate_presence_of(:surname) }
   it { should validate_presence_of(:name) }
