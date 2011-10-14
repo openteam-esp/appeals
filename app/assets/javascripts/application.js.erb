@@ -51,7 +51,7 @@ function uploads_manage() {
         data.submit()
         .success(function (result, textStatus, jqXHR) {
           $("<div id='ajax_result' />").appendTo("body").hide().html(result);
-          $("#new_appeal .uploads").html($("#ajax_result .inputs").html());
+          $("form.formtastic fieldset.uploads").html($("#ajax_result fieldset.inputs").html());
           $("#ajax_result").remove();
           uploads_manage();
         })
@@ -70,7 +70,7 @@ function uploads_manage() {
     })
     .bind("ajax:success", function(evt, result, textStatus, jqXHR) {
       $("<div id='ajax_result' />").appendTo("body").hide().html(result);
-      $("#new_appeal .uploads").html($("#ajax_result .inputs").html());
+      $("form.formtastic fieldset.uploads").html($("#ajax_result fieldset.inputs").html());
       $("#ajax_result").remove();
       uploads_manage();
     })
