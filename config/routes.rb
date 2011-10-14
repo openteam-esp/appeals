@@ -21,7 +21,9 @@ AppealBackend::Application.routes.draw do
     resources :uploads, :only => [:create, :destroy]
   end
 
-  get '/uploads/:id/*file_name' => Dragonfly[:uploads].endpoint { |params, app| app.fetch(Upload.find(params[:id]).file_uid) }, :as => :upload
+  get '/uploads/:id/*file_name' => Dragonfly[:uploads].endpoint { |params, app |
+    app.fetch Upload.where(:file_name => params[:file_name]).find(params[:id]).file_uid
+  }, :as => :upload, :format => false
 
   get '/:folder/appeals' => 'appeals#index',
       :as => :scoped_appeals,

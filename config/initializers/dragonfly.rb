@@ -3,6 +3,7 @@ require 'dragonfly'
 uploads_app = Dragonfly[:uploads]
 uploads_app.configure_with(:rails)
 uploads_app.define_macro(ActiveRecord::Base, :upload_accessor)
+uploads_app.content_filename = ->(job, request) { request[:file_name] }
 
 if Settings[:s3]
   require 'fog'
