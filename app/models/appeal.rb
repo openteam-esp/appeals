@@ -72,6 +72,8 @@ class Appeal < ActiveRecord::Base
            :to => :reply,
            :prefix => true, :allow_nil => true
 
+  delegate :full_address, :to => :address, :allow_nil => true
+
   has_enums
 
   paginates_per 15

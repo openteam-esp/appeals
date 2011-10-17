@@ -2,6 +2,7 @@ AppealBackend::Application.routes.draw do
   devise_for :users, :skip => [:registrations]
 
   resources :appeals, :only => [:show, :destroy] do
+    get '/:print' => 'appeals#show', :constraints => { :print => /print/ }, :on => :member, :as => :print_version
     resource :note,         :only => [:create, :new]
     resource :redirect,     :only => [:create, :new]
     resource :registration, :only => [:create, :new]

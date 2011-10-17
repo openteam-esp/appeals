@@ -17,8 +17,10 @@ ru:
         answer_kind_enum:
           email: Электронной почтой
           post: Почтой России
+        author: Автор
         code: Код обращения
         email: Электронная почта
+        full_address: Почтовый адрес
         name: Имя
         patronymic: Отчество
         phone: Телефон
@@ -157,6 +159,7 @@ ru:
   new_appeal: Новое обращение
   note: Принять к сведению
   not_specified: Не указано
+  print_version: Версия для печати
   redirect: Переадресовать
   register: Зарегистрировать
   reply: Сохранить ответ

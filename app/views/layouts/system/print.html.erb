@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <title><%= t("appeal_system") %></title>
+  <meta charset="UTF-8">
+  <%= stylesheet_link_tag "print", :media => 'print' %>
+  <%= stylesheet_link_tag "print" %>
+</head>
+<body>
+  <h1><%= l @appeal.created_at %> на сайт Администрации Томской области поступил новый вопрос</h1>
+  <%= show_attribute @appeal, :author %>
+  <%= show_attribute @appeal, :full_address %>
+  <%= show_attribute @appeal, :email %>
+  <%= show_attribute @appeal, :phone %>
+
+  <%= show_attribute @appeal, :topic %>
+  <%= show_attribute @appeal, :text %>
+</body>
+</html>

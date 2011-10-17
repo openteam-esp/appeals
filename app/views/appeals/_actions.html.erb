@@ -30,7 +30,6 @@
         <% end %>
       <% end if @appeal.state_events.include?(:to_revert) %>
 
-      <%= link_to t('to_trash'), @appeal, :method => :delete, :class => 'button danger trash icon' unless @appeal.closed? %>
     <% end %>
 
     <%= semantic_form_for @appeal, :url => restore_appeal_path(@appeal), :html => { :method => :post } do |form| %>
@@ -38,5 +37,9 @@
         <%= form.commit_button t("restore"), :button_html => { :class => 'button restore' } %>
       <% end %>
     <% end if @appeal.deleted? %>
+  </div>
+  <div class="button-group">
+    <%= link_to t('print_version'), print_version_appeal_path(@appeal, :print), :class => 'button icon log print_version' %>
+    <%= link_to t('to_trash'), @appeal, :method => :delete, :class => 'button danger trash icon' unless @appeal.closed? && !@appeal.deleted? %>
   </div>
 </div>

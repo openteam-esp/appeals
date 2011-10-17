@@ -59,6 +59,7 @@ class AppealsController < AuthorizedApplicationController
     end
 
     def resolve_layout
+      return 'system/print' if params[:print]
       return 'system/appeal' if action_name == 'show'
       'system/list'
     end
