@@ -62,7 +62,7 @@ module AppealBackend
       :entitystore => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
     } if defined?(Rack::Cache)
 
-    stylesheets_directory = "#{Rails.root}/app/assets/stylesheets"
+    config.assets.precompile << "print.css"
 
     config.sass.preferred_syntax = :sass if config.respond_to? :sass
 

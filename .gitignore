@@ -13,3 +13,4 @@ config/settings.yml
 .rake_tasks~
 solr/data
 solr/pids
+public/assets
