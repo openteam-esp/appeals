@@ -4,6 +4,9 @@
   <title><%= t("appeal_system") %></title>
   <meta charset="UTF-8">
   <%= stylesheet_link_tag "print", :media => 'all' %>
+  <script type="text/javascript">
+    document.onload = window.print();
+  </script>
 </head>
 <body>
   <h1><%= l @appeal.created_at %> на сайт Администрации Томской области поступил новый вопрос</h1>
