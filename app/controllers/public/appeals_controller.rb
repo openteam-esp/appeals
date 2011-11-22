@@ -12,7 +12,7 @@ class Public::AppealsController < ApplicationController
     @appeal.build_address
     respond_to do |format|
       format.html
-      format.vnd_html { render :file => 'public/appeals/new.html', :layout => false }
+      format.vnd_html { render :file => 'public/appeals/remote_form.html', :layout => false }
     end
   end
 
@@ -29,7 +29,7 @@ class Public::AppealsController < ApplicationController
       end
     else
       if params.has_key?('X-REQUESTED-WITH')
-        render :action => :new, :layout => false
+        render :file => 'public/appeals/remote_form.html', :layout => false
       else
         render :action => :new
       end

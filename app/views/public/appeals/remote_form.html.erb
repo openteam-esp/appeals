@@ -1,0 +1,35 @@
+<script type="text/javascript" language="javascript" charset="utf-8">
+//<![CDATA[
+var remote_wrapper = $('.remote_wrapper');
+remote_wrapper.bind('ajax:before', function(){remote_wrapper.addClass("ajax_loading");}).live('ajax:success', function(evt, data, status, xhr){remote_wrapper.removeClass("ajax_loading");remote_wrapper.html(data);});
+//]]>
+</script>
+<%= semantic_form_for [:public, @appeal], :url => public_appeals_url, :remote => true, :html => { :multipart => true } do |form| %>
+  <%= form.inputs do %>
+    <li><input type="hidden" name="X-REQUESTED-WITH" value="XMLRequest" /></li>
+    <%= form.input :surname %>
+    <%= form.input :name %>
+    <%= form.input :patronymic %>
+    <%= form.input :answer_kind, :as => :radio, :collection => @appeal.class.values_for_select_tag(:answer_kind) %>
+    <%= form.input :email %>
+  <% end %>
+
+  <%= form.semantic_fields_for :address do |address| %>
+    <%= address.inputs :postcode, :region, :district, :township, :street, :house, :building, :flat %>
+  <% end %>
+
+  <%= form.inputs do %>
+    <%= form.input :phone %>
+    <%= form.input :topic, :prompt => '- не выбрано -' %>
+    <%= form.input :social_status, :prompt => '- не выбрано -', :collection => Appeal.values_for_select_tag(:social_status), :required => false %>
+    <%= form.input :text %>
+    <%= form.input :public %>
+  <% end %>
+
+  <%= form.buttons do %>
+    <li>
+      <%= link_to t('cancel'), :back, :class => 'button cancel' %>
+    </li>
+    <%= form.commit_button :button_html => {:class => 'button primary'} %>
+  <% end %>
+<% end %>
