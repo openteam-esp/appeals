@@ -1,6 +1,8 @@
 class Public::AppealsController < ApplicationController
   inherit_resources
 
+  belongs_to :section, :finder => :find_by_slug
+
   actions :create, :new, :show
 
   layout 'public/appeal'
@@ -8,30 +10,27 @@ class Public::AppealsController < ApplicationController
   before_filter :audit, :except => [:new, :show]
 
   def new
-    @appeal = Appeal.new
-    @appeal.build_address
-    respond_to do |format|
-      format.html
-      format.vnd_html { render :file => 'public/appeals/remote_form.html', :layout => false }
+    new! do |success|
+      @appeal.build_address
+      success.html
+      success.vnd_html { render :file => 'public/appeals/remote_form.html', :layout => false }
     end
   end
 
   def create
-    @appeal = Appeal.new(params[:appeal])
-
-    if @appeal.save
+    create! do |success, failure|
       @appeal.uploads = uploads
       session.delete(:upload_ids)
       if params.has_key?('X-REQUESTED-WITH')
-        render :action => :show, :layout => false
+        success.html { render :action => :show, :layout => false }
       else
-        redirect_to public_appeal_path(@appeal.code)
+        success.html { redirect_to public_appeal_path(@appeal.code) }
       end
-    else
+
       if params.has_key?('X-REQUESTED-WITH')
-        render :file => 'public/appeals/remote_form.html', :layout => false
+        failure.html { render :file => 'public/appeals/remote_form.html', :layout => false }
       else
-        render :action => :new
+        failure.html { render :action => :new }
       end
     end
   end
@@ -41,8 +40,8 @@ class Public::AppealsController < ApplicationController
   end
 
   private
-    def audit
-      Appeal.request_env = request.env
-    end
+  def audit
+    Appeal.request_env = request.env
+  end
 end
 

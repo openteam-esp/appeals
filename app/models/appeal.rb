@@ -5,6 +5,7 @@ class Appeal < ActiveRecord::Base
   belongs_to :deleted_by,         :class_name => 'User'
   belongs_to :destroy_appeal_job, :class_name => 'Delayed::Backend::ActiveRecord::Job'
   belongs_to :topic
+  belongs_to :section
 
   has_one  :address,      :dependent => :destroy
   has_one  :note,         :dependent => :destroy
@@ -22,7 +23,8 @@ class Appeal < ActiveRecord::Base
                         :name,
                         :surname,
                         :text,
-                        :topic
+                        :topic,
+                        :section
 
   validates_presence_of :address, :if => :answer_kind_post?
 

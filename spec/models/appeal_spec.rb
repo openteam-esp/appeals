@@ -4,6 +4,8 @@ require 'spec_helper'
 
 describe Appeal do
   it { should belong_to(:destroy_appeal_job) }
+  it { should belong_to(:topic) }
+  it { should belong_to(:section) }
 
   it { should have_one(:address).dependent(:destroy) }
   it { should have_one(:note).dependent(:destroy) }
@@ -17,6 +19,7 @@ describe Appeal do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:text) }
   it { should validate_presence_of(:topic) }
+  it { should validate_presence_of(:section) }
   it { should validate_presence_of(:answer_kind) }
 
   it { Appeal.state_machines[:state].states.map(&:name).should == [:fresh, :closed, :noted, :redirected, :registered, :reviewing] }

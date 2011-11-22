@@ -20,7 +20,10 @@ AppealBackend::Application.routes.draw do
   resources :uploads, :only => :destroy, :as => :delete_upload
 
   namespace :public do
-    resources :appeals, :only => [:create, :new, :show]
+    resources :sections, :only => [], :shallow => true do
+      resources :appeals, :only => [:create, :new, :show]
+    end
+
     resource :check_status, :only => [:create, :new]
     resources :uploads, :only => [:create, :destroy]
   end
