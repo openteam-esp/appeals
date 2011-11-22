@@ -8,19 +8,32 @@ class Public::AppealsController < ApplicationController
   before_filter :audit, :except => [:new, :show]
 
   def new
-    new! {
-      @appeal.build_address
-    }
+    @appeal = Appeal.new
+    @appeal.build_address
+    respond_to do |format|
+      format.html
+      format.vnd_html { render :file => 'public/appeals/new.html', :layout => false }
+    end
   end
 
   def create
-    create! { |success, failure|
-      success.html {
-        @appeal.uploads = uploads
-        session.delete(:upload_ids)
+    @appeal = Appeal.new(params[:appeal])
+
+    if @appeal.save
+      @appeal.uploads = uploads
+      session.delete(:upload_ids)
+      if params.has_key?('X-REQUESTED-WITH')
+        render :action => :show, :layout => false
+      else
         redirect_to public_appeal_path(@appeal.code)
-      }
-    }
+      end
+    else
+      if params.has_key?('X-REQUESTED-WITH')
+        render :action => :new, :layout => false
+      else
+        render :action => :new
+      end
+    end
   end
 
   def show

@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
 
   helper_method :uploads
 
+  after_filter :set_access_control_headers
+
+  def set_access_control_headers
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Request-Method'] = '*'
+    headers['Access-Control-Allow-Headers'] = '*'
+  end
+
   protected
 
     def resolve_layout
