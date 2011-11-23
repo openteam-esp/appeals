@@ -36,7 +36,6 @@ Spork.prefork do
 
       config.before(:all) do
         require 'fabrication'
-
         Dir[Rails.root.join("spec/support/matchers/*.rb")].each {|f| require f}
         Sunspot.session = SunspotMatchers::SunspotSessionSpy.new(Sunspot.session)
       end

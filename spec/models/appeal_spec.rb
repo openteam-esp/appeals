@@ -124,7 +124,7 @@ describe Appeal do
   describe 'папки обращений' do
     it 'новые' do
       Appeal.folder(:fresh).where_values_hash.symbolize_keys.should == {:state => :fresh, :deleted_at => nil}
-      Appeal.folder(:fresh).to_sql.should =~ /ORDER BY created_at/
+      Appeal.folder(:fresh).to_sql.should =~ /ORDER BY appeals.created_at/
     end
 
     it "зарегистрированные" do

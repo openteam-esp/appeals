@@ -5,6 +5,7 @@ class AppealsController < AuthorizedApplicationController
 
   custom_actions :resource => [:close, :restore, :revert]
 
+  has_scope :scope_default, :default => 1
   has_scope :folder
   has_scope :page, :default => 1, :only => :index
 

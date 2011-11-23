@@ -34,6 +34,10 @@ class Appeal < ActiveRecord::Base
 
   before_validation :set_address_validation, :if => :answer_kind_post?
 
+  def self.scope_default(param)
+    User.current.managed_sections ? includes(:section).where(:sections => {:slug => User.current.managed_sections}) : where(:id => false)
+  end
+
   scope :by_state, ->(state) { where(:state => state).not_deleted }
   scope :not_deleted, where(:deleted_at => nil)
   scope :trash, where('deleted_at IS NOT NULL')
@@ -44,7 +48,7 @@ class Appeal < ActiveRecord::Base
         by_state(state).joins(:reply).order('replies.replied_on desc')
 
       when :fresh
-        by_state(state).order('created_at')
+        by_state(state).order('appeals.created_at')
 
       when :noted
         by_state(state).joins(:note).order('notes.created_at')

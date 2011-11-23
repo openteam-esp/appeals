@@ -4,40 +4,41 @@ require 'fabrication'
 require 'forgery'
 require 'ryba'
 
-section = Section.find_or_create_by_title('Section #1')
+@section = Section.find_or_create_by_title_and_slug(:title => 'Section #1', :slug => 'section_one')
 
-@topic1 = section.topics.find_or_create_by_title "Конституционный строй"
-@topic2 = section.topics.find_or_create_by_title "Основы государственного управления"
+@topic1 = @section.topics.find_or_create_by_title "Конституционный строй"
+@topic2 = @section.topics.find_or_create_by_title "Основы государственного управления"
 
-section.topics.find_or_create_by_title "Гражданское право"
-section.topics.find_or_create_by_title "Семья"
-section.topics.find_or_create_by_title "Жилище"
-section.topics.find_or_create_by_title "Труд и занятость населения"
-section.topics.find_or_create_by_title "Социальное обеспечение и социальное страхование"
-section.topics.find_or_create_by_title "Финансы"
-section.topics.find_or_create_by_title "Хозяйственная деятельность"
-section.topics.find_or_create_by_title "Внешнеэкономическая деятельность. Таможенное дело"
-section.topics.find_or_create_by_title "Природные ресурсы и охрана окружающей природной среды"
-section.topics.find_or_create_by_title "Информация и информатизация"
-section.topics.find_or_create_by_title "Образование. Наука. Культура"
-section.topics.find_or_create_by_title "Здравоохранение. Физическая культура и спорт. Туризм"
-section.topics.find_or_create_by_title "Оборона"
-section.topics.find_or_create_by_title "Безопасность и охрана правопорядка"
-section.topics.find_or_create_by_title "Уголовное право. Исполнение наказаний"
-section.topics.find_or_create_by_title "Правосудие"
-section.topics.find_or_create_by_title "Прокуратура. Органы юстиции. Адвокатура. Нотариат"
-section.topics.find_or_create_by_title "Международные отношения. Международное право"
-section.topics.find_or_create_by_title "Индивидуальные правовые акты по кадровым вопросам, вопросам награждения, помилования, гражданства, присвоение почетных и иных званий."
+@section.topics.find_or_create_by_title "Гражданское право"
+@section.topics.find_or_create_by_title "Семья"
+@section.topics.find_or_create_by_title "Жилище"
+@section.topics.find_or_create_by_title "Труд и занятость населения"
+@section.topics.find_or_create_by_title "Социальное обеспечение и социальное страхование"
+@section.topics.find_or_create_by_title "Финансы"
+@section.topics.find_or_create_by_title "Хозяйственная деятельность"
+@section.topics.find_or_create_by_title "Внешнеэкономическая деятельность. Таможенное дело"
+@section.topics.find_or_create_by_title "Природные ресурсы и охрана окружающей природной среды"
+@section.topics.find_or_create_by_title "Информация и информатизация"
+@section.topics.find_or_create_by_title "Образование. Наука. Культура"
+@section.topics.find_or_create_by_title "Здравоохранение. Физическая культура и спорт. Туризм"
+@section.topics.find_or_create_by_title "Оборона"
+@section.topics.find_or_create_by_title "Безопасность и охрана правопорядка"
+@section.topics.find_or_create_by_title "Уголовное право. Исполнение наказаний"
+@section.topics.find_or_create_by_title "Правосудие"
+@section.topics.find_or_create_by_title "Прокуратура. Органы юстиции. Адвокатура. Нотариат"
+@section.topics.find_or_create_by_title "Международные отношения. Международное право"
+@section.topics.find_or_create_by_title "Индивидуальные правовые акты по кадровым вопросам, вопросам награждения, помилования, гражданства, присвоение почетных и иных званий."
 
 User.find_or_initialize_by_email('demo@demo.de').tap do | user |
   user.password = '123123'
   user.password_confirmation = '123123'
   user.name = Ryba::Name.full_name
+  user.sections = 'section_one'
   user.save!
 end
 
 def create_appeal
-  options = rand(4) > 1 ? {:answer_kind => 'email', :topic => @topic1} : {:topic => @topic2, :answer_kind => 'post', :email => rand(2) > 1 ? nil : Forgery(:internet).email_address }
+  options = rand(4) > 1 ? {:answer_kind => 'email', :topic => @topic1} : {:section => @section, :topic => @topic2, :answer_kind => 'post', :email => rand(2) > 1 ? nil : Forgery(:internet).email_address }
   options.merge!(:text => Forgery(:lorem_ipsum).words(rand(100)))
 
   Fabricate.build(:appeal, options).tap do |appeal|
