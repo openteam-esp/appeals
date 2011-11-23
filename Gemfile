@@ -34,7 +34,6 @@ group :development do
   gem 'itslog'
   gem 'libnotify',                                :require => false
   gem 'rb-inotify',                               :require => false
-  gem 'ruby-graphviz',                            :require => false
   gem 'spork',                  '>= 0.9.0.rc9',   :require => false
   gem 'sunspot_solr',           '~> 1.3.0.rc4',   :require => false
   gem 'unicorn',                                  :require => false

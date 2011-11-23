@@ -158,7 +158,6 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.6.0)
-    ruby-graphviz (1.0.0)
     ryba (0.1.2)
     sass (3.1.10)
     sass-rails (3.1.4)
@@ -238,7 +237,6 @@ DEPENDENCIES
   rails
   rb-inotify
   rspec-rails
-  ruby-graphviz
   ryba
   sass-rails (~> 3.1.0)
   shoulda-matchers
