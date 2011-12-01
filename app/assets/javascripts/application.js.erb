@@ -29,66 +29,13 @@ function init_datepicker() {
 };
 
 function uploads_manage() {
-  if ($.fn.fileupload) {
-    var url = "";
-    if (window.location.pathname.search(/public/) == -1) {
-      if ($("form.formtastic.reply").length)
-        url = "/replies/" + $("form.formtastic.reply").attr("id").match(/\d+/) + "/uploads";
-    } else {
-      url = "/public/uploads";
-    };
-    $("#upload_file_link a").click(function() {
-      $("#upload_file").click();
-      return false;
-    });
-    $("#upload_file").fileupload({
-      url: url,
-      dataType: "html",
-      formData: "_method=post",
-      start: function(e) {
-        $("#upload_file").attr("disabled","disabled");
-        $("#upload_file_link").addClass("ajax_loading");
-        $("#upload_file_link a").addClass("disable");
-      },
-      stop: function(e) {
-        $("#upload_file").removeAttr("disabled");
-        $("#upload_file_link").removeClass("ajax_loading");
-        $("#upload_file_link a").removeClass("disable");
-      },
-      add: function(e, data) {
-        data.submit()
-        .success(function (result, textStatus, jqXHR) {
-          $("<div id='ajax_result' />").appendTo("body").hide().html(result);
-          $("form.formtastic fieldset.uploads").html($("#ajax_result fieldset.inputs").html());
-          $("#ajax_result").remove();
-          uploads_manage();
-        })
-        .error(function (jqXHR, textStatus, errorThrown) {
-          alert(errorThrown + "\n\n" + jqXHR.responseText);
-        });
-      }
-    });
-  };
-  $("form.formtastic .uploads .upload .icon_delete")
-    .bind("ajax:beforeSend", function(evt, jqXHR, settings) {
-      $(this).parent().addClass("ajax_loading");
-    })
-    .bind("ajax:complete", function(evt, jqXHR, textStatus) {
-      $(this).parent().removeClass("ajax_loading");
-    })
-    .bind("ajax:success", function(evt, result, textStatus, jqXHR) {
-      $("<div id='ajax_result' />").appendTo("body").hide().html(result);
-      $("form.formtastic fieldset.uploads").html($("#ajax_result fieldset.inputs").html());
-      $("#ajax_result").remove();
-      uploads_manage();
-    })
-    .bind("ajax:error", function(evt, jqXHR, textStatus, errorThrown) {
-      alert(errorThrown + "\n\n" + jqXHR.responseText);
-    });
+  $('#upload_file_link').click(function() {
+    $('#el_finder_wrapper').hide().html('<iframe src="/el_finder" width="700" height="400" scrolling="no" />').slideDown();
+    return false;
+  });
 };
 
 $(function() {
-
   init_datepicker();
 
   uploads_manage();

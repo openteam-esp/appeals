@@ -2,6 +2,8 @@ class Appeal < ActiveRecord::Base
   class_attribute :request_env
   self.request_env = {}
 
+  attr_accessor :folder_uuid
+
   belongs_to :deleted_by,         :class_name => 'User'
   belongs_to :destroy_appeal_job, :class_name => 'Delayed::Backend::ActiveRecord::Job'
   belongs_to :topic

@@ -21,13 +21,10 @@
     <%= form.input :public %>
   <% end %>
 
-  <%= form.inputs :class => "inputs uploads" do %>
-    <%= render uploads %>
-    <%= content_tag :li, link_to(t("add_upload"), "#", :class => "button icon add"), :id => "upload_file_link" %>
-    <%= form.input :file, :as => :file, :label => false,
-                   :wrapper_html => { :id => 'upload_file_input' },
-                   :input_html => { :name => 'upload[file]', :id => "upload_file" } %>
-  <% end %>
+  <%= content_tag :li, link_to(t("add_upload"), "#", :class => "button icon add"), :id => "upload_file_link" %>
+
+  <div id="el_finder_wrapper">
+  </div>
 
   <%= form.buttons do %>
     <li>
@@ -35,4 +32,8 @@
     </li>
     <%= form.commit_button :button_html => {:class => 'button primary'} %>
   <% end %>
+
+  <%= form.input :folder_uuid, :as => :hidden, :input_html => {:id => 'root_path'} %>
 <% end %>
+
+
