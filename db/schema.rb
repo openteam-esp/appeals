@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111123051553) do
+ActiveRecord::Schema.define(:version => 20111201015134) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "appeal_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20111123051553) do
     t.integer  "destroy_appeal_job_id"
     t.string   "social_status"
     t.integer  "section_id"
+    t.string   "root_path"
   end
 
   create_table "delayed_jobs", :force => true do |t|
