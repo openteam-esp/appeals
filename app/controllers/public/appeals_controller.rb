@@ -19,8 +19,6 @@ class Public::AppealsController < ApplicationController
 
   def create
     create! do |success, failure|
-      @appeal.uploads = uploads
-      session.delete(:upload_ids)
       if params.has_key?('X-REQUESTED-WITH')
         success.html { render :action => :show, :layout => false }
         failure.html { render :file => 'public/appeals/remote_form.html', :layout => false }

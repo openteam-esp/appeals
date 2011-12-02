@@ -13,8 +13,6 @@ describe Appeal do
   it { should have_one(:registration).dependent(:destroy) }
   it { should have_one(:review).dependent(:destroy) }
 
-  it { should have_many(:uploads).dependent(:destroy) }
-
   it { should validate_presence_of(:surname) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:text) }

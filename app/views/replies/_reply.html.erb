@@ -11,6 +11,14 @@
   <%= show_attribute(@appeal.reply, :text) %>
 </div>
 
+<%= content_tag :div, :class => "appeal_info" do %>
+  <div class="show_attribute text">
+    <%= link_to(t("show_upload"), "#", :class => "button icon arrowdown upload_link", :id => "reply_file_wrapper", :params => params.merge('appeal_id' => @appeal.id).to_query)%>
+    <div class="reply_file_wrapper">
+    </div>
+  </div>
+<% end if @appeal.root_path %>
+
 <%= link_to t("edit_reply"),
             edit_appeal_reply_path(@appeal),
             :remote => true,

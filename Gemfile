@@ -5,7 +5,6 @@ gem 'client_side_validations'
 gem 'configliere'
 gem 'delayed_job'
 gem 'devise'
-gem 'dragonfly'
 gem 'el_vfs_client'
 gem 'fabrication',                                :require => false
 gem 'forgery',                                    :require => false

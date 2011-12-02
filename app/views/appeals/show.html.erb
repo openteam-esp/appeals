@@ -27,20 +27,12 @@
     </div>
     <%= content_tag :div, :class => "appeal_info" do %>
       <div class="show_attribute text">
-        <span class="label">Вложения</span>
-        <span class="value">
-          <ul>
-            <% @appeal.uploads.each do |upload| %>
-              <li><%= show_upload(upload) %></li>
-            <% end %>
-          </ul>
-        </span>
+        <%= link_to(t("show_upload"), "#", :class => "button icon arrowdown upload_link", :id => "appeal_file_wrapper", :params => params.to_query)%>
+        <div class="appeal_file_wrapper">
+        </div>
       </div>
-    <% end if @appeal.uploads.any?%>
+    <% end if @appeal.root_path %>
 
-    <%= link_to(t("show_upload"), "#", :class => "button icon arrowdown", :id => "upload_file_link", :params => params.to_query)%>
-    <div id="el_finder_wrapper">
-    </div>
 
     <div class="reply_wrapper">
       <% if @appeal.reply %>

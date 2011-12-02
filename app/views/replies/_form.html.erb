@@ -13,14 +13,20 @@
     <%= form.input :replied_by %>
     <%= form.input :text %>
     <%= form.input :public if @appeal.public %>
+
+    <%= content_tag :li,
+                    link_to(t("add_upload"),
+                            "#",
+                            :class => "button icon add upload_link",
+                            :id => "reply_file_wrapper",
+                            :params => params.merge!(:class_name => form.object.class.name.downcase).to_query) %>
+
+    <%= form.input :root_path, :as => :hidden, :input_html => {:id => 'root_path'} %>
   <% end %>
-  <%= form.inputs :class => "inputs uploads" do %>
-    <%= render @reply.uploads %>
-    <%= content_tag :li, link_to(t("add_upload"), "#", :class => "button icon add"), :id => "upload_file_link" %>
-    <%= form.input :file, :as => :file, :label => false,
-                   :wrapper_html => { :id => 'upload_file_input' },
-                   :input_html => { :name => 'upload[file]', :id => "upload_file" } %>
-  <% end %>
+
+  <div class="reply_file_wrapper">
+  </div>
+
   <%= form.buttons do %>
     <%= form.commit_button t('reply'), :button_html => { :class => 'button reply' } %>
   <% end %>

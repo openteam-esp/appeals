@@ -19,7 +19,6 @@ AppealBackend::Application.routes.draw do
   end
 
   post 'replies/:reply_id/uploads' => 'uploads#create', :as => :reply_uploads
-  resources :uploads, :only => :destroy, :as => :delete_upload
 
   namespace :public do
     resources :sections, :only => [], :shallow => true do
@@ -27,12 +26,7 @@ AppealBackend::Application.routes.draw do
     end
 
     resource :check_status, :only => [:create, :new]
-    resources :uploads, :only => [:create, :destroy]
   end
-
-  get '/uploads/:id/*file_name' => Dragonfly[:uploads].endpoint { |params, app |
-    app.fetch Upload.where(:file_name => params[:file_name]).find(params[:id]).file_uid
-  }, :as => :upload, :format => false
 
   get '/:folder/appeals' => 'appeals#index',
       :as => :scoped_appeals,

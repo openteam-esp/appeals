@@ -14,9 +14,4 @@ module ApplicationHelper
                            :class => 'value')
     content_tag :div, raw(content), :class => "show_attribute #{field.to_s}"
   end
-
-  def show_upload(upload)
-    link_to "#{upload.file_name} (#{number_to_human_size(upload.file_size)})", upload_path(upload, upload.file_name)
-  end
-
 end

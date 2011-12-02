@@ -16,10 +16,6 @@ class Ability
       can [:create, :update], Reply do |reply|
         reply.appeal.reviewing?
       end
-
-      can :manage, Upload
-
     end
-
   end
 end
