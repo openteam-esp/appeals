@@ -30,7 +30,14 @@ function init_datepicker() {
 
 function uploads_manage() {
   $('#upload_file_link').click(function() {
-    $('#el_finder_wrapper').hide().html('<iframe src="/el_finder" width="700" height="400" scrolling="no" />').slideDown();
+    var params = $(this).attr('params');
+    $(this).slideUp();
+    $('#el_finder_wrapper').html(
+      $('<iframe/>',{ src: '/el_finder?'+params, width:'700', height:'400', scrolling:'no', id:'el_finder_iframe'}).load(function(){
+        $(".content_wrapper").animate({ scrollTop: $(document).height()+$('#el_finder_wrapper').height()}, "slow");
+      })
+    ).slideDown();
+
     return false;
   });
 };

@@ -37,7 +37,6 @@ class AppealsController < AuthorizedApplicationController
   end
 
   protected
-
     def collection
       get_collection_ivar || set_collection_ivar(search_and_paginate_collection)
     end

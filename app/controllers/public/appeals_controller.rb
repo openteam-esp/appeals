@@ -23,13 +23,9 @@ class Public::AppealsController < ApplicationController
       session.delete(:upload_ids)
       if params.has_key?('X-REQUESTED-WITH')
         success.html { render :action => :show, :layout => false }
-      else
-        success.html { redirect_to public_appeal_path(@appeal.code) }
-      end
-
-      if params.has_key?('X-REQUESTED-WITH')
         failure.html { render :file => 'public/appeals/remote_form.html', :layout => false }
       else
+        success.html { redirect_to public_appeal_path(@appeal.code) }
         failure.html { render :action => :new }
       end
     end

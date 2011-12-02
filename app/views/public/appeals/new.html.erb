@@ -19,9 +19,9 @@
     <%= form.input :social_status, :prompt => '- не выбрано -', :collection => Appeal.values_for_select_tag(:social_status), :required => false %>
     <%= form.input :text %>
     <%= form.input :public %>
+    <%= content_tag :li, link_to(t("add_upload"), "#", :class => "button icon add", :id => "upload_file_link", :params => params.to_query) %>
+    <%= form.input :root_path, :as => :hidden, :input_html => {:id => 'root_path'} %>
   <% end %>
-
-  <%= content_tag :li, link_to(t("add_upload"), "#", :class => "button icon add"), :id => "upload_file_link" %>
 
   <div id="el_finder_wrapper">
   </div>
@@ -33,7 +33,6 @@
     <%= form.commit_button :button_html => {:class => 'button primary'} %>
   <% end %>
 
-  <%= form.input :folder_uuid, :as => :hidden, :input_html => {:id => 'root_path'} %>
 <% end %>
 
 

@@ -38,6 +38,9 @@
       </div>
     <% end if @appeal.uploads.any?%>
 
+    <%= link_to(t("show_upload"), "#", :class => "button icon arrowdown", :id => "upload_file_link", :params => params.to_query)%>
+    <div id="el_finder_wrapper">
+    </div>
 
     <div class="reply_wrapper">
       <% if @appeal.reply %>
