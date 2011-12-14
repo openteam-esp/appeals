@@ -2,6 +2,7 @@ source :rubygems
 
 gem 'cancan'
 gem 'client_side_validations'
+gem 'compass',                  '~> 0.12.alpha.2'
 gem 'configliere'
 gem 'delayed_job'
 gem 'devise-russian'
@@ -18,15 +19,13 @@ gem 'kaminari'
 gem 'rails',                                      :require => false
 gem 'russian'
 gem 'ryba',                                       :require => false
+gem 'sass-rails'
 gem 'simple-navigation'
 gem 'sso_client'
 gem 'state_machine'
 gem 'sunspot_rails'
 
 group :assets do
-  gem 'coffee-rails'
-  gem 'compass',                '~> 0.12.alpha.2'
-  gem 'sass-rails'
   gem 'therubyracer'
   gem 'uglifier'
 end

@@ -8,5 +8,5 @@ sso:
 
 production:
   hoptoad:
-    key:    APP_KEY
-    host:   host.domain.com
+    api_key:  APP_KEY
+    host:     host.domain.com
