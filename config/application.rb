@@ -48,6 +48,8 @@ module Appeals
     # Compile print version css also
     config.assets.precompile << "print.css"
 
+    config.sass.preferred_syntax = :sass if config.respond_to?(:sass)
+
     # Configure generators
     config.generators do | generators |
       generators.test_framework       :rspec, :fixture => true
