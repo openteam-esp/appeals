@@ -42,7 +42,8 @@ def create_appeal
 
   Fabricate.build(:appeal, options).tap do |appeal|
     appeal.address_attributes = Fabricate.attributes_for(:address) if appeal.answer_kind_post?
-    appeal.save!
+    appeal.save
+    p appeal.errors.messages unless appeal.valid?
   end
 end
 
