@@ -188,6 +188,10 @@ class Appeal < ActiveRecord::Base
     self.reply.valid?
   end
 
+  def author=(full_name)
+    self.surname, self.name, self.patronymic = full_name.split(' ')
+  end
+
   def author
     "#{self.surname} #{self.name} #{self.patronymic}".squish
   end
