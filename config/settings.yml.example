@@ -1,8 +1,10 @@
 el_vfs:
   host:     http://pool.openteam.ru
 
-sso_provider:
+sso:
   host:     http://esp-sso.openteam.ru
+  key:      APP_KEY
+  secret:   APP_SECRET
 
 production:
   hoptoad:
