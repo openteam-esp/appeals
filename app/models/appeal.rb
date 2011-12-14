@@ -33,8 +33,8 @@ class Appeal < ActiveRecord::Base
 
   before_validation :set_address_validation, :if => :answer_kind_post?
 
-  def self.scope_default(param)
-    User.current.managed_sections ? includes(:section).where(:sections => {:slug => User.current.managed_sections}) : where(:id => false)
+  def self.for(user)
+    user.managed_sections ? includes(:section).where(:sections => {:slug => user.managed_sections}) : where(:id => nil)
   end
 
   scope :by_state, ->(state) { where(:state => state).not_deleted }
@@ -162,12 +162,10 @@ class Appeal < ActiveRecord::Base
     end
   end
 
-  alias :destroy_without_trash :destroy
-
-  def destroy
+  def move_to_trash_by(user)
     self.tap do |appeal|
       appeal.update_attributes :deleted_at => Time.now,
-                               :deleted_by => User.current,
+                               :deleted_by => user,
                                :destroy_appeal_job => Delayed::Job.enqueue(:run_at => 30.days.since, :payload_object => DestroyAppealJob.new(self.id))
     end
   end
@@ -248,5 +246,8 @@ end
 #  deleted_at            :datetime
 #  deleted_by_id         :integer
 #  destroy_appeal_job_id :integer
+#  social_status         :string(255)
+#  section_id            :integer
+#  root_path             :string(255)
 #
 

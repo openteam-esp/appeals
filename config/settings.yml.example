@@ -1,3 +1,10 @@
-hoptoad:
-  key: 00000000000000000000000000000000
-  host: host.domain.com
+el_vfs:
+  host:     http://pool.openteam.ru
+
+sso_provider:
+  host:     http://esp-sso.openteam.ru
+
+production:
+  hoptoad:
+    key:    APP_KEY
+    host:   host.domain.com

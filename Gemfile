@@ -4,7 +4,7 @@ gem 'cancan'
 gem 'client_side_validations'
 gem 'configliere'
 gem 'delayed_job'
-gem 'devise'
+gem 'devise-russian'
 gem 'el_vfs_client'
 gem 'fabrication',                                :require => false
 gem 'forgery',                                    :require => false
@@ -16,31 +16,13 @@ gem 'inherited_resources'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'rails',                                      :require => false
+gem 'russian'
 gem 'ryba',                                       :require => false
 gem 'simple-navigation'
+gem 'sso_client'
 gem 'state_machine'
-gem 'sunspot_rails',            '~> 1.3.0.rc4'
+gem 'sunspot_rails'
 
-group :production do
-  gem 'hoptoad_notifier'
-  gem 'pg',                                       :require => false
-end
-
-group :development do
-  gem 'annotate',               '~> 2.4.1.beta1', :require => false
-  gem 'guard-rspec',                              :require => false
-  gem 'guard-spork',                              :require => false
-  gem 'hirb',                                     :require => false
-  gem 'itslog'
-  gem 'libnotify',                                :require => false
-  gem 'rb-inotify',                               :require => false
-  gem 'spork',                  '>= 0.9.0.rc9',   :require => false
-  gem 'sunspot_solr',           '~> 1.3.0.rc4',   :require => false
-  gem 'unicorn',                                  :require => false
-end
-
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
   gem 'coffee-rails',           '~> 3.1.0'
   gem 'compass',                '~> 0.12.alpha'
@@ -49,10 +31,24 @@ group :assets do
   gem 'uglifier'
 end
 
+group :development do
+  gem 'annotate',               '~> 2.4.1.beta1', :require => false
+  gem 'sunspot_solr',                             :require => false
+end
+
+group :production do
+  gem 'hoptoad_notifier'
+  gem 'pg',                                       :require => false
+end
+
 group :test do
+  gem 'guard-rspec',                              :require => false
+  gem 'guard-spork',                              :require => false
+  gem 'libnotify',                                :require => false
+  gem 'rb-inotify',                               :require => false
   gem 'rspec-rails',                              :require => false
   gem 'shoulda-matchers',                         :require => false
-  gem 'sunspot_matchers',                         :require => false
+  gem 'spork',                  '>= 0.9.0.rc9',   :require => false
   gem 'sqlite3',                                  :require => false
-  gem 'turn',                                     :require => false
+  gem 'sunspot_matchers',                         :require => false
 end

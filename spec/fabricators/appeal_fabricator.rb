@@ -9,5 +9,5 @@ Fabricator(:appeal) do
   text        { Forgery(:lorem_ipsum).words(5) }
   answer_kind 'email'
   topic!
-  section_id Section.find_or_create_by_slug(:slug => 'section_one', :title => 'Section#1')
+  section_id  { Section.find_or_create_by_slug(:slug => 'section_one', :title => 'Section#1') }
 end

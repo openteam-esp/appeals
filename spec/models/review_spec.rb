@@ -11,3 +11,14 @@ describe Review do
   end
 end
 
+# == Schema Information
+#
+# Table name: reviews
+#
+#  id         :integer         not null, primary key
+#  recipient  :string(255)
+#  appeal_id  :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

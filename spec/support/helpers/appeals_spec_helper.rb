@@ -1,16 +1,20 @@
 # encoding: utf-8
 
 module AppealsSpecHelper
+  def current_user
+    @current_user
+  end
+
   def set_current_user(user = nil)
     user ||= create_user
-    User.current = user
+    @current_user = user
   end
 
   def as(user, &block)
-    logged_in = User.current
-    User.current = user
+    logged_in = current_user
+    set_current_user user
     result = yield
-    User.current = logged_in
+    set_current_user logged_in
     result
   end
 
@@ -21,7 +25,6 @@ module AppealsSpecHelper
   def user(options={})
     @user ||= create_user(options)
   end
-
 
   def create_fresh_appeal(options={})
     Fabricate(:appeal, options)
@@ -88,7 +91,7 @@ module AppealsSpecHelper
 
   def deleted_appeal(options={})
     @deleted_appeal ||= closed_appeal.tap do |appeal|
-      appeal.destroy
+      appeal.move_to_trash_by(current_user)
     end
   end
 

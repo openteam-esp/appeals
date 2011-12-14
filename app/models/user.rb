@@ -1,26 +1,14 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :sections
-
-  def self.current
-    Thread.current[:user]
-  end
-
-  def self.current_id
-    current.id if current
-  end
-
-  def self.current=(user)
-    Thread.current[:user] = user
-  end
+  devise :omniauthable, :trackable, :timeoutable
 
   def managed_sections
     sections.try(:split)
+  end
+
+  def self.from_omniauth(hash)
+    User.find_or_initialize_by_uid(hash['uid']).tap do |user|
+      user.update_attributes hash['info']
+    end
   end
 end
 
@@ -30,19 +18,25 @@ end
 #
 # Table name: users
 #
-#  id                     :integer         not null, primary key
-#  email                  :string(255)     default(""), not null
-#  encrypted_password     :string(128)     default(""), not null
-#  reset_password_token   :string(255)
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer         default(0)
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string(255)
-#  last_sign_in_ip        :string(255)
-#  created_at             :datetime
-#  updated_at             :datetime
-#  name                   :string(255)
+#  id                 :integer         not null, primary key
+#  uid                :string(255)
+#  name               :text
+#  email              :text
+#  nickname           :text
+#  first_name         :text
+#  last_name          :text
+#  location           :text
+#  description        :text
+#  image              :text
+#  phone              :text
+#  urls               :text
+#  raw_info           :text
+#  sign_in_count      :integer         default(0)
+#  current_sign_in_at :datetime
+#  last_sign_in_at    :datetime
+#  current_sign_in_ip :string(255)
+#  last_sign_in_ip    :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
 #
 

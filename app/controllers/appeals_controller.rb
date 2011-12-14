@@ -1,11 +1,14 @@
 class AppealsController < AuthorizedApplicationController
-  actions :index, :show, :destroy
+  actions :index, :show
 
   layout :resolve_layout
 
-  custom_actions :resource => [:close, :restore, :revert]
+  custom_actions :resource => [:close, :restore, :revert, :destroy]
 
-  has_scope :scope_default, :default => 1
+  has_scope :for_current_user, :type => :boolean, :default => true do | controller, scope |
+    scope.for(controller.current_user)
+  end
+
   has_scope :folder
   has_scope :page, :default => 1, :only => :index
 
@@ -26,7 +29,10 @@ class AppealsController < AuthorizedApplicationController
   end
 
   def destroy
-    destroy! { scoped_appeals_path(:folder => @appeal.state) }
+    destroy! {
+      @appeal.move_to_trash_by(current_user)
+      redirect_to scoped_appeals_path(:folder => @appeal.state) and return
+    }
   end
 
   def restore
@@ -37,6 +43,7 @@ class AppealsController < AuthorizedApplicationController
   end
 
   protected
+
     def collection
       get_collection_ivar || set_collection_ivar(search_and_paginate_collection)
     end

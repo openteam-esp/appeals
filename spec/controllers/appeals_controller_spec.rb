@@ -38,6 +38,16 @@ describe AppealsController do
     end
   end
 
+  describe 'DELETE destroy' do
+    before { delete :destroy, :id => fresh_appeal }
+
+    subject { fresh_appeal.reload }
+
+    it { should be_persisted }
+    it { should be_deleted }
+    its(:deleted_by) { should == current_user }
+  end
+
   describe 'POST close' do
     it 'should close reviewing appeal' do
       Appeal.any_instance.stub(:reply_valid?).and_return(true)

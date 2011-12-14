@@ -10,4 +10,6 @@ Settings.define 'el_vfs.protocol',            :env_var => 'EL_VFS_PROTOCOL'
 Settings.define 'el_vfs.host',                :env_var => 'EL_VFS_HOST'
 Settings.define 'el_vfs.port',                :env_var => 'EL_VFS_POST'
 
+Settings.define 'sso_provider.host',          :env_var => 'SSO_PROVIDER_HOST'
+
 Settings.resolve!

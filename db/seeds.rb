@@ -30,8 +30,6 @@ require 'ryba'
 @section.topics.find_or_create_by_title "Индивидуальные правовые акты по кадровым вопросам, вопросам награждения, помилования, гражданства, присвоение почетных и иных званий."
 
 User.find_or_initialize_by_email('demo@demo.de').tap do | user |
-  user.password = '123123'
-  user.password_confirmation = '123123'
   user.name = Ryba::Name.full_name
   user.sections = 'section_one'
   user.save!

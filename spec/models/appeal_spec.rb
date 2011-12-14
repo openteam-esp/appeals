@@ -231,7 +231,7 @@ describe Appeal do
   end
 
   describe "удаление минуя корзину" do
-    let(:destroyed_appeal) { closed_appeal.destroy_without_trash }
+    let(:destroyed_appeal) { closed_appeal.destroy }
 
     it { destroyed_appeal.should_not be_persisted }
   end
@@ -264,5 +264,8 @@ end
 #  deleted_at            :datetime
 #  deleted_by_id         :integer
 #  destroy_appeal_job_id :integer
+#  social_status         :string(255)
+#  section_id            :integer
+#  root_path             :string(255)
 #
 

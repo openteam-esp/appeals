@@ -1,6 +1,4 @@
 AppealBackend::Application.routes.draw do
-  devise_for :users, :skip => [:registrations]
-
   mount ElVfsClient::Engine => '/'
 
   resources :appeals, :only => [:show, :destroy] do
