@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-AppealBackend::Application.load_tasks
+Appeals::Application.load_tasks

@@ -24,9 +24,9 @@ gem 'state_machine'
 gem 'sunspot_rails'
 
 group :assets do
-  gem 'coffee-rails',           '~> 3.1.0'
-  gem 'compass',                '~> 0.12.alpha'
-  gem 'sass-rails',             '~> 3.1.0'
+  gem 'coffee-rails'
+  gem 'compass',                '~> 0.12.alpha.2'
+  gem 'sass-rails'
   gem 'therubyracer'
   gem 'uglifier'
 end
@@ -46,7 +46,7 @@ group :test do
   gem 'guard-spork',                              :require => false
   gem 'libnotify',                                :require => false
   gem 'rb-inotify',                               :require => false
-  gem 'rspec-rails',                              :require => false
+  gem 'rspec-rails',            '~> 2.6.0',       :require => false
   gem 'shoulda-matchers',                         :require => false
   gem 'spork',                  '>= 0.9.0.rc9',   :require => false
   gem 'sqlite3',                                  :require => false

@@ -1,4 +1,4 @@
-AppealBackend::Application.routes.draw do
+Appeals::Application.routes.draw do
   mount ElVfsClient::Engine => '/'
 
   resources :appeals, :only => [:show, :destroy] do

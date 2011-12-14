@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-AppealBackend::Application.config.secret_token = 'b180a41de9b8c011fe424a8deb8b0d4b9c6f865c5c179647ad2e3a2e732576102c510123cfafbdc541e55839bcdade1f7a917e33e966710abc55fca862202a72'
+Appeals::Application.config.secret_token = 'eedb2febc81f8b56c4fe82ce08ee0fa2f3fc1f82b13f8c465f3d4be17da9ff2e67ea10cac7db3c90dd44adc02acca3f3cc6057f059c7a1c324922d520608f0fb'
