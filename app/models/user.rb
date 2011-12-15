@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   devise :omniauthable, :trackable, :timeoutable
+  attr_accessible :name, :email, :nickname, :first_name, :last_name, :location, :description, :image, :phone, :urls, :raw_info
 
   def managed_sections
     sections.try(:split)
