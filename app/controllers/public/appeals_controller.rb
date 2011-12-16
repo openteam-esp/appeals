@@ -20,10 +20,16 @@ class Public::AppealsController < ApplicationController
   def create
     create! do |success, failure|
       if params.has_key?('X-REQUESTED-WITH')
-        success.html { render :action => :show, :layout => false }
+        success.html do
+          destroy_appeal_attachemnts_path
+          render :action => :show, :layout => false
+        end
         failure.html { render :file => 'public/appeals/remote_form.html', :layout => false }
       else
-        success.html { redirect_to public_appeal_path(@appeal.code) }
+        success.html do
+          destroy_appeal_attachemnts_path
+          redirect_to public_appeal_path(@appeal.code)
+        end
         failure.html { render :action => :new }
       end
     end
@@ -34,8 +40,12 @@ class Public::AppealsController < ApplicationController
   end
 
   private
-  def audit
-    Appeal.request_env = request.env
-  end
+    def audit
+      Appeal.request_env = request.env
+    end
+
+    def destroy_appeal_attachemnts_path
+      session[:appeal_attachemnts_path].try(:delete, params[:section_id])
+    end
 end
 
