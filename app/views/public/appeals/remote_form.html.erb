@@ -7,7 +7,7 @@ remote_wrapper.bind('ajax:before', function(){remote_wrapper.addClass("ajax_load
 <%= semantic_form_for @appeal, :url => public_section_appeals_url(@section.slug), :remote => true, :html => { :multipart => true } do |form| %>
   <div><input type="hidden" name="X-REQUESTED-WITH" value="XMLRequest" /></div>
 
-  <%= form.inputs do %>
+  <%= form.inputs :class => 'inputs name' do %>
     <%= form.input :surname %>
     <%= form.input :name %>
     <%= form.input :patronymic %>
@@ -32,7 +32,7 @@ remote_wrapper.bind('ajax:before', function(){remote_wrapper.addClass("ajax_load
     <% end %>
   <% end %>
 
-  <%= form.inputs do %>
+  <%= form.inputs :class => 'inputs text' do %>
     <%= form.input :phone %>
     <%= form.input :topic, :prompt => '- не выбрано -', :collection => @section.topics %>
     <%= form.input :text %>
