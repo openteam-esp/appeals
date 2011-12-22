@@ -1,0 +1,41 @@
+<%= form.inputs do %>
+  <%= form.input :surname %>
+  <%= form.input :name %>
+  <%= form.input :patronymic %>
+  <%= form.input :social_status, :prompt => '- не выбрано -', :collection => Appeal.values_for_select_tag(:social_status), :required => false %>
+  <%= form.input :answer_kind, :as => :radio, :collection => @appeal.class.values_for_select_tag(:answer_kind) %>
+<% end %>
+
+<%= form.inputs :class => 'inputs email' do %>
+  <%= form.input :email %>
+<% end %>
+
+<%= form.semantic_fields_for :address do |address| %>
+  <%= address.inputs :class => 'inputs address' do %>
+    <%= address.input :postcode %>
+    <%= address.input :region %>
+    <%= address.input :district %>
+    <%= address.input :township %>
+    <%= address.input :street %>
+    <%= address.input :house %>
+    <%= address.input :building %>
+    <%= address.input :flat %>
+  <% end %>
+<% end %>
+
+<%= form.inputs do %>
+  <%= form.input :phone %>
+  <%= form.input :topic, :prompt => '- не выбрано -', :collection => @section.topics %>
+  <%= form.input :text %>
+  <%= form.input :public %>
+  <%= content_tag :li,
+                  link_to(t("add_upload"),
+                          "#",
+                          :class => "button icon add upload_link",
+                          :id => "appeal_file_wrapper",
+                          :params => params.merge!(:class_name => form.object.class.name.downcase).to_query) %>
+  <%= form.input :root_path, :as => :hidden, :input_html => {:id => 'root_path'} %>
+<% end %>
+
+<div class="appeal_file_wrapper">
+</div>
