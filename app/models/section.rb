@@ -6,6 +6,11 @@ class Section < ActiveRecord::Base
   has_many :appeals
 
   validates_presence_of :title, :context
+
+  def absolute_depth
+    context.depth + 1
+  end
+
 end
 
 

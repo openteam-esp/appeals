@@ -33,9 +33,7 @@ class Appeal < ActiveRecord::Base
 
   before_validation :set_address_validation, :if => :answer_kind_post?
 
-  def self.for(user)
-    raise 'TODO appeal from permissions'
-  end
+  scope :for, ->(user) { where :section_id => user.context_tree_of(Section).map(&:id) }
 
   scope :by_state, ->(state) { where(:state => state).not_deleted }
   scope :not_deleted, where(:deleted_at => nil)

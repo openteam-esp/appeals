@@ -1,5 +1,7 @@
 class Context < ActiveRecord::Base
-  esp_auth_context
+  esp_auth_context :subcontext => 'Section'
+  has_many :sections
+
 end
 
 # == Schema Information
