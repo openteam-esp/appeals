@@ -5,18 +5,14 @@ class ApplicationController < ActionController::Base
 
   after_filter :set_access_control_headers
 
-  def set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Request-Method'] = '*'
-    headers['Access-Control-Allow-Headers'] = '*'
-  end
-
   protected
+    def set_access_control_headers
+      headers['Access-Control-Allow-Origin'] = '*'
+      headers['Access-Control-Request-Method'] = '*'
+      headers['Access-Control-Allow-Headers'] = '*'
+    end
+
     def resolve_layout
-      if devise_controller?
-        "login"
-      else
-        "application"
-      end
+      devise_controller? ? 'login' : 'application'
     end
 end

@@ -1,36 +1,40 @@
 Appeals::Application.routes.draw do
   mount ElVfsClient::Engine => '/'
 
-  resources :appeals, :only => [:show, :destroy] do
-    get '/:print' => 'appeals#show', :constraints => { :print => /print/ }, :on => :member, :as => :print_version
-    resource :note,         :only => [:create, :new]
-    resource :redirect,     :only => [:create, :new]
-    resource :registration, :only => [:create, :new]
-    resource :review,       :only => [:create, :new]
-    resource :reply,        :only => [:create, :edit, :new, :update]
+  namespace :manage do
+    resources :appeals, :only => [:show, :destroy] do
+      get '/:folder/appeals' => 'appeals#index',
+          :constraints => { :folder => /(fresh|registered|noted|redirected|reviewing|closed|trash)/ },
+          :as => :scoped_appeals
 
-    member do
-      post :close
-      post :restore
-      post :revert
+      get '/:print' => 'appeals#show',
+          :constraints => { :print => /print/ },
+          :on => :member,
+          :as => :print_version
+
+      member do
+        post :close
+        post :restore
+        post :revert
+      end
+
+      post 'replies/:reply_id/uploads' => 'uploads#create', :as => :reply_uploads
+
+      resource :note,         :only => [:create, :new]
+      resource :redirect,     :only => [:create, :new]
+      resource :registration, :only => [:create, :new]
+      resource :review,       :only => [:create, :new]
+      resource :reply,        :only => [:create, :edit, :new, :update]
+    end
+
+    scope :folder => 'fresh' do
+      root :to => 'appeals#index'
     end
   end
 
-  post 'replies/:reply_id/uploads' => 'uploads#create', :as => :reply_uploads
+  resource :check_status, :only => [:create, :new]
 
-  namespace :public do
-    resources :sections, :only => [], :shallow => true do
-      resources :appeals, :only => [:create, :new, :show]
-    end
-
-    resource :check_status, :only => [:create, :new]
-  end
-
-  get '/:folder/appeals' => 'appeals#index',
-      :as => :scoped_appeals,
-      :constraints => { :folder => /(fresh|registered|noted|redirected|reviewing|closed|trash)/ }
-
-  scope :folder => 'fresh' do
-    root :to => 'appeals#index'
+  resources :sections, :only => [], :shallow => true do
+    resources :appeals, :only => [:create, :new, :show]
   end
 end

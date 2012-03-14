@@ -1,9 +1,9 @@
-class NotesController < AuthorizedApplicationController
+class Manage::RedirectsController < Manage::AuthorizedApplicationController
   actions :create, :new
 
   belongs_to :appeal, :singleton => true
 
-  layout 'system/appeal'
+  layout false
 
   def create
     create! do |success, failure|

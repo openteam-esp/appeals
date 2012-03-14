@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Public::CheckStatusesController < ApplicationController
+class CheckStatusesController < ApplicationController
   layout 'public/appeal'
 
   def new
@@ -14,6 +14,7 @@ class Public::CheckStatusesController < ApplicationController
       redirect_to public_appeal_path @appeal.code
     else
       @check_status.errors[:base] << t('errors.messages.appeal_not_found') if @check_status.valid?
+
       render :new
     end
   end
