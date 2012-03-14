@@ -1,13 +1,13 @@
 class CreateReplies < ActiveRecord::Migration
   def change
     create_table :replies do |t|
-      t.string :number
-      t.date :replied_on
-      t.text :text
-      t.boolean :public
-      t.string :replied_by
-      t.references :appeal
-
+      t.references  :appeal
+      t.boolean     :public
+      t.date        :replied_on
+      t.string      :root_path
+      t.string      :number
+      t.string      :replied_by
+      t.text        :text
       t.timestamps
     end
   end
