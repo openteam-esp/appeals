@@ -1,0 +1,9 @@
+<div class="time_ago">
+  <%= time_ago_in_words(appeal.created_at) %> назад
+</div>
+<div class="title">
+  <%= link_to "#{appeal.author}, #{appeal.topic.title}", appeal %>
+</div>
+<div class="participants">
+  <%= truncate(appeal.text, :length => 200) %>
+</div>

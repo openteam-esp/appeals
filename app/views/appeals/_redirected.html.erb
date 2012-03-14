@@ -1,9 +1,8 @@
-<div class="time_ago">
-  <p>№<%= appeal.registration.number %> от <%= l appeal.registration.registered_on %></p>
-</div>
-<div class="title">
-  <%= link_to "#{appeal.author}, #{appeal.topic.title}", appeal %>
-</div>
-<div class="participants">
-  <p><%= truncate(appeal.text, :length => 200) %></p>
-</div>
+<h3>Обращение с кодом <%= @appeal.code %> от <%= l @appeal.created_at %></h3>
+
+<ul>
+  <li>зарегистрировано <%= l @appeal.registration_registered_on %> с номером <%= @appeal.registration_number %></li>
+  <li>переадресовано &mdash; <%= @appeal.redirect.recipient %></li>
+  <li>по этому адресу <%= link_to public_appeal_url(@appeal.code), public_appeal_url(@appeal.code) %> Вы сможете отслеживать процесс рассмотрения обращения </li>
+</ul>
+

@@ -1,55 +1,11 @@
-<div class="content_wrapper with_sidebar">
-  <div class="article">
-    <div class="top_stuff">
-      <%= show_attribute(@appeal, :user_ip) %>
-      <%= show_attribute(@appeal, :user_proxy_ip) %>
-      <%= show_attribute(@appeal, :user_agent) %>
-      <%= show_attribute(@appeal, :user_referrer) %>
-    </div>
-
-    <div class="appeal_info">
-      <%= show_attribute(@appeal, :surname) %>
-      <%= show_attribute(@appeal, :name) %>
-      <%= show_attribute(@appeal, :patronymic) %>
-      <%= show_attribute(@appeal, :code) %>
-    </div>
-    <div class="appeal_info">
-      <%= show_attribute(@appeal, :answer_kind) %>
-      <%= show_attribute(@appeal, :email) %>
-      <%= show_attribute(@appeal.address, :full_address) %>
-      <%= show_attribute(@appeal, :phone) %>
-      <%= show_attribute(@appeal, :topic) %>
-      <%= show_attribute(@appeal, :social_status) %>
-      <%= show_attribute(@appeal, :public) %>
-    </div>
-    <div class="appeal_info">
-      <%= show_attribute(@appeal, :text) %>
-    </div>
-    <%= content_tag :div, :class => "appeal_info" do %>
-      <div class="show_attribute text">
-        <%= link_to(t("show_upload"), "#", :class => "button icon arrowdown upload_link", :id => "appeal_file_wrapper", :params => params.to_query)%>
-        <div class="appeal_file_wrapper">
-        </div>
-      </div>
-    <% end if @appeal.root_path %>
-
-
-    <div class="reply_wrapper">
-      <% if @appeal.reply %>
-        <%= render @appeal.reply %>
-      <% else %>
-        <%= link_to t('add_reply'), new_appeal_reply_path(@appeal), :remote => true, :class => 'button icon add reply_link' if @appeal.reviewing? %>
-      <% end %>
-    </div>
-  </div>
+<div class="appeal_status">
+  <% if @appeal %>
+    <% if @appeal.deleted? %>
+      <h3>Обращение с кодом <%= params[:id] %> удалено.</h3>
+    <% else %>
+      <%= render :partial => @appeal.state %>
+    <% end %>
+  <% else %>
+    <h3>Обращение c кодом <%= params[:id] %> не найдено.</h3>
+  <% end %>
 </div>
-
-<% content_for :right_sidebar do %>
-<div class="side_stuff">
-  <div class="top_border"></div>
-
-  <%= render @appeal.registration unless @appeal.fresh? %>
-  <%= render :partial => 'registrations/form' if @appeal.fresh? && !@appeal.deleted? %>
-  <%= render :partial => 'actions', :locals => { :margin_top => @appeal.deleted? } %>
-</div>
-<% end %>
