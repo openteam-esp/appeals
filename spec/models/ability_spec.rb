@@ -52,6 +52,13 @@ describe Ability do
         it { should     be_able_to(:manage, another_manager_of(child_1_1).permissions.first) }
         it { should_not be_able_to(:manage, another_manager_of(child_2).permissions.first) }
       end
+
+      context 'управление обращениями' do
+        it { should_not be_able_to(:manage, fresh_appeal(:section => section(root))) }
+        it { should     be_able_to(:manage, fresh_appeal(:section => section(child_1))) }
+        it { should     be_able_to(:manage, fresh_appeal(:section => section(child_1_1))) }
+        it { should_not be_able_to(:manage, fresh_appeal(:section => section(child_2))) }
+      end
     end
 
     context 'подконтеста' do

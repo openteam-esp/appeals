@@ -30,12 +30,24 @@ class Ability
     end
 
     ## app specific
-    can :manage, Subcontext do | subcontext |
-      user.manager_of? subcontext.context
+    can :manage, Section do | section |
+      user.manager_of? section.context
     end
 
-    can :manage, Subcontext do | subcontext |
-      user.manager_of? subcontext
+    can :manage, Section do | section |
+      user.operator_of? section.context
+    end
+
+    can :manage, Section do | section |
+      user.manager_of? section
+    end
+
+    can :manage, Section do | section |
+      user.operator_of? section
+    end
+
+    can :manage, Appeal do | appeal |
+      can? :manage, appeal.section
     end
   end
 end

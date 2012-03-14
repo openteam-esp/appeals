@@ -3,7 +3,6 @@
 require 'spec_helper'
 
 describe Appeal do
-  it { should belong_to(:destroy_appeal_job) }
   it { should belong_to(:topic) }
   it { should belong_to(:section) }
 
@@ -36,29 +35,29 @@ describe Appeal do
 
   describe 'валидация email' do
     it 'должна пропускать ololo@ololo.com' do
-      appeal = Fabricate.build(:appeal, :email => 'ololo@ololo.com')
+      appeal = Fabricate.build(:appeal, :email => 'ololo@ololo.com', :section => section(root))
       appeal.save
       appeal.errors.keys.should be_empty
     end
 
     it 'не должна пропускать blah' do
-      appeal = Fabricate.build(:appeal, :email => 'blah')
+      appeal = Fabricate.build(:appeal, :email => 'blah', :section => section(root))
       appeal.save
       appeal.errors.keys.should == [:email]
     end
   end
 
   describe 'при создании обращения' do
-    it { Fabricate(:appeal).should be_fresh }
+    it { Fabricate(:appeal, :section => section(root)).should be_fresh }
 
     it 'должен генерироваться уникальный код' do
-      appeal = Fabricate(:appeal)
+      appeal = Fabricate(:appeal, :section => section(root))
       appeal.code.should =~ /\d{3}-\d{3}-\d{3}-\d{3}/
     end
   end
 
   it 'должен требовать email если выбран ответ по email' do
-    appeal = Fabricate.build(:appeal, :answer_kind => 'email', :email => '')
+    appeal = Fabricate.build(:appeal, :answer_kind => 'email', :email => '', :section => section(root))
     appeal.save
 
     appeal.errors.keys.should == [:email]
@@ -71,7 +70,7 @@ describe Appeal do
   end
 
   it 'должен требовать адрес если выбран ответ по почте' do
-    appeal = Fabricate.build(:appeal, :answer_kind => 'post')
+    appeal = Fabricate.build(:appeal, :answer_kind => 'post', :section => section(root))
     appeal.save
     appeal.errors.keys.should == [:"address.region", :"address.township", :"address.district", :"address.postcode", :"address.street", :"address.house"]
 
@@ -87,7 +86,7 @@ describe Appeal do
   end
 
   it "не должен валидировать адрес, если выбран ответ по email" do
-    appeal = Appeal.new(Fabricate.attributes_for(:appeal, :answer_kind => 'email').merge(:address_attributes => {:region => "Томск"}))
+    appeal = Appeal.new(Fabricate.attributes_for(:appeal, :answer_kind => 'email', :section => section(root)).merge(:address_attributes => {:region => "Томск"}))
     appeal.save
     appeal.errors.should be_empty
     appeal.should be_persisted
@@ -211,22 +210,16 @@ describe Appeal do
 
   describe 'корзина' do
     describe "удаление" do
-      before do
-        set_current_user
-      end
-
       it { deleted_appeal.should be_persisted }
       it { deleted_appeal.should be_deleted }
       it { deleted_appeal.registration.should be_persisted }
       it { deleted_appeal.review.should be_persisted }
       it { deleted_appeal.reply.should be_persisted }
-      it { deleted_appeal.destroy_appeal_job.should be_persisted }
     end
 
     describe "восстановление" do
       it { restored_appeal.should be_persisted }
       it { restored_appeal.should_not be_deleted }
-      it { restored_appeal.destroy_appeal_job.should_not be_persisted }
     end
   end
 

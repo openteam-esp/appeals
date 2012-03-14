@@ -6,6 +6,10 @@ module AppealsSpecHelper
     @section ||= Section.create :title => "Section", :context => context
   end
 
+  def another_section(context)
+    @another_section ||= Section.create :title => "Another section", :context => context
+  end
+
   def current_user
     @current_user
   end
@@ -80,7 +84,7 @@ module AppealsSpecHelper
 
   def deleted_appeal(options={})
     @deleted_appeal ||= closed_appeal.tap do |appeal|
-      appeal.move_to_trash_by(current_user)
+      appeal.move_to_trash_by(user)
     end
   end
 

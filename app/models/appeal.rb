@@ -176,7 +176,6 @@ class Appeal < ActiveRecord::Base
     self.tap do |appeal|
       appeal.update_attributes :deleted_by => nil,
                                :deleted_at => nil
-      appeal.destroy_appeal_job.destroy
     end
   end
 
