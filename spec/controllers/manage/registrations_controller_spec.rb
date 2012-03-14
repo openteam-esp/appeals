@@ -1,10 +1,7 @@
 require 'spec_helper'
 
-describe RegistrationsController do
-  before do
-    set_current_user
-    sign_in user
-  end
+describe Manage::RegistrationsController do
+  before { sign_in manager_of(root) }
 
   it "POST create" do
     post :create, :appeal_id => fresh_appeal.id, :registration => Fabricate.attributes_for(:registration)

@@ -2,11 +2,8 @@
 
 require 'spec_helper'
 
-describe ReviewsController do
-  before do
-    set_current_user user
-    sign_in user
-  end
+describe Manage::ReviewsController do
+  before { sign_in manager_of(root) }
 
   describe 'POST create' do
     it 'should redirect to registered appeals' do

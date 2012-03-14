@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Public::CheckStatusesController do
+describe CheckStatusesController do
   it "get new" do
     get :new
     response.should render_template(:new)
