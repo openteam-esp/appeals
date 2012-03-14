@@ -1,6 +1,11 @@
 # encoding: utf-8
 
 module AppealsSpecHelper
+
+  def section(context)
+    @section ||= Section.create :title => "Section", :context => context
+  end
+
   def current_user
     @current_user
   end
@@ -10,24 +15,8 @@ module AppealsSpecHelper
     @current_user = user
   end
 
-  def as(user, &block)
-    logged_in = current_user
-    set_current_user user
-    result = yield
-    set_current_user logged_in
-    result
-  end
-
-  def create_user(options={})
-    Fabricate(:user, options)
-  end
-
-  def user(options={})
-    @user ||= create_user(options)
-  end
-
   def create_fresh_appeal(options={})
-    Fabricate(:appeal, options)
+    Fabricate(:appeal, options.reverse_merge(:section => section(root)))
   end
 
   def create_registered_appeal(options={})

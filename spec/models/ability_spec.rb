@@ -3,19 +3,81 @@
 require 'spec_helper'
 
 describe Ability do
-  let(:ability) { Ability.new(user) }
+  context 'менеджер' do
+    context 'корневого контекста' do
+      subject { ability_for(manager_of(root)) }
 
-  it { ability.should be_able_to(:create, Fabricate(:reply, :appeal => reviewing_appeal)) }
-  it { ability.should be_able_to(:update, Fabricate(:reply, :appeal => reviewing_appeal)) }
+      context 'управление контекстами' do
+        it { should     be_able_to(:manage, root) }
+        it { should     be_able_to(:manage, child_1) }
+        it { should     be_able_to(:manage, child_1_1) }
+        it { should     be_able_to(:manage, child_2) }
+      end
 
-  it { ability.should be_able_to(:destroy, fresh_appeal) }
+      context 'управление подконтекстами' do
+        it { should     be_able_to(:manage, section(root)) }
+        it { should     be_able_to(:manage, section(child_1)) }
+        it { should     be_able_to(:manage, section(child_1_1)) }
+        it { should     be_able_to(:manage, section(child_2)) }
+      end
 
-  it { ability.should be_able_to(:close, Fabricate(:appeal)) }
-  it { ability.should be_able_to(:restore, Fabricate(:appeal)) }
-  it { ability.should be_able_to(:review, Fabricate(:appeal)) }
-  it { ability.should be_able_to(:revert, Fabricate(:appeal)) }
+      context 'управление правами доступа' do
+        it { should     be_able_to(:manage, another_manager_of(root).permissions.first) }
+        it { should     be_able_to(:manage, another_manager_of(child_1).permissions.first) }
+        it { should     be_able_to(:manage, another_manager_of(child_1_1).permissions.first) }
+        it { should     be_able_to(:manage, another_manager_of(child_2).permissions.first) }
+      end
+    end
 
-  it { ability.should be_able_to(:create, registered_appeal.build_note(Fabricate.attributes_for(:note))) }
-  it { ability.should be_able_to(:create, registered_appeal.build_redirect(Fabricate.attributes_for(:redirect))) }
-  it { ability.should be_able_to(:create, registered_appeal.build_review(Fabricate.attributes_for(:review))) }
+    context 'вложенного контекста' do
+      subject { ability_for(manager_of(child_1)) }
+
+      context 'управление контекстами' do
+        it { should_not be_able_to(:manage, root) }
+        it { should     be_able_to(:manage, child_1) }
+        it { should     be_able_to(:manage, child_1_1) }
+        it { should_not be_able_to(:manage, child_2) }
+      end
+
+      context 'управление подконтекстами' do
+        it { should_not be_able_to(:manage, section(root)) }
+        it { should     be_able_to(:manage, section(child_1)) }
+        it { should     be_able_to(:manage, section(child_1_1)) }
+        it { should_not be_able_to(:manage, section(child_2)) }
+      end
+
+      context 'управление правами доступа' do
+        it { should_not be_able_to(:manage, another_manager_of(root).permissions.first) }
+        it { should     be_able_to(:manage, another_manager_of(child_1).permissions.first) }
+        it { should     be_able_to(:manage, another_manager_of(child_1_1).permissions.first) }
+        it { should_not be_able_to(:manage, another_manager_of(child_2).permissions.first) }
+      end
+    end
+
+    context 'подконтеста' do
+      subject { ability_for(manager_of(section(child_1)))}
+
+      context 'управление контекстами' do
+        it { should_not be_able_to(:manage, root) }
+        it { should_not be_able_to(:manage, child_1) }
+        it { should_not be_able_to(:manage, child_1_1) }
+        it { should_not be_able_to(:manage, child_2) }
+      end
+
+      context 'управление подконтекстами' do
+        it { should_not be_able_to(:manage, another_section(root)) }
+        it { should_not be_able_to(:manage, another_section(child_1)) }
+        it { should_not be_able_to(:manage, another_section(child_1_1)) }
+        it { should_not be_able_to(:manage, another_section(child_2)) }
+        it { should     be_able_to(:manage, section(child_1)) }
+      end
+
+      context 'управление правами доступа' do
+        it { should_not be_able_to(:manage, another_manager_of(root).permissions.first) }
+        it { should_not be_able_to(:manage, another_manager_of(child_1).permissions.first) }
+        it { should_not be_able_to(:manage, another_manager_of(child_1_1).permissions.first) }
+        it { should_not be_able_to(:manage, another_manager_of(child_2).permissions.first) }
+      end
+    end
+  end
 end

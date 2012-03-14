@@ -24,9 +24,9 @@ ru:
         name: Имя
         patronymic: Отчество
         phone: Телефон
-        proxy_ip: IP прокси-сервера
+        user_proxy_ip: IP прокси-сервера
         public: Я разрешаю размещение обращения в открытом доступе
-        referrer: Точка входа
+        user_referrer: Точка входа
         social_status: Социальный статус
         social_status_enum:
           refugee: Беженец

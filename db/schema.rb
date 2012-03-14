@@ -94,10 +94,10 @@ ActiveRecord::Schema.define(:version => 20120314115255) do
 
   create_table "registrations", :force => true do |t|
     t.integer  "appeal_id"
-    t.date     "registred_on"
+    t.date     "registered_on"
     t.string   "number"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "registrations", ["appeal_id"], :name => "index_registrations_on_appeal_id"

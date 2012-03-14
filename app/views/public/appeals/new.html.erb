@@ -1,6 +1,6 @@
 <h1><%= t 'new_appeal' %></h1>
 
-<%= semantic_form_for @appeal, :url => public_section_appeals_path(@section.slug), :html => { :multipart => true } do |form| %>
+<%= semantic_form_for @appeal, :url => public_section_appeals_path(@section), :html => { :multipart => true } do |form| %>
 
   <%= form.inputs do %>
     <%= form.input :surname %>

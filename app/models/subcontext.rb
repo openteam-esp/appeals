@@ -1,21 +1,14 @@
-class Section < ActiveRecord::Base
-
-  belongs_to :context
-
-  has_many :topics
-  has_many :appeals
-
-  validates_presence_of :title, :context
+class Subcontext < ActiveRecord::Base
+  esp_auth_subcontext
 end
-
 
 # == Schema Information
 #
-# Table name: sections
+# Table name: subcontexts
 #
 #  id         :integer         not null, primary key
-#  context_id :integer
 #  title      :string(255)
+#  context_id :integer
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #

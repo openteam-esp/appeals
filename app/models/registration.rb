@@ -16,11 +16,11 @@ end
 #
 # Table name: registrations
 #
-#  id            :integer         not null, primary key
-#  registered_on :date
-#  number        :string(255)
-#  appeal_id     :integer
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id           :integer         not null, primary key
+#  appeal_id    :integer
+#  registred_on :date
+#  number       :string(255)
+#  created_at   :datetime        not null
+#  updated_at   :datetime        not null
 #
 

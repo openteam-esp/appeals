@@ -243,29 +243,28 @@ end
 #
 # Table name: appeals
 #
-#  id                    :integer         not null, primary key
-#  surname               :string(255)
-#  name                  :string(255)
-#  patronymic            :string(255)
-#  topic_id              :integer
-#  email                 :string(255)
-#  phone                 :string(255)
-#  text                  :text
-#  public                :boolean
-#  answer_kind           :string(255)
-#  created_at            :datetime
-#  updated_at            :datetime
-#  state                 :string(255)
-#  code                  :string(255)
-#  user_ip               :string(255)
-#  proxy_ip              :string(255)
-#  user_agent            :string(255)
-#  referrer              :string(255)
-#  deleted_at            :datetime
-#  deleted_by_id         :integer
-#  destroy_appeal_job_id :integer
-#  social_status         :string(255)
-#  section_id            :integer
-#  root_path             :string(255)
+#  id            :integer         not null, primary key
+#  deleted_by_id :integer
+#  section_id    :integer
+#  topic_id      :integer
+#  public        :boolean
+#  deleted_at    :datetime
+#  answer_kind   :string(255)
+#  code          :string(255)
+#  email         :string(255)
+#  name          :string(255)
+#  surname       :string(255)
+#  patronymic    :string(255)
+#  phone         :string(255)
+#  root_path     :string(255)
+#  social_status :string(255)
+#  state         :string(255)
+#  user_agent    :string(255)
+#  user_ip       :string(255)
+#  user_proxy_ip :string(255)
+#  user_referrer :string(255)
+#  text          :text
+#  created_at    :datetime        not null
+#  updated_at    :datetime        not null
 #
 

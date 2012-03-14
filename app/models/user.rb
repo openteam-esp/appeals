@@ -1,19 +1,6 @@
 class User < ActiveRecord::Base
-  devise :omniauthable, :trackable, :timeoutable
-  attr_accessible :name, :email, :nickname, :first_name, :last_name, :location, :description, :image, :phone, :urls, :raw_info
-
-  def managed_sections
-    sections.try(:split)
-  end
-
-  def self.from_omniauth(hash)
-    User.find_or_initialize_by_uid(hash['uid']).tap do |user|
-      user.update_attributes hash['info']
-    end
-  end
+  esp_auth_user
 end
-
-
 
 # == Schema Information
 #
@@ -37,7 +24,7 @@ end
 #  last_sign_in_at    :datetime
 #  current_sign_in_ip :string(255)
 #  last_sign_in_ip    :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
+#  created_at         :datetime        not null
+#  updated_at         :datetime        not null
 #
 

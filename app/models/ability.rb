@@ -1,21 +1,41 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user=nil)
-    user ||= (User.current || User.new)
+  def initialize(user)
+    return unless user
 
-    unless user.new_record?
-      can :manage, Registration
+    ## common
+    can :manage, Context do | context |
+      user.manager_of? context
+    end
 
-      can [:close, :destroy, :read, :restore, :revert, :review], Appeal
+    can :manage, Permission do | permission |
+      permission.context && user.manager_of?(permission.context)
+    end
 
-      can :create, [Note, Redirect, Review] do |object|
-        object.appeal.registered?
-      end
+    can [:new, :create], Permission do | permission |
+      !permission.context && user.manager?
+    end
 
-      can [:create, :update], Reply do |reply|
-        reply.appeal.reviewing?
-      end
+    can [:search, :index], User do
+      user.manager?
+    end
+
+    can :manage, :application do
+      user.have_permissions?
+    end
+
+    can :manage, :permissions do
+      user.manager?
+    end
+
+    ## app specific
+    can :manage, Subcontext do | subcontext |
+      user.manager_of? subcontext.context
+    end
+
+    can :manage, Subcontext do | subcontext |
+      user.manager_of? subcontext
     end
   end
 end

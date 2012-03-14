@@ -34,7 +34,7 @@ class Appeal < ActiveRecord::Base
   before_validation :set_address_validation, :if => :answer_kind_post?
 
   def self.for(user)
-    user.managed_sections ? includes(:section).where(:sections => {:slug => user.managed_sections}) : where(:id => nil)
+    raise 'TODO appeal from permissions'
   end
 
   scope :by_state, ->(state) { where(:state => state).not_deleted }
@@ -164,9 +164,7 @@ class Appeal < ActiveRecord::Base
 
   def move_to_trash_by(user)
     self.tap do |appeal|
-      appeal.update_attributes :deleted_at => Time.now,
-                               :deleted_by => user,
-                               :destroy_appeal_job => Delayed::Job.enqueue(:run_at => 30.days.since, :payload_object => DestroyAppealJob.new(self.id))
+      appeal.update_attributes :deleted_at => Time.now, :deleted_by => user
     end
   end
 
@@ -212,10 +210,10 @@ class Appeal < ActiveRecord::Base
     end
 
     def set_audit_info
-      self.proxy_ip = self.class.request_env['HTTP_X_FORWARDED_FOR']
+      self.user_proxy_ip = self.class.request_env['HTTP_X_FORWARDED_FOR']
       self.user_ip = self.class.request_env['REMOTE_ADDR']
       self.user_agent = self.class.request_env['HTTP_USER_AGENT']
-      self.referrer = self.class.request_env['HTTP_REFERER']
+      self.user_referrer = self.class.request_env['HTTP_REFERER']
     end
 
     def set_address_validation
@@ -229,29 +227,28 @@ end
 #
 # Table name: appeals
 #
-#  id                    :integer         not null, primary key
-#  surname               :string(255)
-#  name                  :string(255)
-#  patronymic            :string(255)
-#  topic_id              :integer
-#  email                 :string(255)
-#  phone                 :string(255)
-#  text                  :text
-#  public                :boolean
-#  answer_kind           :string(255)
-#  created_at            :datetime
-#  updated_at            :datetime
-#  state                 :string(255)
-#  code                  :string(255)
-#  user_ip               :string(255)
-#  proxy_ip              :string(255)
-#  user_agent            :string(255)
-#  referrer              :string(255)
-#  deleted_at            :datetime
-#  deleted_by_id         :integer
-#  destroy_appeal_job_id :integer
-#  social_status         :string(255)
-#  section_id            :integer
-#  root_path             :string(255)
+#  id            :integer         not null, primary key
+#  deleted_by_id :integer
+#  section_id    :integer
+#  topic_id      :integer
+#  public        :boolean
+#  deleted_at    :datetime
+#  answer_kind   :string(255)
+#  code          :string(255)
+#  email         :string(255)
+#  name          :string(255)
+#  surname       :string(255)
+#  patronymic    :string(255)
+#  phone         :string(255)
+#  root_path     :string(255)
+#  social_status :string(255)
+#  state         :string(255)
+#  user_agent    :string(255)
+#  user_ip       :string(255)
+#  user_proxy_ip :string(255)
+#  user_referrer :string(255)
+#  text          :text
+#  created_at    :datetime        not null
+#  updated_at    :datetime        not null
 #
 

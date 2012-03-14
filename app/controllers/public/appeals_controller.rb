@@ -1,7 +1,7 @@
 class Public::AppealsController < ApplicationController
   inherit_resources
 
-  belongs_to :section, :finder => :find_by_slug
+  belongs_to :section
 
   actions :create, :new, :show
 
