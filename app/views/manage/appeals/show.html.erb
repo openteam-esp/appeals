@@ -33,9 +33,12 @@
       </div>
     <% end if @appeal.root_path? %>
 
-
     <div class="reply_wrapper">
-      <%= render @appeal.reply %>
+      <% if @appeal.reply %>
+        <%= render @appeal.reply %>
+      <% else %>
+        <%= link_to t('add_reply'), new_appeal_reply_path(@appeal), :remote => true, :class => 'button icon add reply_link' if @appeal.reviewing? %>
+      <% end %>
     </div>
   </div>
 </div>
