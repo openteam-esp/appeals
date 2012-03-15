@@ -64,6 +64,8 @@ class Appeal < ActiveRecord::Base
     end
   end
 
+  after_create :set_root_path, :unless => :root_path?
+
   before_create :set_code
   before_create :set_audit_info
 
@@ -216,6 +218,10 @@ class Appeal < ActiveRecord::Base
     def set_address_validation
       self.address ||= build_address
       self.address.use_validation = true
+    end
+
+    def set_root_path
+      update_attribute :root_path, PathInterpolator.generate_path(:section_id => section.id, :class_name => self.class.name.downcase)
     end
 end
 

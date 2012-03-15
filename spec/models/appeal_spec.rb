@@ -228,6 +228,14 @@ describe Appeal do
 
     it { destroyed_appeal.should_not be_persisted }
   end
+
+  context 'созданное обращение' do
+    describe 'после сохранения' do
+      let(:appeal) { Fabricate :appeal, :root_path => nil, :section => section(root) }
+
+      it { appeal.root_path.should_not be_blank }
+    end
+  end
 end
 
 
