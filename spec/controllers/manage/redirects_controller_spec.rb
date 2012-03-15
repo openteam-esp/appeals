@@ -8,7 +8,7 @@ describe Manage::NotesController do
   describe 'POST create' do
     it 'should redirect to registered appeals' do
       post :create, :appeal_id => registered_appeal.id, :note => Fabricate.attributes_for(:note)
-      response.should redirect_to(scoped_appeals_path(:folder => :registered))
+      response.should redirect_to(manage_scoped_appeals_path(:folder => :registered))
     end
   end
 end

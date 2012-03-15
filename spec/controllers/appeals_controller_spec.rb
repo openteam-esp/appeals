@@ -5,13 +5,15 @@ require 'spec_helper'
 describe AppealsController do
   describe "POST create" do
     it "должен проставлять техническую информацию" do
-      appeal_attributes = Fabricate.attributes_for(:appeal)
-      appeal_attributes.merge(:section_id => section)
+      section = section(root)
+      appeal_attributes = Fabricate.attributes_for(:appeal, :section => section)
+      appeal_attributes.delete(:section)
+      appeal_attributes[:section_id] = section.id
       appeal_attributes[:topic_id] = appeal_attributes[:topic]
       appeal_attributes.delete(:topic)
       post :create, :appeal => appeal_attributes, :section_id => section.id
       appeal = assigns(:appeal)
-      response.should redirect_to(public_appeal_path(appeal.code))
+      response.should redirect_to(appeal_path(appeal.code))
       appeal.user_ip.should_not be_nil
       appeal.user_agent.should_not be_nil
     end

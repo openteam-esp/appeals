@@ -10,15 +10,6 @@ module AppealsSpecHelper
     @another_section ||= Section.create :title => "Another section", :context => context
   end
 
-  def current_user
-    @current_user
-  end
-
-  def set_current_user(user = nil)
-    user ||= create_user
-    @current_user = user
-  end
-
   def create_fresh_appeal(options={})
     Fabricate(:appeal, options.reverse_merge(:section => section(root)))
   end

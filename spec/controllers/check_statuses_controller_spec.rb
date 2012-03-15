@@ -11,7 +11,7 @@ describe CheckStatusesController do
   describe "POST create" do
     it "если найдено обращение" do
       post :create, :check_status => fresh_appeal.code.split("-").inject({}) {|options, part| options["part#{options.size+1}"] = part; options}
-      response.should redirect_to(public_appeal_path(fresh_appeal.code))
+      response.should redirect_to(appeal_path(fresh_appeal.code))
     end
 
     it "если обращение не найдено" do
