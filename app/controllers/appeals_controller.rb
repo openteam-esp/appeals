@@ -13,7 +13,7 @@ class AppealsController < ApplicationController
     new! do |success|
       @appeal.build_address
       success.html
-      success.vnd_html { render :file => 'public/appeals/remote_form.html', :layout => false }
+      success.vnd_html { render :file => 'appeals/remote_form.html', :layout => false }
     end
   end
 
@@ -24,11 +24,11 @@ class AppealsController < ApplicationController
           destroy_appeal_attachemnts_path
           render :action => :show, :layout => false
         end
-        failure.html { render :file => 'public/appeals/remote_form.html', :layout => false }
+        failure.html { render :file => 'appeals/remote_form.html', :layout => false }
       else
         success.html do
           destroy_appeal_attachemnts_path
-          redirect_to public_appeal_path(@appeal.code)
+          redirect_to appeal_path(@appeal.code)
         end
         failure.html { render :action => :new }
       end

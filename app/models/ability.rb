@@ -50,7 +50,7 @@ class Ability
       can? :manage, appeal.section
     end
 
-    can :manage, Note do | object |
+    can :manage, [Note, Registration, Redirect, Review, Reply] do | object |
       can? :manage, object.appeal
     end
   end

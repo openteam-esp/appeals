@@ -1,5 +1,5 @@
 <%= content_for :header do %>
-  <%= link_to t(:to_appeal_list), manage_appeal_scoped_appeals_path(:folder => @appeal.state), :class => 'back_to_list' %>
+  <%= link_to t(:to_appeal_list), manage_scoped_appeals_path(:folder => @appeal.state), :class => 'back_to_list' %>
 
   <div class='state <%= @appeal.state %>'>
     <%= @appeal.human_state_name %>

@@ -8,6 +8,6 @@ class Manage::RedirectsController < Manage::ApplicationController
   protected
 
     def smart_resource_url
-      scoped_appeals_path(:folder => :registered)
+      manage_scoped_appeals_path(:folder => :registered)
     end
 end

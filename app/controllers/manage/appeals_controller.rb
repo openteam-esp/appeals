@@ -18,7 +18,7 @@ class Manage::AppealsController < Manage::ApplicationController
     revert! {
       @appeal.to_revert!
 
-      redirect_to scoped_appeals_path(:folder => @appeal.state) and return
+      redirect_to manage_scoped_appeals_path(:folder => @appeal.state) and return
     }
   end
 
@@ -26,7 +26,7 @@ class Manage::AppealsController < Manage::ApplicationController
     close! {
       @appeal.to_close!
 
-      redirect_to scoped_appeals_path(:folder => :reviewing) and return
+      redirect_to manage_scoped_appeals_path(:folder => :reviewing) and return
     }
   end
 
@@ -34,7 +34,7 @@ class Manage::AppealsController < Manage::ApplicationController
     destroy! {
       @appeal.move_to_trash_by(current_user)
 
-      redirect_to scoped_appeals_path(:folder => @appeal.state) and return
+      redirect_to manage_scoped_appeals_path(:folder => @appeal.state) and return
     }
   end
 
@@ -42,7 +42,7 @@ class Manage::AppealsController < Manage::ApplicationController
     restore! {
       @appeal.restore
 
-      redirect_to scoped_appeals_path(:folder => @appeal.state) and return
+      redirect_to manage_scoped_appeals_path(:folder => @appeal.state) and return
     }
   end
 

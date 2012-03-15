@@ -5,7 +5,7 @@ class ListWithCounters < SimpleNavigation::Renderer::Base
       li_options = item.html_options.reject { |k, v| k == :link || k == :counter }
       counter    = item.html_options[:counter]
       link_name  = item.name
-      if counter && !counter.zero?
+      if counter.to_i > 0
         link_name += content_tag(:span, counter, :class => :counter)
       end
       li_content = link_to(link_name, item.url, link_options_for(item))

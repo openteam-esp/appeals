@@ -2,10 +2,11 @@ Appeals::Application.routes.draw do
   mount ElVfsClient::Engine => '/'
 
   namespace :manage do
+    get '/:folder/appeals' => 'appeals#index',
+      :constraints => { :folder => /(fresh|registered|noted|redirected|reviewing|closed|trash)/ },
+      :as => :scoped_appeals
+
     resources :appeals, :only => [:show, :destroy] do
-      get '/:folder/appeals' => 'appeals#index',
-          :constraints => { :folder => /(fresh|registered|noted|redirected|reviewing|closed|trash)/ },
-          :as => :scoped_appeals
 
       get '/:print' => 'appeals#show',
           :constraints => { :print => /print/ },
@@ -18,8 +19,6 @@ Appeals::Application.routes.draw do
         post :revert
       end
 
-      post 'replies/:reply_id/uploads' => 'uploads#create', :as => :reply_uploads
-
       resource :note,         :only => [:create, :new]
       resource :redirect,     :only => [:create, :new]
       resource :registration, :only => [:create, :new]
@@ -27,9 +26,7 @@ Appeals::Application.routes.draw do
       resource :reply,        :only => [:create, :edit, :new, :update]
     end
 
-    scope :folder => 'fresh' do
-      root :to => 'appeals#index'
-    end
+    root :to => 'appeals#index', :folder => 'fresh'
   end
 
   resource :check_status, :only => [:create, :new]

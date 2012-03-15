@@ -5,7 +5,7 @@ SimpleNavigation::Configuration.run do |navigation|
     %w[fresh registered reviewing closed noted redirected trash].each do |folder|
       primary.item "sidebar_appeal_#{folder}",
                    t("sidebar.appeal.#{folder}"),
-                   scoped_appeals_path(folder),
+                   manage_scoped_appeals_path(folder),
                    :counter => %w[closed noted redirected].include?(folder) ? 0 : Appeal.for(current_user).folder(folder).count,
                    :highlights_on => lambda { params[:folder] == folder && params[:controller] == 'appeals' }
     end

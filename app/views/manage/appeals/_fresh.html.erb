@@ -2,7 +2,7 @@
   <%= time_ago_in_words(appeal.created_at) %> назад
 </div>
 <div class="title">
-  <%= link_to "#{appeal.author}, #{appeal.topic.title}", appeal %>
+  <%= link_to "#{appeal.author}, #{appeal.topic.title}", manage_appeal_path(appeal) %>
 </div>
 <div class="participants">
   <%= truncate(appeal.text, :length => 200) %>

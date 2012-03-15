@@ -3,5 +3,5 @@
 <ul>
   <li>зарегистрировано <%= l @appeal.registration_registered_on %> с номером <%= @appeal.registration_number %></li>
   <li>получен ответ с номером <%= @appeal.reply_number %> от <%= l @appeal.reply_replied_on %>, ответственный <%= @appeal.reply_replied_by %></li>
-  <li>по этому адресу <%= link_to public_appeal_url(@appeal.code), public_appeal_url(@appeal.code) %> Вы сможете отслеживать процесс рассмотрения обращения </li>
+  <li>по этому адресу <%= link_to appeal_url(@appeal.code), appeal_url(@appeal.code) %> Вы сможете отслеживать процесс рассмотрения обращения </li>
 </ul>

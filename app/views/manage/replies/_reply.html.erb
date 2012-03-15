@@ -17,10 +17,10 @@
     <div class="reply_file_wrapper">
     </div>
   </div>
-<% end if @appeal.root_path %>
+<% end if @appeal.root_path? %>
 
 <%= link_to t("edit_reply"),
             edit_manage_appeal_reply_path(@appeal),
             :remote => true,
-            :class => 'button icon edit reply_link' if can?(:update, @appeal.reply) %>
+            :class => 'button icon edit reply_link' %>
 

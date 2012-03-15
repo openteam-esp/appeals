@@ -4,7 +4,7 @@ var remote_wrapper = $('.remote_wrapper');
 remote_wrapper.bind('ajax:before', function(){remote_wrapper.addClass("ajax_loading");}).live('ajax:success', function(evt, data, status, xhr){remote_wrapper.removeClass("ajax_loading");remote_wrapper.html(data);});
 //]]>
 </script>
-<%= semantic_form_for @appeal, :url => public_section_appeals_url(@section), :remote => true, :html => { :multipart => true } do |form| %>
+<%= semantic_form_for @appeal, :url => section_appeals_url(@section), :remote => true, :html => { :multipart => true } do |form| %>
   <div><input type="hidden" name="X-REQUESTED-WITH" value="XMLRequest" /></div>
 
   <%= form.inputs :class => 'inputs name' do %>

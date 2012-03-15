@@ -1,36 +1,27 @@
 <!DOCTYPE HTML>
 <html lang="ru">
-<head>
-  <title><%= t("appeal_system") %></title>
-  <meta charset="UTF-8">
-  <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "application" %>
-</head>
-<body>
-  <% flash.each do |name, msg| %>
-    <div class="flash_wrapper" style='display:none;'>
-      <%= content_tag :div, msg, :id => "flash_#{name}", :class => "flash_block" %>
-      <a href='#' class='close_link'>Закрыть</a>
-    </div>
-  <% end %>
-
-  <%= yield :right_sidebar %>
-
-  <div class="main_container">
-    <%= yield :main %>
-  </div>
-
-  <%= yield :sidebar %>
-
-  <div class='footer'>
-    <% if current_user %>
-      <div class="login_info">
-        <%= current_user.name %>
-        <%= link_to t("logout"), destroy_user_session_path, :method => :delete %>
+  <head>
+    <title><%= t("appeal_system") %></title>
+    <meta charset="UTF-8">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application" %>
+  </head>
+  <body>
+    <% flash.each do |name, msg| %>
+      <div class="flash_wrapper" style='display:none;'>
+        <%= content_tag :div, msg, :id => "flash_#{name}", :class => "flash_block" %>
+        <a href='#' class='close_link'>Закрыть</a>
       </div>
     <% end %>
-  </div>
 
-</body>
+    <%= yield :right_sidebar %>
+
+    <div class="main_container">
+      <%= yield :main %>
+    </div>
+
+    <%= yield :sidebar %>
+
+  </body>
 </html>
