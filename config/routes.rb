@@ -37,4 +37,6 @@ Appeals::Application.routes.draw do
   resources :sections, :only => [], :shallow => true do
     resources :appeals, :only => [:create, :new, :show]
   end
+
+  root :to => 'home#show'
 end

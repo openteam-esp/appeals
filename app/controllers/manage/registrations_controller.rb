@@ -1,4 +1,4 @@
-class Manage::RegistrationsController < Manage::AuthorizedApplicationController
+class Manage::RegistrationsController < Manage::ApplicationController
   actions :create, :new
 
   belongs_to :appeal, :singleton => true

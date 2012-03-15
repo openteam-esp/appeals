@@ -1,4 +1,4 @@
-class Manage::ReviewsController < Manage::AuthorizedApplicationController
+class Manage::ReviewsController < Manage::ApplicationController
   actions :create, :new
 
   belongs_to :appeal, :singleton => true

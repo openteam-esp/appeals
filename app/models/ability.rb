@@ -49,5 +49,9 @@ class Ability
     can :manage, Appeal do | appeal |
       can? :manage, appeal.section
     end
+
+    can :manage, Note do | object |
+      can? :manage, object.appeal
+    end
   end
 end

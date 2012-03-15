@@ -1,4 +1,4 @@
-class Manage::RepliesController < Manage::AuthorizedApplicationController
+class Manage::RepliesController < Manage::ApplicationController
   actions :create, :edit, :new, :update
 
   belongs_to :appeal, :singleton => true

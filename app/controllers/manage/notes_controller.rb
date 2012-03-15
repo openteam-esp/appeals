@@ -1,4 +1,4 @@
-class Manage::NotesController < Manage::AuthorizedApplicationController
+class Manage::NotesController < Manage::ApplicationController
   actions :create, :new
 
   belongs_to :appeal, :singleton => true

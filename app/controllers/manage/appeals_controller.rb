@@ -1,4 +1,4 @@
-class Manage::AppealsController < Manage::AuthorizedApplicationController
+class Manage::AppealsController < Manage::ApplicationController
   actions :index, :show
 
   layout :resolve_layout
