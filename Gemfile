@@ -3,7 +3,7 @@ source :rubygems
 group :assets do
   gem 'sass-rails'
   gem 'compass-rails'
-  gem 'therubyracer'
+  gem 'therubyracer'                              unless RUBY_PLATFORM =~ /freebsd/
   gem 'uglifier'
 end
 
