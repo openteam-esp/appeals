@@ -18,4 +18,6 @@
  *= require show
  *= require sidebar
  *= require uploads
+ *= require esp_auth/shared
+ *= require esp_auth
  */
