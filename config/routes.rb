@@ -35,5 +35,6 @@ Appeals::Application.routes.draw do
     resources :appeals, :only => [:create, :new, :show]
   end
 
-  root :to => 'home#show'
+  # NOTE: наверное потом как-то изменится
+  root :to => 'appeals#new', :defaults => { :section_id => 1 }
 end
