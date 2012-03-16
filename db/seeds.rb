@@ -5,7 +5,7 @@ User.find_or_initialize_by_uid('1').tap do | user |
   user.permissions.create! :context => Context.first, :role => :manager if user.permissions.empty?
 end
 
-Section.find_or_initialize_by_context_id(94).tap do | s |
+Section.find_or_initialize_by_context_id(48).tap do | s |
   s.update_attributes(:title => 'Section #1')
   s.topics.find_or_create_by_title "Конституционный строй"
   s.topics.find_or_create_by_title "Основы государственного управления"
