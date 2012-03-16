@@ -87,7 +87,7 @@ ru:
     models:
       address: адрес
       appeal: обращение
-      check_status: проверка состояния обращения
+      check_status: просмотр состояния обращения
       note: рассмотрение
       redirect: переадресация
       registration: регистрация
@@ -102,7 +102,7 @@ ru:
   are_you_sure: Уверены что хотите удалить?
   back: Назад
   cancel: Отменить
-  check_status: Проверить состояние обращения
+  check_status: Посмотреть состояние обращения
   clear: Очистить
   close: Закрыть
   delete: Удалить
