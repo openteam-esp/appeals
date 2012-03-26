@@ -1,12 +1,21 @@
-vfs:
-  url:          http://pool.openteam.ru
+app:
+  secret:       SECRET
 
-sso:
-  url:          http://esp-sso.openteam.ru
-  key:          APP_KEY
-  secret:       APP_SECRET
+errors:
+  key:          KEY
+  url:          http://errors.openteam.ru
 
-production:
-  hoptoad:
-    api_key:    APP_KEY
-    host:       host.domain.com
+#solr:
+#  url:          http://localhost:8982/solr
+
+#sso:
+#  key:          KEY
+#  secret:       SECRET
+#  url:          http://esp-sso.openteam.ru
+
+#storage
+  #url:         http://esp-storage.openteam.ru
+
+unicorn:
+  workers:      2
+  timeout:      300
