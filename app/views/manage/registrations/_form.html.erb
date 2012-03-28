@@ -7,8 +7,8 @@
     <%= form.input :registered_on, :as => :string, :input_html => { :class => "datepicker" } %>
     <%= form.input :number %>
   <% end %>
-  <%= form.buttons do %>
-    <%= form.commit_button t('register'), :button_html => { :class => 'button register primary' } %>
+  <%= form.actions do %>
+    <%= form.action :submit, :label => t('register'), :button_html => { :class => 'button register primary' } %>
   <% end %>
 <% end %>
 

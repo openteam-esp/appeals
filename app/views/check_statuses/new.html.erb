@@ -2,12 +2,12 @@
   <h3>Введите код обращения</h3>
   <%= form.semantic_errors %>
   <%= form.inputs do %>
-    <%= form.input :part1, :label => false %>
-    <%= form.input :part2, :label => false %>
-    <%= form.input :part3, :label => false %>
-    <%= form.input :part4, :label => false %>
+    <%= form.input :part1, :label => false, :input_html => { :maxlength => 3 } %>
+    <%= form.input :part2, :label => false, :input_html => { :maxlength => 3 } %>
+    <%= form.input :part3, :label => false, :input_html => { :maxlength => 3 } %>
+    <%= form.input :part4, :label => false, :input_html => { :maxlength => 3 } %>
   <% end %>
-  <%= form.buttons do %>
-    <%= form.commit_button t('check_status'), :button_html => { :class => 'button big primary' } %>
+  <%= form.actions do %>
+    <%= form.action :submit, :label => t('check_status'), :button_html => { :class => 'button big primary' } %>
   <% end %>
 <% end %>

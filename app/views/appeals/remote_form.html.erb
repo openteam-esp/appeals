@@ -49,9 +49,9 @@ remote_wrapper.bind('ajax:before', function(){remote_wrapper.addClass("ajax_load
   <div class="appeal_file_wrapper">
   </div>
 
-  <%= form.buttons do %>
-    <%= form.commit_button :button_html => {:class => 'button primary'} %>
-    <li><%= link_to t('cancel'), :back, :class => 'button cancel' %></li>
+  <%= form.actions do %>
+    <%= form.action :submit, :button_html => {:class => 'button primary'} %>
+    <%= form.action :cancel, :label => t('cancel'), :url => :back, :button_html => {:class => 'button cancel'} %>
   <% end %>
 
 <% end %>

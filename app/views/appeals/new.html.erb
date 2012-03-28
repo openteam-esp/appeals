@@ -42,9 +42,9 @@
   <div class="appeal_file_wrapper">
   </div>
 
-  <%= form.buttons do %>
-    <li><%= link_to t('cancel'), :back, :class => 'button cancel' %></li>
-    <%= form.commit_button :button_html => {:class => 'button primary'} %>
+  <%= form.actions do %>
+    <%= form.action :cancel, :label => t('cancel'), :url => :back, :button_html => { :class => 'button cancel' } %></li>
+    <%= form.action :submit, :button_html => {:class => 'button primary'} %>
   <% end %>
 <% end %>
 

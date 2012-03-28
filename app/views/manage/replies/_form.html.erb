@@ -27,7 +27,7 @@
   <div class="reply_file_wrapper">
   </div>
 
-  <%= form.buttons do %>
-    <%= form.commit_button t('reply'), :button_html => { :class => 'button reply' } %>
+  <%= form.actions do %>
+    <%= form.action :submit, :label => t('reply'), :button_html => { :class => 'button reply' } %>
   <% end %>
 <% end %>

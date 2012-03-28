@@ -19,22 +19,22 @@
   <div class="button-group">
     <% unless @appeal.deleted? %>
       <%= semantic_form_for @appeal, :url => close_manage_appeal_path(@appeal), :html => {:method => :post} do |form| %>
-        <%= form.buttons do %>
-          <%= form.commit_button t('close'), :button_html => { :class => "button primary close #{'disable' unless @appeal.state_events.include?(:to_close)}" } %>
+        <%= form.actions do %>
+          <%= form.action :submit, :label => t('close'), :button_html => { :class => "button primary close #{'disable' unless @appeal.state_events.include?(:to_close)}" } %>
         <% end %>
       <% end if @appeal.reviewing? %>
 
       <%= semantic_form_for @appeal, :url => revert_manage_appeal_path(@appeal), :html => {:method => :post} do |form| %>
-        <%= form.buttons do %>
-          <%= form.commit_button t("revert_from_#{@appeal.state}"), :button_html => { :class => 'button revert' } %>
+        <%= form.actions do %>
+          <%= form.action :submit, :label => t("revert_from_#{@appeal.state}"), :button_html => { :class => 'button revert' } %>
         <% end %>
       <% end if @appeal.state_events.include?(:to_revert) %>
 
     <% end %>
 
     <%= semantic_form_for @appeal, :url => restore_manage_appeal_path(@appeal), :html => { :method => :post } do |form| %>
-      <%= form.buttons do %>
-        <%= form.commit_button t("restore"), :button_html => { :class => 'button restore' } %>
+      <%= form.actions do %>
+        <%= form.action :submit, :label => t("restore"), :button_html => { :class => 'button restore' } %>
       <% end %>
     <% end if @appeal.deleted? %>
   </div>

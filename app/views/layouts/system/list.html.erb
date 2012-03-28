@@ -18,9 +18,9 @@
         <%= form.inputs do %>
           <%= form.input :keywords, :as => :string %>
         <% end %>
-        <%= form.buttons do %>
-          <%= form.commit_button :search, :button_html => { :class => 'button' } %>
-          <%= content_tag :li, link_to(t('clear'), manage_scoped_appeals_path(params[:forder]), :class => 'button') if params[:appeal_search] && !params[:appeal_search][:keywords].blank? %>
+        <%= form.actions do %>
+          <%= form.action :submit, :label => :search, :button_html => { :class => 'button' } %>
+          <%= form.action :cancel, :label => t('clear'), :url => manage_scoped_appeals_path(params[:forder]), :button_html => { :class => 'button clear_search' } if params[:appeal_search] && !params[:appeal_search][:keywords].blank? %>
         <% end %>
       <% end %>
     </div>

@@ -54,7 +54,7 @@ $(function() {
     return false;
   });
 
-  $('.actions a').not('.trash, .print_version').click(function(){
+  $('.actions a').not('.trash, .print_version, .clear_search, .cancel').click(function(){
     var target = $('.formtastic.'+$(this).attr('id'));
     $('.formtastic.note, .formtastic.redirect, .formtastic.review').not(target).slideUp('slow');
     target.slideToggle('slow');
