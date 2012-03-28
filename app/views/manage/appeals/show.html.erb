@@ -23,7 +23,10 @@
       <%= show_attribute(@appeal, :public) %>
     </div>
     <div class="appeal_info">
-      <%= show_attribute(@appeal, :text) %>
+      <div class="show_attribute text">
+        <span class="label">Текст обращения</span>
+        <div class="value"><%= simple_format @appeal.text %></div>
+      </div>
     </div>
     <%= content_tag :div, :class => "appeal_info" do %>
       <div class="show_attribute text">
