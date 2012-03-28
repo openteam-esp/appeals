@@ -16,9 +16,9 @@ end
 # Table name: reviews
 #
 #  id         :integer         not null, primary key
-#  recipient  :string(255)
 #  appeal_id  :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  recipient  :text
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
 #
 

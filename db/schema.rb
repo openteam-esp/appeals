@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314115255) do
+ActiveRecord::Schema.define(:version => 20120328044735) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "appeal_id"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20120314115255) do
 
   create_table "redirects", :force => true do |t|
     t.integer  "appeal_id"
-    t.string   "recipient"
+    t.text     "recipient"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(:version => 20120314115255) do
 
   create_table "reviews", :force => true do |t|
     t.integer  "appeal_id"
-    t.string   "recipient"
+    t.text     "recipient"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
