@@ -3,7 +3,7 @@ class Reply < ActiveRecord::Base
 
   belongs_to :appeal
 
-  validates_presence_of :number, :replied_on, :replied_by, :text, :if => Proc.new { | reply | reply.use_validation}
+  validates_presence_of :number, :replied_on, :replied_by, :if => Proc.new { |reply| reply.use_validation }
 end
 
 

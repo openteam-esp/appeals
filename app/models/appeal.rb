@@ -182,6 +182,7 @@ class Appeal < ActiveRecord::Base
   def reply_valid?
     self.reply ||= self.build_reply
     self.reply.use_validation = true
+
     self.reply.valid?
   end
 
