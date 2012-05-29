@@ -260,10 +260,10 @@ end
 #  root_path     :string(255)
 #  social_status :string(255)
 #  state         :string(255)
-#  user_agent    :string(255)
+#  user_agent    :text
 #  user_ip       :string(255)
 #  user_proxy_ip :string(255)
-#  user_referrer :string(255)
+#  user_referrer :text
 #  text          :text
 #  created_at    :datetime        not null
 #  updated_at    :datetime        not null
