@@ -106,7 +106,7 @@ describe Appeal do
       reviewing_appeal.create_reply!
       reviewing_appeal.reply.should be_persisted
       reviewing_appeal.to_close
-      reviewing_appeal.reply.errors.keys.should == [:number, :replied_on, :replied_by, :text]
+      reviewing_appeal.reply.errors.keys.should == [:number, :replied_on, :replied_by]
       reviewing_appeal.should be_reviewing
     end
 
