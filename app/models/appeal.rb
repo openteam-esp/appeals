@@ -16,6 +16,7 @@ class Appeal < ActiveRecord::Base
 
   validates :email,
             :presence => true,
+            :length => { :minimum => 5, :maximum => 255 },
             :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i, :if => :answer_kind_email?
 
   validates_presence_of :answer_kind,
@@ -28,6 +29,8 @@ class Appeal < ActiveRecord::Base
   validates_presence_of :address, :if => :answer_kind_post?
 
   validates_uniqueness_of :code
+
+  validates_length_of :name, :surname, :patronymic, :phone, :social_status, :maximum => 255
 
   accepts_nested_attributes_for :address
 
