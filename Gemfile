@@ -17,12 +17,13 @@ group :default do
   gem 'rails',                                    :require => false
   gem 'simple-navigation'
   gem 'state_machine'
+  gem 'sunspot_rails',    '>= 2.0.0.pre.120417',  :require => false
 end
 
 group :development do
-  gem 'annotate',               '~> 2.4.1.beta1', :require => false
+  gem 'annotate',         '~> 2.4.1.beta1',       :require => false
   gem 'ruby-graphviz',                            :require => false
-  gem 'sunspot_solr',                             :require => false
+  gem 'sunspot_solr',     '>= 2.0.0.pre.120417',  :require => false
 end
 
 group :test do
@@ -35,7 +36,7 @@ group :test do
   gem 'rspec-rails',                              :require => false
   gem 'ryba',                                     :require => false
   gem 'shoulda-matchers',                         :require => false
-  gem 'spork',                  '>= 1.0.0.rc1',   :require => false
+  gem 'spork',            '>= 1.0.0.rc1',         :require => false
   gem 'sqlite3',                                  :require => false
   gem 'sunspot_matchers',                         :require => false
 end
