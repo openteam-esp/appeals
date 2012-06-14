@@ -1,5 +1,9 @@
-set :job_template, "/usr/local/bin/bash -l -c ':job'" if RUBY_PLATFORM =~ /freebsd/
+if RUBY_PLATFORM =~ /freebsd/
+  set :job_template, "/usr/local/bin/bash -l -i -c ':job'"
+else
+  set :job_template, "/bin/bash -l -i -c ':job'"
+end
 
-every 1.day, :at => '4:00 am' do
-    rake 'esp_auth:sync'
+every :day do
+  rake 'cron'
 end
