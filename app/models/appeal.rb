@@ -3,7 +3,6 @@ class Appeal < ActiveRecord::Base
   self.request_env = {}
 
   belongs_to :deleted_by,         :class_name => 'User'
-  belongs_to :destroy_appeal_job, :class_name => 'Delayed::Backend::ActiveRecord::Job'
   belongs_to :topic
   belongs_to :section
 
