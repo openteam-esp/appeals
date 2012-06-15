@@ -164,6 +164,8 @@ class Appeal < ActiveRecord::Base
     end
   end
 
+  audited
+
   def move_to_trash_by(user)
     self.tap do |appeal|
       appeal.update_attributes :deleted_at => Time.now, :deleted_by => user
