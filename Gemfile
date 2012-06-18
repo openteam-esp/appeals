@@ -27,7 +27,7 @@ group :development do
 end
 
 group :test do
-  gem 'fabrication',                              :require => false
+  gem 'fabrication',      '< 2.0.0' ,             :require => false
   gem 'forgery',                                  :require => false
   gem 'guard-rspec',                              :require => false
   gem 'guard-spork',                              :require => false
