@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120615024501) do
+ActiveRecord::Schema.define(:version => 20120924093547) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "appeal_id"
@@ -48,8 +48,11 @@ ActiveRecord::Schema.define(:version => 20120615024501) do
     t.string   "user_proxy_ip"
     t.text     "user_referrer"
     t.text     "text"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "type"
+    t.string   "kremlin_number"
+    t.date     "kremlin_registered_on"
   end
 
   create_table "audits", :force => true do |t|

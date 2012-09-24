@@ -16,24 +16,29 @@ class Appeal < ActiveRecord::Base
   validates :email,
             :presence => true,
             :length => { :minimum => 5, :maximum => 255 },
-            :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i, :if => :answer_kind_email?
+            :format => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i,
+            :if => [:answer_kind_email?, :validate_basic_fields?]
 
   validates_presence_of :answer_kind,
                         :name,
                         :surname,
                         :text,
-                        :topic,
-                        :section
+                        :if => :validate_basic_fields?
 
-  validates_presence_of :address, :if => :answer_kind_post?
+  validates_presence_of :section, :topic
+
+  validates_presence_of :address, :if => [:answer_kind_post?, :validate_basic_fields?]
 
   validates_uniqueness_of :code
 
-  validates_length_of :name, :surname, :patronymic, :phone, :social_status, :maximum => 255
+  validates_length_of :name, :surname, :patronymic, :phone, :social_status,
+                      :maximum => 255,
+                      :if => :validate_basic_fields?
+
 
   accepts_nested_attributes_for :address
 
-  before_validation :set_address_validation, :if => :answer_kind_post?
+  before_validation :set_address_validation, :if => [:answer_kind_post?, :validate_basic_fields?]
 
   scope :for, ->(user) { where :section_id => user.context_tree_of(Section).map(&:id) }
 
@@ -68,7 +73,7 @@ class Appeal < ActiveRecord::Base
 
   after_create :set_root_path, :unless => :root_path?
 
-  before_create :set_code
+  before_create :set_code, :if => :validate_basic_fields?
   before_create :set_audit_info
 
   delegate :number, :registered_on, :directed_to,
@@ -204,30 +209,35 @@ class Appeal < ActiveRecord::Base
     return "#{state}_#{(Date.today - registration_registered_on).to_i+1}_days" if registered? || reviewing?
   end
 
-  private
-    def set_code
-      while !Appeal.find_by_code(self.code = generate_code).nil?; end
-    end
+  protected
 
-    def generate_code(total_size=12, chunk_size=3, delimiter='-')
-      (sprintf "%0#{total_size}d", SecureRandom.random_number(10**total_size)).scan(/\d{#{chunk_size}}/).join(delimiter)
-    end
+  def set_code
+    while !Appeal.find_by_code(self.code = generate_code).nil?; end
+  end
 
-    def set_audit_info
-      self.user_proxy_ip = self.class.request_env['HTTP_X_FORWARDED_FOR']
-      self.user_ip = self.class.request_env['REMOTE_ADDR']
-      self.user_agent = self.class.request_env['HTTP_USER_AGENT']
-      self.user_referrer = self.class.request_env['HTTP_REFERER']
-    end
+  def generate_code(total_size=12, chunk_size=3, delimiter='-')
+    (sprintf "%0#{total_size}d", SecureRandom.random_number(10**total_size)).scan(/\d{#{chunk_size}}/).join(delimiter)
+  end
 
-    def set_address_validation
-      self.address ||= build_address
-      self.address.use_validation = true
-    end
+  def set_audit_info
+    self.user_proxy_ip = self.class.request_env['HTTP_X_FORWARDED_FOR']
+    self.user_ip = self.class.request_env['REMOTE_ADDR']
+    self.user_agent = self.class.request_env['HTTP_USER_AGENT']
+    self.user_referrer = self.class.request_env['HTTP_REFERER']
+  end
 
-    def set_root_path
-      update_attribute :root_path, PathInterpolator.generate_path(:section_id => section.id, :class_name => self.class.name.downcase)
-    end
+  def set_address_validation
+    self.address ||= build_address
+    self.address.use_validation = true
+  end
+
+  def set_root_path
+    update_attribute :root_path, PathInterpolator.generate_path(:section_id => section.id, :class_name => self.class.name.downcase)
+  end
+
+  def validate_basic_fields?
+    true
+  end
 end
 
 
