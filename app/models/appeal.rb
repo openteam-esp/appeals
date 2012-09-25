@@ -23,9 +23,10 @@ class Appeal < ActiveRecord::Base
                         :name,
                         :surname,
                         :text,
+                        :topic,
                         :if => :validate_basic_fields?
 
-  validates_presence_of :section, :topic
+  validates_presence_of :section
 
   validates_presence_of :address, :if => [:answer_kind_post?, :validate_basic_fields?]
 

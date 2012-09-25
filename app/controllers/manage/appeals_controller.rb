@@ -1,6 +1,4 @@
 class Manage::AppealsController < Manage::ApplicationController
-  actions :index, :show
-
   layout :resolve_layout
 
   custom_actions :resource => [:close, :restore, :revert, :destroy]

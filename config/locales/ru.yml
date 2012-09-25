@@ -56,6 +56,10 @@ ru:
         user_agent: Браузер пользователя
         user_ip: IP пользователя
 
+      kremlin_appeal:
+        kremlin_number: Номер обращения на сайте kremlin
+        kremlin_registered_on: Дата регистрации обращения на сайте kremlin
+
       note:
         public: Опубликовать обращение
 

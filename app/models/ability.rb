@@ -57,5 +57,7 @@ class Ability
     can :manage, [Note, Registration, Redirect, Review, Reply] do | object |
       can? :manage, object.appeal
     end
+
+    can :manage, KremlinAppeal
   end
 end

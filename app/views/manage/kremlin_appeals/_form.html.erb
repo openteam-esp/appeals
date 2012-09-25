@@ -1,0 +1,17 @@
+<%= semantic_form_for [:manage, resource] do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :kremlin_number %>
+    <%= form.input :kremlin_registered_on, :as => :string, :input_html => { :class => 'datepicker' } %>
+
+    <% resource.build_registration unless resource.registration %>
+    <%= form.semantic_fields_for :registration do |registration| %>
+      <%= registration.input :number %>
+      <%= registration.input :registered_on, :as => :string, :input_html => { :class => 'datepicker' } %>
+    <% end %>
+  <% end %>
+
+  <%= form.actions do %>
+    <%= form.action :cancel, :label => t('cancel'), :url => :back, :button_html => { :class => 'button cancel' } %></li>
+    <%= form.action :submit, :button_html => { :class => 'button primary' } %>
+  <% end %>
+<% end %>
