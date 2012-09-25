@@ -1,8 +1,9 @@
-<h3>Обращение с кодом <%= @appeal.code %> от <%= l @appeal.created_at %></h3>
+<%= render :partial => 'appeal_title' %>
 
 <ul>
+  <%= content_tag :li, "поступило #{l(@appeal.created_at.to_date)}" if @appeal.is_a?(KremlinAppeal) %>
   <li>зарегистрировано <%= l @appeal.registration_registered_on %> с номером <%= @appeal.registration_number %></li>
   <li>переадресовано &mdash; <%= @appeal.redirect.recipient %></li>
-  <li>по этому адресу <%= link_to appeal_url(@appeal.code), appeal_url(@appeal.code) %> Вы сможете отслеживать процесс рассмотрения обращения </li>
+  <%= render :partial => 'appeal_url' %>
 </ul>
 
