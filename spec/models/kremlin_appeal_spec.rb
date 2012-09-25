@@ -7,13 +7,20 @@ describe KremlinAppeal do
 
   let(:section) { Fabricate(:section) }
 
-  subject {
+  let(:kremlin_appeal) {
     KremlinAppeal.new :section => section,
                       :kremlin_registered_on => '2012-01-13',
-                      :kremlin_number => 'A26-13-11484'
+                      :kremlin_number => 'A26-13-11484',
+                      :registration_attributes => { :number => '123', :registered_on => '2012-01-11' }
   }
 
   it "can be saved without Appeal's required fields" do
-    subject.save!.should be_true
+    kremlin_appeal.save!.should be_true
+  end
+
+  describe 'should generate code 2012011311484' do
+    before { kremlin_appeal.save! }
+
+    it { kremlin_appeal.code.should == '2012011311484' }
   end
 end

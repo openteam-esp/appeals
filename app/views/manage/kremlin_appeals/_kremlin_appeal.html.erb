@@ -1,0 +1,9 @@
+<li class="<%= kremlin_appeal.attention_level %>">
+  <div class="time_ago">
+    <p>№<%= kremlin_appeal.registration.number %> от <%= l kremlin_appeal.registration.registered_on %></p>
+  </div>
+  <div class="title">
+    <%= link_to "Обращение с сайта kremlin №#{kremlin_appeal.kremlin_number} от #{kremlin_appeal.kremlin_registered_on}",
+      manage_appeal_path(kremlin_appeal) %>
+  </div>
+</li>

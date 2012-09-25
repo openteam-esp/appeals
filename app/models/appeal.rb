@@ -74,7 +74,7 @@ class Appeal < ActiveRecord::Base
 
   after_create :set_root_path, :unless => :root_path?
 
-  before_create :set_code, :if => :validate_basic_fields?
+  before_create :set_code
   before_create :set_audit_info
 
   delegate :number, :registered_on, :directed_to,
