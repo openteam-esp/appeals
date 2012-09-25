@@ -1,0 +1,8 @@
+<h3>
+  <% if @appeal.is_a?(KremlinAppeal) %>
+    Обращение №<%= @appeal.kremlin_number %> зарегистрированно <%= l @appeal.kremlin_registered_on %>
+<% else %>
+  Обращение с кодом <%= @appeal.code %> от <%= l @appeal.created_at %>
+<% end %>
+</h3>
+

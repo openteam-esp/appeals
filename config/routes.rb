@@ -7,8 +7,8 @@ Appeals::Application.routes.draw do
       :as => :scoped_appeals
 
     resources :kremlin_appeals
-    resources :appeals, :only => [:show, :destroy] do
 
+    resources :appeals, :only => [:show, :destroy] do
       get '/:print' => 'appeals#show',
           :constraints => { :print => /print/ },
           :on => :member,
@@ -31,6 +31,8 @@ Appeals::Application.routes.draw do
   end
 
   resource :check_status, :only => [:create, :new]
+
+  match 'kremlin/:id' => 'appeals#show', :as => :kremlin_appeal
 
   resources :sections, :only => [], :shallow => true do
     resources :appeals, :only => [:create, :new, :show]

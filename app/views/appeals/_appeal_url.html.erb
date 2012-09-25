@@ -1,0 +1,10 @@
+<li>
+  по этому адресу
+  <% if @appeal.is_a?(KremlinAppeal) %>
+    <%= link_to kremlin_appeal_url(@appeal.code)  %>
+  <% else %>
+    <%= link_to appeal_url(@appeal.code), appeal_url(@appeal.code) %>
+  <% end %>
+  Вы сможете отслеживать процесс рассмотрения обращения
+</li>
+
