@@ -11,7 +11,7 @@
   <% end %>
 
   <%= form.actions do %>
-    <%= form.action :cancel, :label => t('cancel'), :url => :back, :button_html => { :class => 'button cancel' } %></li>
     <%= form.action :submit, :button_html => { :class => 'button primary' } %>
+    <%= form.action :cancel, :label => t('cancel'), :url => :back, :button_html => { :class => 'button cancel' } %></li>
   <% end %>
 <% end %>

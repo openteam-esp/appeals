@@ -21,11 +21,9 @@
         <%= form.actions do %>
           <%= form.action :submit, :label => :search, :button_html => { :class => 'button' } %>
           <%= form.action :cancel, :label => t('clear'), :url => manage_scoped_appeals_path(params[:forder] || 'fresh'), :button_html => { :class => 'button clear_search' } if params[:appeal_search] && !params[:appeal_search][:keywords].blank? %>
-
-          <li>
-            <%= link_to 'Добавить обращение с сайта kremlin', new_manage_kremlin_appeal_path, :class => 'button kremlin' %>
-          </li>
         <% end %>
+
+        <%= link_to 'Добавить обращение с сайта kremlin', new_manage_kremlin_appeal_path, :class => 'button kremlin' %>
       <% end %>
     </div>
     <div class='article' >

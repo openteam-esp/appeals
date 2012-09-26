@@ -6,6 +6,12 @@
       <%= render :partial => @appeal.state %>
     <% end %>
   <% else %>
-    <h3>Обращение c кодом <%= params[:id] %> не найдено.</h3>
+    <h3>
+    <% if params[:id].include?('-') %>
+      Обращение c кодом <%= params[:id] %> не найдено.
+    <% else %>
+      Ваше обращение еще не зарегистрировано.
+    <% end %>
+  </h3>
   <% end %>
 </div>
