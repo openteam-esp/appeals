@@ -140,8 +140,9 @@ class Appeal < ActiveRecord::Base
     end
 
     event :to_revert do
-      transition :registered => :fresh,
-                 :noted => :registered,
+      transition :registered => :fresh, :unless => ->(a) { a.is_a?(KremlinAppeal) }
+
+      transition :noted => :registered,
                  :redirected => :registered,
                  :reviewing => :registered,
                  :closed => :reviewing
