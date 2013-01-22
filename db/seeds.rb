@@ -29,3 +29,11 @@ Section.find_or_initialize_by_context_id(48).tap do | s |
   s.topics.find_or_create_by_title "Международные отношения. Международное право"
   s.topics.find_or_create_by_title "Индивидуальные правовые акты по кадровым вопросам, вопросам награждения, помилования, гражданства, присвоение почетных и иных званий."
 end
+
+if family_department_context = Context.find_by_title('Департамент по вопросам семьи и детей Томской области')
+  Section.find_or_initialize_by_context_id(family_department_context.id).tap do |section|
+    section.update_attributes :title => 'Департамент по вопросам семьи и детей Томской области'
+    section.topics.find_or_create_by_title 'Семья и дети'
+  end
+end
+
