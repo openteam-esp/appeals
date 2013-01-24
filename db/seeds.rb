@@ -33,7 +33,10 @@ end
 if family_department_context = Context.find_by_title('Департамент по вопросам семьи и детей Томской области')
   Section.find_or_initialize_by_context_id(family_department_context.id).tap do |section|
     section.update_attributes :title => 'Департамент по вопросам семьи и детей Томской области'
-    section.topics.find_or_create_by_title 'Семья и дети'
+
+    section.topics.find_or_create_by_title 'Отдых, оздоровление и занятость детей'
+    section.topics.find_or_create_by_title 'Опека и попечительство'
+    section.topics.find_or_create_by_title 'Помощь детям-сиротам'
   end
 end
 
