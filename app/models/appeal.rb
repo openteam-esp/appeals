@@ -38,7 +38,7 @@ class Appeal < ActiveRecord::Base
                       :maximum => 255,
                       :if => :validate_basic_fields?
 
-  validates_format_of :name, :surname, :with => /\A([ёЁа-яА-Я]+\s*)+\z/
+  validates_format_of :name, :surname, :with => /\A([ёЁа-яА-Я]+\s*)+\z/, :on => :create
 
   accepts_nested_attributes_for :address
 
