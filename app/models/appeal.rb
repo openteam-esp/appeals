@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Appeal < ActiveRecord::Base
   class_attribute :request_env
   self.request_env = {}
@@ -36,6 +38,7 @@ class Appeal < ActiveRecord::Base
                       :maximum => 255,
                       :if => :validate_basic_fields?
 
+  validates_format_of :name, :surname, :with => /\A([ёЁа-яА-Я]+\s*)+\z/
 
   accepts_nested_attributes_for :address
 
