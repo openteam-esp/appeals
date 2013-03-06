@@ -3,7 +3,6 @@ source :rubygems
 group :assets do
   gem 'sass-rails'
   gem 'compass-rails'
-  gem 'therubyracer'                              unless RUBY_PLATFORM =~ /freebsd/
   gem 'uglifier'
 end
 
@@ -14,7 +13,7 @@ group :default do
   gem 'esp-commons'
   gem 'esp-gems'
   gem 'jquery-rails'
-  gem 'rails',                                    :require => false
+  gem 'rails', '~> 3.2.12',                       :require => false
   gem 'simple-navigation'
   gem 'state_machine'
   gem 'sunspot_rails',    '>= 2.0.0.pre.120417',  :require => false
@@ -23,6 +22,7 @@ end
 
 group :development do
   gem 'annotate',         '~> 2.4.1.beta1',       :require => false
+  gem 'brakeman'
   gem 'hirb',                                     :require => false
   gem 'ruby-graphviz',                            :require => false
   gem 'sunspot_solr',     '>= 2.0.0.pre.120417',  :require => false
