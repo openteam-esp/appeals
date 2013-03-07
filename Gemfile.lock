@@ -65,6 +65,14 @@ GEM
     builder (3.0.4)
     bunny (0.7.9)
     cancan (1.6.7)
+    capistrano (2.14.2)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
+    capistrano-ext (1.2.1)
+      capistrano (>= 1.0.0)
     chronic (0.6.7)
     chunky_png (1.2.5)
     client_side_validations (3.1.4)
@@ -200,6 +208,13 @@ GEM
     mime-types (1.21)
     multi_json (1.6.1)
     multipart-post (1.1.5)
+    net-scp (1.1.0)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.6.6)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     nokogiri (1.5.4)
     oauth2 (0.6.1)
       faraday (~> 0.7)
@@ -282,6 +297,8 @@ GEM
       sexp_processor (~> 4.1)
     russian (0.6.0)
       i18n (>= 0.5.0)
+    rvm-capistrano (1.2.7)
+      capistrano (>= 2.0.0)
     ryba (0.1.2)
     sass (3.1.19)
     sass-rails (3.2.5)
@@ -340,6 +357,7 @@ PLATFORMS
 DEPENDENCIES
   annotate (~> 2.4.1.beta1)
   brakeman
+  capistrano-ext
   client_side_validations
   compass-rails
   el_vfs_client
@@ -358,6 +376,7 @@ DEPENDENCIES
   rb-inotify
   rspec-rails
   ruby-graphviz
+  rvm-capistrano
   ryba
   sass-rails
   shoulda-matchers

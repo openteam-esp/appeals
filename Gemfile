@@ -1,8 +1,9 @@
-source :rubygems
+source 'http://rubygems.org'
 
 group :assets do
   gem 'sass-rails'
   gem 'compass-rails'
+  gem 'jquery-rails'
   gem 'uglifier'
 end
 
@@ -12,7 +13,6 @@ group :default do
   gem 'esp-auth'
   gem 'esp-commons'
   gem 'esp-gems'
-  gem 'jquery-rails'
   gem 'rails', '~> 3.2.12',                       :require => false
   gem 'simple-navigation'
   gem 'state_machine'
@@ -23,8 +23,10 @@ end
 group :development do
   gem 'annotate',         '~> 2.4.1.beta1',       :require => false
   gem 'brakeman'
+  gem 'capistrano-ext'
   gem 'hirb',                                     :require => false
   gem 'ruby-graphviz',                            :require => false
+  gem 'rvm-capistrano'
   gem 'sunspot_solr',     '>= 2.0.0.pre.120417',  :require => false
 end
 
