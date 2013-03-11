@@ -177,7 +177,7 @@ GEM
     has_searcher (0.0.13)
       rails
     hashie (1.2.0)
-    highline (1.6.13)
+    highline (1.6.15)
     hike (1.2.1)
     hirb (0.7.0)
     httpauth (0.1)
