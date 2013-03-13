@@ -1,5 +1,6 @@
 class Topic < ActiveRecord::Base
   belongs_to :section
+  attr_accessible :title, :section_id
 
   validates_presence_of :title
 

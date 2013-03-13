@@ -40,6 +40,6 @@
   </div>
   <div class="button-group">
     <%= link_to t('print_version'), print_version_manage_appeal_path(@appeal, :print), :class => 'button icon log print_version', :target => '_blank' %>
-    <%= link_to t('to_trash'), [:manage, @appeal], :method => :delete, :class => 'button danger trash icon' if !@appeal.closed? && !@appeal.deleted? %>
+    <%= link_to t('to_trash'), manage_appeal_path(@appeal), :method => :delete, :class => 'button danger trash icon' if !@appeal.closed? && !@appeal.deleted? %>
   </div>
 </div>

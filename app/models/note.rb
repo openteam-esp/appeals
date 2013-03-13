@@ -1,5 +1,6 @@
 class Note < ActiveRecord::Base
   belongs_to :appeal
+  attr_accessible :appeal_id, :public
 
   after_create :note_appeal
 

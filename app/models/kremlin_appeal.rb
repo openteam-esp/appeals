@@ -1,5 +1,6 @@
 class KremlinAppeal < Appeal
   validates_presence_of :kremlin_number, :kremlin_registered_on
+  attr_accessible :kremlin_registered_on, :kremlin_number, :section_id, :registration_attributes
 
   accepts_nested_attributes_for :registration
 

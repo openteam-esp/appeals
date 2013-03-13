@@ -33,6 +33,7 @@ group :development do
   gem 'annotate',         '~> 2.4.1.beta1',       :require => false
   gem 'brakeman'
   gem 'capistrano-ext'
+  gem 'debugger'
   gem 'hirb',                                     :require => false
   gem 'ruby-graphviz',                            :require => false
   gem 'rvm-capistrano'

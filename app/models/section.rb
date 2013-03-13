@@ -1,6 +1,7 @@
 class Section < ActiveRecord::Base
   has_many :topics
   has_many :appeals
+  attr_accessible :title
 
   validates_presence_of :title, :context
 

@@ -7,6 +7,8 @@ class Address < ActiveRecord::Base
 
   validates_presence_of :region, :township, :district, :postcode, :street, :house, :if => :use_validation
 
+  attr_accessible :region, :township, :district, :postcode, :street, :house, :building, :flat, :appeal_id
+
   validates_format_of :region, :township, :district, :with => /\A([ёЁа-яА-Я]+\s*)+\z/, :if => :use_validation, :on => :create
 
   def full_address

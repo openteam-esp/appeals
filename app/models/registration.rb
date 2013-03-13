@@ -1,6 +1,8 @@
 class Registration < ActiveRecord::Base
   belongs_to :appeal
 
+  attr_accessible :number, :registered_on
+
   validates_presence_of :number, :registered_on
 
   after_create :register_appeal

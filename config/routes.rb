@@ -6,7 +6,7 @@ Appeals::Application.routes.draw do
       :constraints => { :folder => /(fresh|registered|noted|redirected|reviewing|closed|trash)/ },
       :as => :scoped_appeals
 
-    resources :kremlin_appeals
+    resources :kremlin_appeals, :only => [:new, :create]
 
     resources :appeals, :only => [:show, :destroy] do
       get '/:print' => 'appeals#show',

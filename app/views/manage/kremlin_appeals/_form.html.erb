@@ -1,5 +1,6 @@
 <%= semantic_form_for [:manage, resource] do |form| %>
   <%= form.inputs do %>
+    <%= form.input :section, :collection => current_user.available_sections %>
     <%= form.input :kremlin_number %>
     <%= form.input :kremlin_registered_on, :as => :string, :input_html => { :class => 'datepicker' } %>
 

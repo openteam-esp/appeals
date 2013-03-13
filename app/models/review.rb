@@ -1,6 +1,8 @@
 class Review < ActiveRecord::Base
   belongs_to :appeal
 
+  attr_accessible :appeal_id, :recipient
+
   validates_presence_of :recipient
 
   after_create :review_appeal

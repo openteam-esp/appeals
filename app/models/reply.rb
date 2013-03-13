@@ -3,6 +3,8 @@ class Reply < ActiveRecord::Base
 
   belongs_to :appeal
 
+  attr_accessible :number, :replied_on, :text, :public, :replied_by, :appeal_id, :root_path
+
   validates_presence_of :number, :replied_on, :replied_by, :if => Proc.new { |reply| reply.use_validation }
 end
 

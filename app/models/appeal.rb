@@ -4,6 +4,9 @@ class Appeal < ActiveRecord::Base
   class_attribute :request_env
   self.request_env = {}
 
+  attr_accessible :section_id, :topic_id, :public, :deleted_at, :answer_kind, :code, :email, :name,
+    :surname, :patronymic, :phone, :root_path, :social_status, :state, :user_agent, :user_ip, :user_proxy_ip, :user_referrer, :text
+
   belongs_to :deleted_by,         :class_name => 'User'
   belongs_to :topic
   belongs_to :section
