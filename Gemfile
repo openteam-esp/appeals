@@ -8,16 +8,23 @@ group :assets do
 end
 
 group :default do
+  gem 'audited-activerecord'
   gem 'client_side_validations'
   gem 'el_vfs_client'
-  gem 'sso-auth'
   gem 'esp-commons'
-  gem 'esp-gems'
-  gem 'rails', '~> 3.2.12',                       :require => false
-  gem 'simple-navigation'
-  gem 'state_machine'
-  gem 'sunspot_rails',    '>= 2.0.0.pre.120417',  :require => false
+  gem 'esp-views'
   gem 'formtastic',       '< 2.2.0'
+  gem 'has_enum'
+  gem 'inherited_resources'
+  gem 'kaminari'
+  gem 'openteam-commons'
+  gem 'progress_bar'
+  gem 'rails', '~> 3.2.12',                       :require => false
+  gem 'russian'
+  gem 'simple-navigation'
+  gem 'sso-auth'
+  gem 'state_machine'
+  gem 'sunspot_rails',    '>= 2.0.0.pre.120417'
 end
 
 group :development do
@@ -43,4 +50,8 @@ group :test do
   gem 'spork',            '>= 1.0.0.rc1',         :require => false
   gem 'sqlite3',                                  :require => false
   gem 'sunspot_matchers',                         :require => false
+end
+
+group :production do
+  gem 'pg'
 end
