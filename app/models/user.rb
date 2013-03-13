@@ -1,5 +1,15 @@
 class User < ActiveRecord::Base
   sso_auth_user
+
+  has_many :sections, :through => :permissions, :source => :context, :source_type => 'Section'
+
+  def available_sections
+    if manager?
+      Section.scoped
+    else
+      sections
+    end
+  end
 end
 
 # == Schema Information

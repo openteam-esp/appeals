@@ -15,6 +15,8 @@ group :default do
   gem 'esp-views'
   gem 'formtastic',       '< 2.2.0'
   gem 'has_enum'
+  gem 'has_scope'
+  gem 'has_searcher',     '< 0.0.90'
   gem 'inherited_resources'
   gem 'kaminari'
   gem 'openteam-commons'

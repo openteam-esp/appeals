@@ -47,7 +47,7 @@ class Appeal < ActiveRecord::Base
 
   before_validation :set_address_validation, :if => [:answer_kind_post?, :validate_basic_fields?]
 
-  scope :for, ->(user) { where :section_id => user.context_tree_of(Section).map(&:id) }
+  scope :for, ->(user) { where :section_id => user.available_sections }
 
   scope :by_state, ->(state) { where(:state => state).not_deleted }
   scope :not_deleted, where(:deleted_at => nil)

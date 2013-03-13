@@ -1,3 +1,7 @@
+class Context < ActiveRecord::Base
+  has_many :sections
+end
+
 class AssiciatePermissionToSection < ActiveRecord::Migration
   def up
     Permission.all.each do |p|

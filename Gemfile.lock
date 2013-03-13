@@ -131,6 +131,8 @@ GEM
     has_enum (0.10.1)
       rails (> 3.0.0)
     has_scope (0.5.1)
+    has_searcher (0.0.17)
+      rails
     hashie (1.2.0)
     highline (1.6.15)
     hike (1.2.1)
@@ -333,6 +335,8 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   has_enum
+  has_scope
+  has_searcher (< 0.0.90)
   hirb
   inherited_resources
   jquery-rails
