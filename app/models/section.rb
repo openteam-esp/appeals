@@ -1,7 +1,5 @@
 class Section < ActiveRecord::Base
 
-  belongs_to :context
-
   has_many :topics
   has_many :appeals
 

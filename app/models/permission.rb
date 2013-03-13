@@ -1,5 +1,6 @@
 class Permission < ActiveRecord::Base
-  esp_auth_permission
+  attr_accessible :context, :role
+  sso_auth_permission :roles => [:manager, :operator]
 end
 
 # == Schema Information

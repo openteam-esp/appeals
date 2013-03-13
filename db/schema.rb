@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924093547) do
+ActiveRecord::Schema.define(:version => 20130313014302) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "appeal_id"
@@ -76,17 +76,6 @@ ActiveRecord::Schema.define(:version => 20120924093547) do
   add_index "audits", ["created_at"], :name => "index_audits_on_created_at"
   add_index "audits", ["user_id", "user_type"], :name => "user_index"
 
-  create_table "contexts", :force => true do |t|
-    t.string   "title"
-    t.string   "ancestry"
-    t.string   "weight"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "contexts", ["ancestry"], :name => "index_contexts_on_ancestry"
-  add_index "contexts", ["weight"], :name => "index_contexts_on_weight"
-
   create_table "notes", :force => true do |t|
     t.integer  "appeal_id"
     t.boolean  "public"
@@ -148,7 +137,6 @@ ActiveRecord::Schema.define(:version => 20120924093547) do
   add_index "reviews", ["appeal_id"], :name => "index_reviews_on_appeal_id"
 
   create_table "sections", :force => true do |t|
-    t.integer  "context_id"
     t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

@@ -10,7 +10,7 @@ end
 group :default do
   gem 'client_side_validations'
   gem 'el_vfs_client'
-  gem 'esp-auth'
+  gem 'sso-auth'
   gem 'esp-commons'
   gem 'esp-gems'
   gem 'rails', '~> 3.2.12',                       :require => false
