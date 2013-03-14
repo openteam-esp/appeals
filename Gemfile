@@ -26,31 +26,26 @@ group :default do
   gem 'simple-navigation'
   gem 'sso-auth'
   gem 'state_machine'
-  gem 'sunspot_rails',    '>= 2.0.0.pre.120417'
+  gem 'sunspot_rails'
 end
 
 group :development do
-  gem 'annotate',         '~> 2.4.1.beta1',       :require => false
+  gem 'annotate',                                 :require => false
   gem 'brakeman'
   gem 'capistrano-ext'
   gem 'debugger'
   gem 'hirb',                                     :require => false
   gem 'ruby-graphviz',                            :require => false
   gem 'rvm-capistrano'
-  gem 'sunspot_solr',     '>= 2.0.0.pre.120417',  :require => false
+  gem 'sunspot_solr',                             :require => false
 end
 
 group :test do
   gem 'fabrication',      '< 2.0.0' ,             :require => false
   gem 'forgery',                                  :require => false
-  gem 'guard-rspec',                              :require => false
-  gem 'guard-spork',                              :require => false
-  gem 'libnotify',                                :require => false
-  gem 'rb-inotify',                               :require => false
   gem 'rspec-rails',                              :require => false
   gem 'ryba',                                     :require => false
   gem 'shoulda-matchers',                         :require => false
-  gem 'spork',            '>= 1.0.0.rc1',         :require => false
   gem 'sqlite3',                                  :require => false
   gem 'sunspot_matchers',                         :require => false
 end
