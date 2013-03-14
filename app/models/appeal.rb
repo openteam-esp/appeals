@@ -42,7 +42,7 @@ class Appeal < ActiveRecord::Base
                       :if => :validate_basic_fields?
 
   validates_format_of :name, :surname,
-                      :with => /\A([ёЁа-яА-Я]+\s*)+\z/,
+                      :with => /\A([ёа-я]+\s*)+\z/i,
                       :on => :create,
                       :if => :validate_basic_fields?
 
