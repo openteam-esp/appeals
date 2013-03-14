@@ -1,6 +1,8 @@
 #encoding: utf-8
 
 class Address < ActiveRecord::Base
+  attr_accessible :postcode, :region, :district, :street, :township, :house, :building, :flat
+
   belongs_to :appeal
 
   attr_accessor :use_validation
@@ -9,7 +11,7 @@ class Address < ActiveRecord::Base
 
   attr_accessible :region, :township, :district, :postcode, :street, :house, :building, :flat, :appeal_id
 
-  validates_format_of :region, :township, :district, :with => /\A([ёЁа-яА-Я]+\s*)+\z/, :if => :use_validation, :on => :create
+  validates_format_of :region, :township, :district, :with => /\A([ёЁа-яА-Я]+\.?\s*)+\z/, :if => :use_validation, :on => :create
 
   def full_address
     result = []

@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Manage::NotesController do
-  before { sign_in manager_of(root) }
+  before { sign_in manager }
 
   describe 'POST create' do
     it 'should redirect to registered appeals' do

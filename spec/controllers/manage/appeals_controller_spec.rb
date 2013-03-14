@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Manage::AppealsController do
-  before { sign_in manager_of(root) }
+  before { sign_in manager }
 
   describe 'GET index' do
     it 'folder fresh' do

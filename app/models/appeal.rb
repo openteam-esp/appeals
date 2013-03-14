@@ -4,8 +4,9 @@ class Appeal < ActiveRecord::Base
   class_attribute :request_env
   self.request_env = {}
 
-  attr_accessible :section_id, :topic_id, :public, :deleted_at, :answer_kind, :code, :email, :name,
-    :surname, :patronymic, :phone, :root_path, :social_status, :state, :user_agent, :user_ip, :user_proxy_ip, :user_referrer, :text
+  attr_accessible :topic_id, :public, :answer_kind, :email, :name
+  attr_accessible :surname, :patronymic, :phone, :social_status, :state, :text
+  attr_accessible :address_attributes
 
   belongs_to :deleted_by,         :class_name => 'User'
   belongs_to :topic
@@ -184,7 +185,7 @@ class Appeal < ActiveRecord::Base
 
   def move_to_trash_by(user)
     self.tap do |appeal|
-      appeal.update_attributes :deleted_at => Time.now, :deleted_by => user
+      appeal.update_attributes!({:deleted_at => Time.now, :deleted_by => user}, :without_protection => true)
     end
   end
 
@@ -194,8 +195,7 @@ class Appeal < ActiveRecord::Base
 
   def restore
     self.tap do |appeal|
-      appeal.update_attributes :deleted_by => nil,
-                               :deleted_at => nil
+      appeal.update_attributes({:deleted_by => nil, :deleted_at => nil}, :without_protection => true)
     end
   end
 

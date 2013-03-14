@@ -2,16 +2,16 @@
 
 module AppealsSpecHelper
 
-  def section(context)
-    @section ||= Section.create :title => "Section", :context => context
+  def section
+    @section ||= Section.create :title => "Section"
   end
 
-  def another_section(context)
-    @another_section ||= Section.create :title => "Another section", :context => context
+  def another_section
+    @another_section ||= Section.create :title => "Another section"
   end
 
   def create_fresh_appeal(options={})
-    Fabricate(:appeal, options.reverse_merge(:section => section(root)))
+    Fabricate(:appeal, options)
   end
 
   def create_registered_appeal(options={})

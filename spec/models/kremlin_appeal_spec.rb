@@ -8,7 +8,7 @@ describe KremlinAppeal do
   let(:section) { Fabricate(:section) }
 
   let(:kremlin_appeal) {
-    KremlinAppeal.new :section => section,
+    KremlinAppeal.new :section_id => section.id,
                       :kremlin_registered_on => '2012-01-13',
                       :kremlin_number => 'A26-13-11484',
                       :registration_attributes => { :number => '123', :registered_on => '2012-01-11' }

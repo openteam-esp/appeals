@@ -5,12 +5,8 @@ require 'spec_helper'
 describe AppealsController do
   describe "POST create" do
     it "должен проставлять техническую информацию" do
-      section = section(root)
-      appeal_attributes = Fabricate.attributes_for(:appeal, :section => section)
-      appeal_attributes.delete(:section)
-      appeal_attributes[:section_id] = section.id
-      appeal_attributes[:topic_id] = appeal_attributes[:topic] || Fabricate(:topic)
-      appeal_attributes.delete(:topic)
+      appeal_attributes = Fabricate.build(:appeal, :section => section).attributes.keep_if{|k,v| v}
+      appeal_attributes.delete('section_id')
       post :create, :appeal => appeal_attributes, :section_id => section.id
       appeal = assigns(:appeal)
       response.should redirect_to(appeal_path(appeal.code))
