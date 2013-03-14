@@ -1,15 +1,13 @@
 source 'http://rubygems.org'
 
 group :assets do
-  gem 'sass-rails'
-  gem 'compass-rails'
-  gem 'jquery-rails'
   gem 'uglifier'
 end
 
 group :default do
   gem 'audited-activerecord'
   gem 'client_side_validations'
+  gem 'compass-rails'
   gem 'el_vfs_client'
   gem 'esp-commons'
   gem 'esp-views'
@@ -18,11 +16,13 @@ group :default do
   gem 'has_scope'
   gem 'has_searcher',     '< 0.0.90'
   gem 'inherited_resources'
+  gem 'jquery-rails'
   gem 'kaminari'
   gem 'openteam-commons'
   gem 'progress_bar'
   gem 'rails', '~> 3.2.12',                       :require => false
   gem 'russian'
+  gem 'sass-rails'
   gem 'simple-navigation'
   gem 'sso-auth'
   gem 'state_machine'
