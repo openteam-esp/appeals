@@ -21,7 +21,7 @@ function init_datepicker() {
       changeYear: true,
       showOn: "button",
       buttonText: '',
-      buttonImage: "<%= image_path("ui/calendar.png") %>",
+      buttonImage: "/assets/ui/calendar.png",
       buttonImageOnly: true
     });
   };
@@ -96,6 +96,6 @@ function preload_images(images) {
 };
 
 preload_images([
-  "<%= image_path("ajax_loading.gif") %>",
-  "<%= image_path("ui/calendar.png") %>"
+  "/assets/ajax_loading.gif",
+  "/assets/ui/calendar.png"
 ]);
