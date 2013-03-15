@@ -97,13 +97,13 @@ namespace :unicorn do
 end
 
 # deploy
-after "deploy:finalize_update", "deploy:config_app"
-after "deploy", "deploy:migrate"
-after "deploy", "deploy:copy_unicorn_config"
-after "deploy", "unicorn:restart"
-after "deploy:restart", "deploy:cleanup"
-after "deploy", "deploy:crontab"
-after "deploy", "deploy:airbrake"
+after "deploy:finalize_update",  "deploy:config_app"
+after "deploy",                  "deploy:migrate"
+after "deploy",                  "deploy:copy_unicorn_config"
+after "deploy",                  "unicorn:restart"
+after "deploy:restart",          "deploy:cleanup"
+after "deploy",                  "deploy:crontab"
+after "deploy",                  "deploy:airbrake"
 
 # deploy:rollback
 after "deploy:rollback", "unicorn:restart"
