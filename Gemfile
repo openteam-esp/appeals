@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 group :assets do
   gem 'uglifier'
+  gem 'turbo-sprockets-rails3'
 end
 
 group :default do
