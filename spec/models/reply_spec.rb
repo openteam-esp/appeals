@@ -1,22 +1,22 @@
 # encoding: utf-8
+# == Schema Information
+#
+# Table name: replies
+#
+#  id         :integer          not null, primary key
+#  appeal_id  :integer
+#  public     :boolean
+#  replied_on :date
+#  root_path  :string(255)
+#  number     :string(255)
+#  replied_by :string(255)
+#  text       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 
 require 'spec_helper'
 
 describe Reply do
 end
-# == Schema Information
-#
-# Table name: replies
-#
-#  id         :integer         not null, primary key
-#  number     :string(255)
-#  replied_on :date
-#  text       :text
-#  public     :boolean
-#  replied_by :string(255)
-#  appeal_id  :integer
-#  created_at :datetime
-#  updated_at :datetime
-#  root_path  :string(255)
-#
-

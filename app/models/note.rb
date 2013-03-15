@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: notes
+#
+#  id         :integer          not null, primary key
+#  appeal_id  :integer
+#  public     :boolean
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Note < ActiveRecord::Base
   belongs_to :appeal
   attr_accessible :appeal_id, :public
@@ -9,14 +20,3 @@ class Note < ActiveRecord::Base
       self.appeal.to_note!
     end
 end
-# == Schema Information
-#
-# Table name: notes
-#
-#  id         :integer         not null, primary key
-#  public     :boolean
-#  appeal_id  :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
-
