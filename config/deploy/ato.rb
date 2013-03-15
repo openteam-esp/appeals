@@ -70,12 +70,12 @@ namespace :deploy do
 
   desc "Copy unicorn.rb file"
   task :copy_unicorn_config do
-    run "ln -s #{deploy_to}/shared/config/unicorn.rb #{deploy_to}/current/config/unicorn.rb"
+    run "ln -s #{deploy_to}/shared/config/unicorn.rb #{release_path}/config/unicorn.rb"
   end
 
   desc "Airbrake notify"
   task :airbrake do
-    run "cd #{deploy_to}/current && RAILS_ENV=production TO=production bin/rake airbrake:deploy"
+    run "cd #{release_path} && RAILS_ENV=production TO=production bin/rake airbrake:deploy"
   end
 end
 
