@@ -322,6 +322,7 @@ DEPENDENCIES
   el_vfs_client
   esp-commons
   esp-views
+  execjs
   fabrication (< 2.0.0)
   forgery
   formtastic (< 2.2.0)

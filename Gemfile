@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 group :assets do
+  gem 'execjs'
   gem 'uglifier'
   gem 'turbo-sprockets-rails3'
 end
