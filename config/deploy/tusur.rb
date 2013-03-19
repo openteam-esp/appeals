@@ -86,17 +86,17 @@ end
 namespace :unicorn do
   desc "Start Unicorn"
   task :start do
-    run "/etc/init.d/unicorn start"
+    sudo "/etc/init.d/unicorn start"
   end
 
   desc "Stop Unicorn"
   task :stop do
-    run "/etc/init.d/unicorn stop"
+    sudo "/etc/init.d/unicorn stop"
   end
 
   desc "Restart Unicorn"
   task :restart do
-    run "/etc/init.d/unicorn restart"
+    sudo "/etc/init.d/unicorn restart"
   end
 end
 
@@ -106,8 +106,7 @@ after "deploy",                  "deploy:migrate"
 after "deploy",                  "deploy:copy_unicorn_config"
 after "deploy",                  "unicorn:restart"
 after "deploy:restart",          "deploy:cleanup"
-after "deploy",                  "deploy:crontab"
-after "deploy",                  "deploy:airbrake"
+#after "deploy",                  "deploy:airbrake"
 
 # deploy:rollback
 after "deploy:rollback", "unicorn:restart"
