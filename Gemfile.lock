@@ -1,3 +1,26 @@
+GIT
+  remote: git://github.com/openteam/capistrano-db-tasks
+  revision: b6b81df2d6965c456e8ca4cf3aa325c95a542b36
+  specs:
+    capistrano-db-tasks (0.2)
+
+GIT
+  remote: git://github.com/sosedoff/capistrano-unicorn
+  revision: c9d2b76f986ec74a98a3bc4dc9f655264d720e52
+  specs:
+    capistrano-unicorn (0.1.6)
+      capistrano
+
+PATH
+  remote: ../../openteam/openteam-capistrano
+  specs:
+    openteam-capistrano (0.0.1)
+      capistrano-db-tasks
+      capistrano-deploytags
+      capistrano-ext
+      capistrano-unicorn
+      rvm-capistrano
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -71,6 +94,9 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    capistrano-deploytags (0.7.0)
+      capistrano
+      capistrano-ext
     capistrano-ext (1.2.1)
       capistrano (>= 1.0.0)
     chronic (0.6.7)
@@ -315,7 +341,8 @@ DEPENDENCIES
   annotate
   audited-activerecord
   brakeman
-  capistrano-ext
+  capistrano-db-tasks!
+  capistrano-unicorn!
   client_side_validations
   compass-rails
   debugger
@@ -333,6 +360,7 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   kaminari
+  openteam-capistrano!
   openteam-commons
   pg
   progress_bar
@@ -340,7 +368,6 @@ DEPENDENCIES
   rspec-rails
   ruby-graphviz
   russian
-  rvm-capistrano
   ryba
   sass-rails
   shoulda-matchers

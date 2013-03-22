@@ -34,12 +34,13 @@ end
 group :development do
   gem 'annotate',                                 :require => false
   gem 'brakeman'
-  gem 'capistrano-ext'
   gem 'debugger'
   gem 'hirb',                                     :require => false
   gem 'ruby-graphviz',                            :require => false
-  gem 'rvm-capistrano'
   gem 'sunspot_solr',                             :require => false
+  gem 'openteam-capistrano', :path => '../../openteam/openteam-capistrano'
+  gem 'capistrano-db-tasks', :git => 'git://github.com/openteam/capistrano-db-tasks'
+  gem 'capistrano-unicorn',  :git => 'git://github.com/sosedoff/capistrano-unicorn'
 end
 
 group :test do
