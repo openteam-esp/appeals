@@ -38,7 +38,7 @@ group :development do
   gem 'hirb',                                     :require => false
   gem 'ruby-graphviz',                            :require => false
   gem 'sunspot_solr',                             :require => false
-  gem 'openteam-capistrano', :path => '../../openteam/openteam-capistrano'
+  gem 'openteam-capistrano'
   gem 'capistrano-db-tasks', :git => 'git://github.com/openteam/capistrano-db-tasks'
   gem 'capistrano-unicorn',  :git => 'git://github.com/sosedoff/capistrano-unicorn'
 end
