@@ -6,9 +6,9 @@ GIT
 
 GIT
   remote: git://github.com/sosedoff/capistrano-unicorn
-  revision: c9d2b76f986ec74a98a3bc4dc9f655264d720e52
+  revision: dc49187df68e92bc04b7b0fa42da1e24f70d69f5
   specs:
-    capistrano-unicorn (0.1.6)
+    capistrano-unicorn (0.1.7)
       capistrano
 
 GEM
@@ -148,7 +148,7 @@ GEM
     has_searcher (0.0.17)
       rails
     hashie (1.2.0)
-    highline (1.6.15)
+    highline (1.6.16)
     hike (1.2.1)
     hirb (0.7.0)
     httpauth (0.2.0)
@@ -194,7 +194,7 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    openteam-capistrano (0.0.3)
+    openteam-capistrano (0.0.5)
       capistrano-db-tasks
       capistrano-ext
       capistrano-unicorn
