@@ -39,8 +39,8 @@ group :development do
   gem 'ruby-graphviz',                            :require => false
   gem 'sunspot_solr',                             :require => false
   gem 'openteam-capistrano'
-  gem 'capistrano-db-tasks', :git => 'git://github.com/openteam/capistrano-db-tasks'
-  gem 'capistrano-unicorn',  :git => 'git://github.com/sosedoff/capistrano-unicorn'
+  gem 'capistrano-db-tasks', :git => 'git://github.com/sgruhier/capistrano-db-tasks'
+  gem 'capistrano-unicorn'
 end
 
 group :test do
