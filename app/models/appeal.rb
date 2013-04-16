@@ -125,6 +125,7 @@ class Appeal < ActiveRecord::Base
            :prefix => true, :allow_nil => true
 
   delegate :full_address, :to => :address, :allow_nil => true
+  delegate :title, :to => :section, :prefix => true
 
   has_enums
 
