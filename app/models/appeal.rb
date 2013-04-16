@@ -35,7 +35,7 @@ class Appeal < ActiveRecord::Base
 
   attr_accessible :topic_id, :public, :answer_kind, :email, :name
   attr_accessible :surname, :patronymic, :phone, :social_status, :state, :text
-  attr_accessible :address_attributes
+  attr_accessible :address_attributes, :root_path
 
   belongs_to :deleted_by,         :class_name => 'User'
   belongs_to :topic
