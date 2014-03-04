@@ -22,7 +22,7 @@ group :default do
   gem 'kaminari'
   gem 'openteam-commons'
   gem 'progress_bar'
-  gem 'rails', '~> 3.2.12',                       :require => false
+  gem 'rails', '~> 3.2.12'
   gem 'russian'
   gem 'sass-rails'
   gem 'simple-navigation'
@@ -32,15 +32,15 @@ group :default do
 end
 
 group :development do
-  gem 'annotate',                                 :require => false
-  gem 'brakeman'
+  gem 'annotate', :require => false
+  gem 'brakeman', :require => false
+  gem 'capistrano-db-tasks', :git => 'git://github.com/sgruhier/capistrano-db-tasks', :ref => '396cbbf', :require => false
+  gem 'capistrano-unicorn', '~> 0.1.7', :require => false
   gem 'debugger'
-  gem 'hirb',                                     :require => false
-  gem 'ruby-graphviz',                            :require => false
-  gem 'sunspot_solr',                             :require => false
-  gem 'openteam-capistrano'
-  gem 'capistrano-db-tasks', :git => 'git://github.com/sgruhier/capistrano-db-tasks'
-  gem 'capistrano-unicorn'
+  gem 'hirb', :require => false
+  gem 'openteam-capistrano', :require => false
+  gem 'ruby-graphviz', :require => false
+  gem 'sunspot_solr', :require => false
 end
 
 group :test do
